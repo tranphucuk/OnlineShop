@@ -55,13 +55,23 @@ namespace OnlineShop.Data.Infrastructure
         }
 
         /// <summary>
-        /// Remove an entity
+        /// Remove an entity by entity injected
         /// </summary>
         /// <param name="entity"></param>
         public virtual void Delete(T entity)
         {
             dbSet.Remove(entity);
         }
+        /// <summary>
+        /// Remove an entity by ID
+        /// </summary>
+        /// <param name="entity"></param>
+        public virtual void Delete(int id)
+        {
+            var entity = dbSet.Find(id);
+            dbSet.Remove(entity);
+        }
+
 
         /// <summary>
         /// Delete multi entities

@@ -22,10 +22,15 @@ namespace OnlineShop.Data.Infrastructure
         void Update(T entity);
 
         /// <summary>
-        /// Remove an entity
+        /// Remove an entity by entity injected
         /// </summary>
         /// <param name="entity"></param>
         void Delete(T entity);
+        /// <summary>
+        /// Remove an entity by id
+        /// </summary>
+        /// <param name="id"></param>
+        void Delete(int id);
 
         /// <summary>
         /// Delete multi entities
