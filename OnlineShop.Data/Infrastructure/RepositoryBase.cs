@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace OnlineShop.Data.Infrastructure
 {
-    public abstract class RepositoryBase<T> where T : class
+    public abstract class RepositoryBase<T> : IRepository<T>  where T : class
     {
         #region Properties
         private OnlineShopDbContext dataContext;
@@ -96,16 +96,16 @@ namespace OnlineShop.Data.Infrastructure
             return GetAll(includes).FirstOrDefault(expression);
         }
 
-        /// <summary>
-        /// Get multiple entities by condition
-        /// </summary>
-        /// <param name="predicate"></param>
-        /// <param name="includes"></param>
-        /// <returns></returns>
-        public virtual IEnumerable<T> GetMultiEntity(Expression<Func<T, bool>> where, string includes)
-        {
-            return dbSet.Where(where).ToList();
-        }
+        ///// <summary>
+        ///// Get multiple entities by condition
+        ///// </summary>
+        ///// <param name="predicate"></param>
+        ///// <param name="includes"></param>
+        ///// <returns></returns>
+        //public virtual IEnumerable<T> GetMany(Expression<Func<T, bool>> where, string includes)
+        //{
+        //    return dbSet.Where(where).ToList();
+        //}
 
         /// <summary>
         /// Count number but matched condition
@@ -178,6 +178,26 @@ namespace OnlineShop.Data.Infrastructure
         public bool CheckContains(Expression<Func<T, bool>> predicate)
         {
             return dataContext.Set<T>().Count<T>(predicate) > 0;
+        }
+
+        /// <summary>
+        /// Get Multi Entity By conditions
+        /// </summary>
+        /// <param name="predicate"></param>
+        /// <param name="includes"></param>
+        /// <returns></returns>
+        public virtual IQueryable<T> GetMulti(Expression<Func<T, bool>> predicate, string[] includes = null)
+        {
+            //HANDLE INCLUDES FOR ASSOCIATED OBJECTS IF APPLICABLE
+            if (includes != null && includes.Count() > 0)
+            {
+                var query = dataContext.Set<T>().Include(includes.First());
+                foreach (var include in includes.Skip(1))
+                    query = query.Include(include);
+                return query.Where<T>(predicate).AsQueryable<T>();
+            }
+
+            return dataContext.Set<T>().Where<T>(predicate).AsQueryable<T>();
         }
     }
 }

@@ -23,7 +23,7 @@ namespace OnlineShop.Model.Model
 
         [Required]
         [MaxLength(50)]
-        [Column(TypeName ="varchar")]
+        [Column(TypeName = "varchar")]
         public string Alias { get; set; }
 
         public int CategoryID { get; set; }
@@ -31,11 +31,12 @@ namespace OnlineShop.Model.Model
         [ForeignKey("CategoryID")]
         public virtual ProductCategory ProductCategory { get; set; }
 
-        public virtual IEnumerable<OrderDetail> OrderDetails { get; set; } 
+        public virtual IEnumerable<OrderDetail> OrderDetails { get; set; }
 
         public string Image { get; set; }
 
-        public XElement MoreImages { get; set; }
+        [Column(TypeName = "xml")]
+        public string MoreImages { get; set; }
 
         public int DisplayOrder { get; set; }
 
