@@ -13,6 +13,7 @@ namespace OnlineShop.Model.Model
     {
         [Key]
         [MaxLength(50)]
+        [Column(TypeName ="varchar")]
         public string ID { get; set; }
 
         [Required]
