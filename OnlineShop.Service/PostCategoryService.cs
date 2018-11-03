@@ -18,6 +18,8 @@ namespace OnlineShop.Service
         IEnumerable<PostCategory> GetAllByParentId(int parentId);
 
         PostCategory GetPostCategoryById(int id);
+
+        void Save();
     }
 
     public class PostCategoryService : IPostCategoryService
@@ -54,6 +56,11 @@ namespace OnlineShop.Service
         public PostCategory GetPostCategoryById(int id)
         {
             return _postCategoryRepository.GetSingleEntity(id);
+        }
+
+        public void Save()
+        {
+            _unitOfWork.Commit();
         }
 
         public void Update(PostCategory postCategory)

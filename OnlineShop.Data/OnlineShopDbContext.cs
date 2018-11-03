@@ -32,6 +32,7 @@ namespace OnlineShop.Data
         public DbSet<SystemConfig> SystemConfigs { get; set; }
         public DbSet<Tag> Tags { get; set; }
         public DbSet<VisitorStatistic> VisitorStatistics { get; set; }
+        public DbSet<Error> Errors { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

@@ -51,6 +51,7 @@
     <Compile Include="Abstract\Auditable.cs" />
     <Compile Include="Abstract\IAuditable.cs" />
     <Compile Include="Class1.cs" />
+    <Compile Include="Model\Error.cs" />
     <Compile Include="Model\Footer.cs" />
     <Compile Include="Model\Menu.cs" />
     <Compile Include="Model\MenuGroup.cs" />

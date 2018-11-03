@@ -1,39 +1,97 @@
-﻿using System;
+﻿using OnlineShop.Model.Model;
+using OnlineShop.Service;
+using OnlineShop.Web.Infrastructure.Core;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
 namespace OnlineShop.Web.API
 {
-    public class PostCategoryController : ApiController
+    [RoutePrefix("api/postcategory")]
+    public class PostCategoryController : ApiControllerBase
     {
-        // GET api/<controller>
-        public IEnumerable<string> Get()
+        IPostCategoryService _postCategoryService;
+
+        public PostCategoryController(IErrorService errorService, IPostCategoryService postCategoryService) : base(errorService)
         {
-            return new string[] { "value1", "value2" };
+            this._postCategoryService = postCategoryService;
         }
 
-        // GET api/<controller>/5
-        public string Get(int id)
+        [Route("getall")]
+        public HttpResponseMessage Post(HttpRequestMessage requestMessage, PostCategory postCategory)
         {
-            return "value";
+            return this.CreateHttpReponse(requestMessage, () =>
+            {
+                HttpResponseMessage res = null;
+                if (!ModelState.IsValid)
+                {
+                    res = requestMessage.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var category = _postCategoryService.Add(postCategory);
+                    _postCategoryService.Save();
+                    res = requestMessage.CreateResponse(HttpStatusCode.Created, category);
+                }
+                return res;
+            });
         }
 
-        // POST api/<controller>
-        public void Post([FromBody]string value)
+        public HttpResponseMessage Put(HttpRequestMessage requestMessage, PostCategory postCategory)
         {
+            return this.CreateHttpReponse(requestMessage, () =>
+            {
+                HttpResponseMessage res = null;
+                if (!ModelState.IsValid)
+                {
+                    res = requestMessage.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    _postCategoryService.Update(postCategory);
+                    _postCategoryService.Save();
+                    res = requestMessage.CreateResponse(HttpStatusCode.OK);
+                }
+                return res;
+            });
         }
 
-        // PUT api/<controller>/5
-        public void Put(int id, [FromBody]string value)
+        public HttpResponseMessage Delete(HttpRequestMessage requestMessage, int id)
         {
+            return this.CreateHttpReponse(requestMessage, () =>
+            {
+                HttpResponseMessage res = null;
+                if (!ModelState.IsValid)
+                {
+                    res = requestMessage.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    _postCategoryService.Delete(id);
+                    _postCategoryService.Save();
+                    res = requestMessage.CreateResponse(HttpStatusCode.OK);
+                }
+                return res;
+            });
         }
 
-        // DELETE api/<controller>/5
-        public void Delete(int id)
+        public HttpResponseMessage Get(HttpRequestMessage requestMessage)
         {
+            return this.CreateHttpReponse(requestMessage, () =>
+            {
+                HttpResponseMessage res = null;
+                if (!ModelState.IsValid)
+                {
+                    res = requestMessage.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var listPostCategory = _postCategoryService.GetAll();
+                    res = requestMessage.CreateResponse(HttpStatusCode.OK, listPostCategory);
+                }
+                return res;
+            });
         }
     }
 }
