@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace OnlineShop.Data.Infrastructure
 {
-    public abstract class RepositoryBase<T> : IRepository<T>  where T : class
+    public abstract class RepositoryBase<T> : IRepository<T> where T : class
     {
         #region Properties
         private OnlineShopDbContext dataContext;
@@ -24,7 +24,7 @@ namespace OnlineShop.Data.Infrastructure
         {
             get
             {
-                return dataContext ?? (dataContext = new OnlineShopDbContext());
+                return dataContext ?? (dataContext = DbFactory.Init());
             }
         }
         #endregion
@@ -39,9 +39,9 @@ namespace OnlineShop.Data.Infrastructure
         /// Add an entity as new
         /// </summary>
         /// <param name="entity"></param>
-        public virtual void Add(T entity)
+        public virtual T Add(T entity)
         {
-            dbSet.Add(entity);
+            return dbSet.Add(entity);
         }
 
         /// <summary>
@@ -58,18 +58,18 @@ namespace OnlineShop.Data.Infrastructure
         /// Remove an entity by entity injected
         /// </summary>
         /// <param name="entity"></param>
-        public virtual void Delete(T entity)
+        public virtual T Delete(T entity)
         {
-            dbSet.Remove(entity);
+            return dbSet.Remove(entity);
         }
         /// <summary>
         /// Remove an entity by ID
         /// </summary>
         /// <param name="entity"></param>
-        public virtual void Delete(int id)
+        public virtual T Delete(int id)
         {
             var entity = dbSet.Find(id);
-            dbSet.Remove(entity);
+            return dbSet.Remove(entity);
         }
 
 
@@ -103,7 +103,16 @@ namespace OnlineShop.Data.Infrastructure
         /// <returns></returns>
         public virtual T GetSingleEntity(Expression<Func<T, bool>> expression, string[] includes = null)
         {
-            return GetAll(includes).FirstOrDefault(expression);
+            if (includes != null && includes.Count() > 0)
+            {
+                var query = dataContext.Set<T>().Include(includes.First());
+                foreach (var include in includes.Skip(1))
+                {
+                    query = query.Include(include);
+                    return query.FirstOrDefault(expression);
+                }
+            }
+            return dataContext.Set<T>().FirstOrDefault(expression);
         }
 
         ///// <summary>
@@ -132,7 +141,7 @@ namespace OnlineShop.Data.Infrastructure
         /// </summary>
         /// <param name="included"></param>
         /// <returns></returns>
-        public IQueryable<T> GetAll(string[] includes = null)
+        public IEnumerable<T> GetAll(string[] includes = null)
         {
             if (includes != null && includes.Count() > 0)
             {
@@ -156,7 +165,7 @@ namespace OnlineShop.Data.Infrastructure
         /// <param name="size"></param>
         /// <param name="includeds"></param>
         /// <returns></returns>
-        public virtual IQueryable<T> GetMultiPaging(Expression<Func<T, bool>> predicate, out int total, int index = 0, int size = 20, string[] includes = null)
+        public virtual IEnumerable<T> GetMultiPaging(Expression<Func<T, bool>> predicate, out int total, int index = 0, int size = 20, string[] includes = null)
         {
             int skipCount = index * size;
             IQueryable<T> _resetSet;
@@ -196,7 +205,7 @@ namespace OnlineShop.Data.Infrastructure
         /// <param name="predicate"></param>
         /// <param name="includes"></param>
         /// <returns></returns>
-        public virtual IQueryable<T> GetMulti(Expression<Func<T, bool>> predicate, string[] includes = null)
+        public virtual IEnumerable<T> GetMulti(Expression<Func<T, bool>> predicate, string[] includes = null)
         {
             //HANDLE INCLUDES FOR ASSOCIATED OBJECTS IF APPLICABLE
             if (includes != null && includes.Count() > 0)

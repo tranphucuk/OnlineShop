@@ -13,7 +13,7 @@ namespace OnlineShop.Data.Infrastructure
         /// Add an entity as new
         /// </summary>
         /// <param name="entity"></param>
-        void Add(T entity);
+        T Add(T entity);
 
         /// <summary>
         /// Modify an entity
@@ -25,12 +25,12 @@ namespace OnlineShop.Data.Infrastructure
         /// Remove an entity by entity injected
         /// </summary>
         /// <param name="entity"></param>
-        void Delete(T entity);
+        T Delete(T entity);
         /// <summary>
         /// Remove an entity by id
         /// </summary>
         /// <param name="id"></param>
-        void Delete(int id);
+        T Delete(int id);
 
         /// <summary>
         /// Delete multi entities
@@ -57,7 +57,7 @@ namespace OnlineShop.Data.Infrastructure
         /// </summary>
         /// <param name="included"></param>
         /// <returns></returns>
-        IQueryable<T> GetAll(string[] included = null);
+        IEnumerable<T> GetAll(string[] included = null);
 
         /// <summary>
         /// Get multiple entities by condition
@@ -65,7 +65,7 @@ namespace OnlineShop.Data.Infrastructure
         /// <param name="predicate"></param>
         /// <param name="includes"></param>
         /// <returns></returns>
-        IQueryable<T> GetMulti(Expression<Func<T, bool>> predicate, string[] includes = null);
+        IEnumerable<T> GetMulti(Expression<Func<T, bool>> predicate, string[] includes = null);
 
         /// <summary>
         /// Paging enities
@@ -76,7 +76,7 @@ namespace OnlineShop.Data.Infrastructure
         /// <param name="size"></param>
         /// <param name="includeds"></param>
         /// <returns></returns>
-        IQueryable<T> GetMultiPaging(Expression<Func<T, bool>> filter, out int total, int index = 0, int size = 50, string[] includeds = null);
+        IEnumerable<T> GetMultiPaging(Expression<Func<T, bool>> filter, out int total, int index = 0, int size = 50, string[] includeds = null);
 
         /// <summary>
         /// Count number but matched condition

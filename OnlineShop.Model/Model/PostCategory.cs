@@ -22,7 +22,7 @@ namespace OnlineShop.Model.Model
 
         [Required]
         [MaxLength(50)]
-        [Column(TypeName ="varchar")]
+        [Column(TypeName = "varchar")]
         public string Alias { get; set; }
 
         [Required]
