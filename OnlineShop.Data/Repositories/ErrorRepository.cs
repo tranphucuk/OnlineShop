@@ -13,7 +13,7 @@ namespace OnlineShop.Data.Repositories
 
     }
 
-    public class ErrorRepository : RepositoryBase<Error>
+    public class ErrorRepository : RepositoryBase<Error>, IErrorRepository
     {
         public ErrorRepository(IDbFactory dbFactory) : base(dbFactory)
         {

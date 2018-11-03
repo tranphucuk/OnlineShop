@@ -19,6 +19,16 @@ namespace OnlineShop.Web.API
         }
 
         [Route("getall")]
+        public HttpResponseMessage Get(HttpRequestMessage requestMessage)
+        {
+            return this.CreateHttpReponse(requestMessage, () =>
+            {
+                var listPostCategory = _postCategoryService.GetAll();
+                var res = requestMessage.CreateResponse(HttpStatusCode.OK, listPostCategory);
+                return res;
+            });
+        }
+
         public HttpResponseMessage Post(HttpRequestMessage requestMessage, PostCategory postCategory)
         {
             return this.CreateHttpReponse(requestMessage, () =>
@@ -71,24 +81,6 @@ namespace OnlineShop.Web.API
                     _postCategoryService.Delete(id);
                     _postCategoryService.Save();
                     res = requestMessage.CreateResponse(HttpStatusCode.OK);
-                }
-                return res;
-            });
-        }
-
-        public HttpResponseMessage Get(HttpRequestMessage requestMessage)
-        {
-            return this.CreateHttpReponse(requestMessage, () =>
-            {
-                HttpResponseMessage res = null;
-                if (!ModelState.IsValid)
-                {
-                    res = requestMessage.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
-                }
-                else
-                {
-                    var listPostCategory = _postCategoryService.GetAll();
-                    res = requestMessage.CreateResponse(HttpStatusCode.OK, listPostCategory);
                 }
                 return res;
             });
