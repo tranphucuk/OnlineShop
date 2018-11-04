@@ -1,6 +1,9 @@
-﻿using OnlineShop.Model.Model;
+﻿using AutoMapper;
+using OnlineShop.Model.Model;
 using OnlineShop.Service;
 using OnlineShop.Web.Infrastructure.Core;
+using OnlineShop.Web.Infrastructure.Extensions;
+using OnlineShop.Web.Models;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
@@ -24,12 +27,14 @@ namespace OnlineShop.Web.API
             return this.CreateHttpReponse(requestMessage, () =>
             {
                 var listPostCategory = _postCategoryService.GetAll();
-                var res = requestMessage.CreateResponse(HttpStatusCode.OK, listPostCategory);
+                var listPostCategoryVm = Mapper.Map<List<PostCategoryViewModel>>(listPostCategory);
+                var res = requestMessage.CreateResponse(HttpStatusCode.OK, listPostCategoryVm);
                 return res;
             });
         }
 
-        public HttpResponseMessage Post(HttpRequestMessage requestMessage, PostCategory postCategory)
+        [Route("add")]
+        public HttpResponseMessage Post(HttpRequestMessage requestMessage, PostCategoryViewModel postCategoryVm)
         {
             return this.CreateHttpReponse(requestMessage, () =>
             {
@@ -40,7 +45,10 @@ namespace OnlineShop.Web.API
                 }
                 else
                 {
-                    var category = _postCategoryService.Add(postCategory);
+                    var newPostCategory = new PostCategory();
+                    newPostCategory.UpdatePostCategory(postCategoryVm);
+
+                    var category = _postCategoryService.Add(newPostCategory);
                     _postCategoryService.Save();
                     res = requestMessage.CreateResponse(HttpStatusCode.Created, category);
                 }
@@ -48,7 +56,7 @@ namespace OnlineShop.Web.API
             });
         }
 
-        public HttpResponseMessage Put(HttpRequestMessage requestMessage, PostCategory postCategory)
+        public HttpResponseMessage Put(HttpRequestMessage requestMessage, PostCategoryViewModel postCategoryVm)
         {
             return this.CreateHttpReponse(requestMessage, () =>
             {
@@ -59,7 +67,10 @@ namespace OnlineShop.Web.API
                 }
                 else
                 {
-                    _postCategoryService.Update(postCategory);
+                    var newPostCategoryDb = _postCategoryService.GetPostCategoryById(postCategoryVm.ID);
+                    newPostCategoryDb.UpdatePostCategory(postCategoryVm);
+
+                    _postCategoryService.Update(newPostCategoryDb);
                     _postCategoryService.Save();
                     res = requestMessage.CreateResponse(HttpStatusCode.OK);
                 }
