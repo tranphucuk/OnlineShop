@@ -1,0 +1,16 @@
+{
+  "systemParams": "win32-x64-64",
+  "modulesFolders": [
+    "Scripts\\plugin"
+  ],
+  "flags": [],
+  "linkedModules": [],
+  "topLevelPatterns": [
+    "angular@^1.7.5"
+  ],
+  "lockfileEntries": {
+    "angular@^1.7.5": "https://registry.yarnpkg.com/angular/-/angular-1.7.5.tgz#d1c1c01c6f5dc835638f3f9aa51012857bdac49e"
+  },
+  "files": [],
+  "artifacts": {}
+}
