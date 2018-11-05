@@ -1,14 +1,10 @@
-﻿using OnlineShop.Model.Model;
-using System;
-using System.Collections.Generic;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using OnlineShop.Model.Model;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OnlineShop.Data
 {
-    public class OnlineShopDbContext : DbContext
+    public class OnlineShopDbContext : IdentityDbContext<ApplicationUser>
     {
         public OnlineShopDbContext() : base("OnlineShopConnection")
         {
@@ -34,9 +30,16 @@ namespace OnlineShop.Data
         public DbSet<VisitorStatistic> VisitorStatistics { get; set; }
         public DbSet<Error> Errors { get; set; }
 
+        public static OnlineShopDbContext Create()
+        {
+            return new OnlineShopDbContext();
+        }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
+            //base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<IdentityUserRole>().HasKey(i => new { i.UserId, i.RoleId });
+            modelBuilder.Entity<IdentityUserLogin>().HasKey(i => i.UserId);
         }
     }
 }
