@@ -4,6 +4,5 @@
   "private": true,
   "devDependencies": {},
   "dependencies": {
-    "angular": "^1.7.5"
   }
 }
