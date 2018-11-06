@@ -229,16 +229,21 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\app.routes.js" />
+    <Content Include="app\app.js" />
+    <Content Include="app\components\products\product.routes.js" />
+    <Content Include="app\components\products\productEditController.js" />
+    <Content Include="app\components\products\productAddController.js" />
+    <Content Include="app\components\products\productListController.js" />
+    <Content Include="app\components\products\productEditView.html" />
+    <Content Include="app\components\products\productAddView.html" />
+    <Content Include="app\components\products\productListView.html" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Scripts\plugin\angular\angular-csp.css" />
-    <Content Include="Scripts\plugin\angular\angular.js" />
-    <Content Include="Scripts\plugin\angular\angular.min.js" />
-    <Content Include="Scripts\plugin\angular\index.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -249,9 +254,18 @@
     <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Assets\Admin\" />
+    <Folder Include="app\components\orders\" />
+    <Folder Include="app\components\product_categories\" />
+    <Folder Include="app\components\roles\" />
+    <Folder Include="app\components\users\" />
+    <Folder Include="app\shared\footer\" />
+    <Folder Include="app\shared\navigation\" />
+    <Folder Include="app\shared\services\" />
+    <Folder Include="Assets\Admin\css\" />
+    <Folder Include="Assets\Admin\img\" />
+    <Folder Include="Assets\Admin\js\" />
+    <Folder Include="Assets\Admin\libs\" />
     <Folder Include="Assets\Client\" />
-    <Folder Include="Scripts\spa\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -260,12 +274,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="package.json" />
     <None Include="packages.config" />
-    <Content Include="Scripts\plugin\angular\angular.min.js.gzip" />
-    <Content Include="Scripts\plugin\angular\angular.min.js.map" />
-    <Content Include="Scripts\plugin\angular\bower.json" />
-    <Content Include="Scripts\plugin\angular\LICENSE.md" />
-    <Content Include="Scripts\plugin\angular\package.json" />
-    <Content Include="Scripts\plugin\angular\README.md" />
     <Content Include="Views\Admin\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
