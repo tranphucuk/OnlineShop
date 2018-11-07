@@ -29,12 +29,17 @@
                             <th>Name</th>
                             <th>Date Created</th>
                             <th style="width: 5%">Status</th>
+                            <th style="width: 10%">Option</th>
                         </tr>
                         <tr ng-repeat="item in productCategoryList">
                             <td>{{item.ID}}</td>
                             <td>{{item.Name}}</td>
-                            <td>{{item.CreatedDate}}</td>
-                            <td><span class="badge bg-red">{{item.Status}}</span></td>
+                            <td>{{item.CreatedDate | date:'dd/MMMM/yyyy - hh:mm:ss'}}</td>
+                            <td><span ng-class="{'badge bg-red' :item.Status == false ,'badge bg-green' :item.Status == true }">{{item.Status | statusFilter }}</span></td>
+                            <td>
+                                <button class="btn btn-sm btn-success"><i class="fa fa-pencil"></i></button>
+                                <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
+                            </td>
                         </tr>
 
                     </table>
