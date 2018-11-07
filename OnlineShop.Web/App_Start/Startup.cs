@@ -47,11 +47,19 @@ namespace OnlineShop.Web.App_Start
             builder.Register(c => app.GetDataProtectionProvider()).InstancePerRequest();
 
             // Repositories
-            builder.RegisterAssemblyTypes(typeof(PostCategoryRepository).Assembly)
+            builder.RegisterAssemblyTypes(typeof(ProductCategoryRepository).Assembly)
                 .Where(t => t.Name.EndsWith("Repository"))
                 .AsImplementedInterfaces().InstancePerRequest();
 
+            builder.RegisterAssemblyTypes(typeof(PostCategoryRepository).Assembly)
+               .Where(t => t.Name.EndsWith("Repository"))
+               .AsImplementedInterfaces().InstancePerRequest();
+
             // Services
+            builder.RegisterAssemblyTypes(typeof(ProductCategoryService).Assembly)
+               .Where(t => t.Name.EndsWith("Service"))
+               .AsImplementedInterfaces().InstancePerRequest();
+
             builder.RegisterAssemblyTypes(typeof(PostCategoryService).Assembly)
                .Where(t => t.Name.EndsWith("Service"))
                .AsImplementedInterfaces().InstancePerRequest();

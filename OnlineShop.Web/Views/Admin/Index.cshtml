@@ -214,14 +214,12 @@
                     <li class="treeview">
                         <a href="#">
                             <i class="fa fa-files-o"></i>
-                            <span>Layout Options</span>
-                            <span class="label label-primary pull-right">4</span>
+                            <span>Products</span>
+                            <span class="label label-primary pull-right">2</span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="../layout/top-nav.html"><i class="fa fa-circle-o"></i> Top Navigation</a></li>
-                            <li><a href="../layout/boxed.html"><i class="fa fa-circle-o"></i> Boxed</a></li>
-                            <li><a href="../layout/fixed.html"><i class="fa fa-circle-o"></i> Fixed</a></li>
-                            <li><a href="../layout/collapsed-sidebar.html"><i class="fa fa-circle-o"></i> Collapsed Sidebar</a></li>
+                            <li><a ui-sref="productList"><i class="fa fa-circle-o"></i>Products</a></li>
+                            <li><a ui-sref="productCategories"><i class="fa fa-circle-o"></i> Product Category</a></li>
                         </ul>
                     </li>
                     <li>
@@ -523,9 +521,13 @@
     <script src="/Assets/Admin/libs/angular/angular.js"></script>
     <script src="/Assets/Admin/libs/angular-ui-router.js"></script>
     <script src="/app/shared/modules/onlineshop.common.js"></script>
+    <script src="/app/shared/services/apiService.js"></script>
     <script src="/app/components/products/products.module.js"></script>
+    <script src="/app/components/product_categories/productCategory.module.js"></script>
     <script src="/app/app.js"></script>
+    <script src="/app/components/product_categories/productCategoryListController.js"></script>
     <script src="/app/components/products/productListController.js"></script>
     <script src="/app/components/products/productAddController.js"></script>
+    <script src="/app/components/home/homeController.js"></script>
 </body>
 </html>
