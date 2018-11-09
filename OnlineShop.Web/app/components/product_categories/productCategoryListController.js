@@ -1,18 +1,28 @@
-﻿/// <reference path="../../shared/services/apiservice.js" />
-
-(function (app) {
+﻿(function (app) {
     app.controller('productCategoryListController', productCategoryListController);
 
     productCategoryListController.$inject = ['$scope', 'apiService'];
 
     function productCategoryListController($scope, apiService) {
         $scope.productCategoryList = [];
+        $scope.page = 0;
+        $scope.pagesCount = 0;
 
-        $scope.GetProductCategoryList = function GetProductCategoryList() {
-            apiService.get('api/product_category/getall', null, function (result) {
-                $scope.productCategoryList = result.data;
+        $scope.GetProductCategoryList = function GetProductCategoryList(page) {
+            page = page || 0;
+            var config = {
+                params: {
+                    page: page,
+                    pageSize: 1,
+                }
+            };
+            apiService.get('/api/product_category/getall', config, function (result) {
+                $scope.productCategoryList = result.data.Items;
+                $scope.page = result.data.Page;
+                $scope.totalCount = result.data.TotalCount;
+                $scope.pagesCount = result.data.TotalPage;
             }, function () {
-                console.log('get product category failed.')
+                console.log('get product category failed.');
             });
         };
         $scope.GetProductCategoryList();

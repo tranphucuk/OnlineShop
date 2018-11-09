@@ -23,13 +23,25 @@ namespace OnlineShop.Web.API
         }
 
         [Route("getall")]
-        public HttpResponseMessage GetAll(HttpRequestMessage request)
+        public HttpResponseMessage GetAll(HttpRequestMessage request, int page, int pageSize = 20)
         {
             return CreateHttpReponse(request, () =>
             {
+                int totalRow = 0;
                 var model = _productCategoryService.GetAll();
-                var responseData = Mapper.Map<List<ProducatCategoryViewModel>>(model);
-                return request.CreateResponse(HttpStatusCode.OK, responseData);
+
+                totalRow = model.Count();
+                var query = model.OrderByDescending(x => x.CreatedDate).Skip(page * pageSize).Take(pageSize);
+                var responseData = Mapper.Map<List<ProducatCategoryViewModel>>(query);
+
+                var paginationSet = new PaginationSet<ProducatCategoryViewModel>()
+                {
+                    Items = responseData,
+                    Page = page,
+                    TotalCount = totalRow,
+                    TotalPage = (int)Math.Ceiling((decimal)totalRow / pageSize)
+                };
+                return request.CreateResponse(HttpStatusCode.OK, paginationSet);
             });
         }
     }
