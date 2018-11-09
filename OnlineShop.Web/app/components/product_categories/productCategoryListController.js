@@ -7,11 +7,18 @@
         $scope.productCategoryList = [];
         $scope.page = 0;
         $scope.pagesCount = 0;
+        $scope.keyword = '';
+        $scope.searchFunc = search;
+
+        function search() {
+            $scope.GetProductCategoryList();
+        }
 
         $scope.GetProductCategoryList = function GetProductCategoryList(page) {
             page = page || 0;
             var config = {
                 params: {
+                    keyword: $scope.keyword,
                     page: page,
                     pageSize: 1,
                 }
