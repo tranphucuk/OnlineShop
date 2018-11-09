@@ -31,7 +31,7 @@
                     </div><!-- /input-group -->
                 </div><!-- /.col-lg-6 -->
             </div>
-        <br />
+            <br />
             <div class="row">
                 <div class="col-md-12">
                     <table class="table table-bordered">
@@ -55,7 +55,10 @@
                         <tfoot>
                             <tr>
                                 <td colspan="15">
-                                    Total items: {{totalCount}}.
+                                    <span class="pull-right">
+                                        Page: {{page +1}}/{{pagesCount}} - Item: {{pageSize}}/{{totalCount}}.
+                                    </span>
+
                                 </td>
                             </tr>
                         </tfoot>

@@ -1,9 +1,10 @@
-﻿(function (app) {
+﻿/// <reference path="../../shared/services/notificationservice.js" />
+(function (app) {
     app.controller('productCategoryListController', productCategoryListController);
 
-    productCategoryListController.$inject = ['$scope', 'apiService'];
+    productCategoryListController.$inject = ['$scope', 'apiService', 'notificationService'];
 
-    function productCategoryListController($scope, apiService) {
+    function productCategoryListController($scope, apiService, notificationService) {
         $scope.productCategoryList = [];
         $scope.page = 0;
         $scope.pagesCount = 0;
@@ -20,12 +21,18 @@
                 params: {
                     keyword: $scope.keyword,
                     page: page,
-                    pageSize: 1,
+                    pageSize: 2,
                 }
             };
             apiService.get('/api/product_category/getall', config, function (result) {
+                if (result.data.TotalCount != 0) {
+                    notificationService.DisplaySuccess('Found ' + result.data.TotalCount + ' items.');
+                } else {
+                    notificationService.DisplayInfo('not found.');
+                }
                 $scope.productCategoryList = result.data.Items;
                 $scope.page = result.data.Page;
+                $scope.pageSize = Math.ceil(result.data.TotalCount / result.data.TotalPage)
                 $scope.totalCount = result.data.TotalCount;
                 $scope.pagesCount = result.data.TotalPage;
             }, function () {

@@ -12,7 +12,6 @@ namespace OnlineShop.Web.Infrastructure.Core
                 return (Items != null) ? Items.Count() : 0;
             }
         }
-
         public int Page { get; set; }
         public int TotalPage { get; set; }
         public int TotalCount { get; set; }
