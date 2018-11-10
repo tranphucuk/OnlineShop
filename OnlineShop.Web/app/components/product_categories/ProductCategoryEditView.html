@@ -1,0 +1,89 @@
+﻿<section class="content-header">
+    <h1>
+        Update ProductCategory: {{productCategory.Name}}
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a ui-sref="productCategories">Product Category</a></li>
+        <li class="active">Create</li>
+    </ol>
+</section>
+<!-- Main content -->
+<section class="content">
+    <form class="form-horizontal" novalidate name="frmUpdateProductCategory" role="form" ng-submit="UpdateProductCategory()">
+        <div class="box-body">
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">Name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="name" ng-change="GenerateAlias()" ng-model="productCategory.Name" placeholder="ProductCategory name...">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">Alias</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="alias" ng-model="productCategory.Alias" placeholder="Alias...">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">Description</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="description" ng-model="productCategory.Description" placeholder="ProductCategory name...">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">Image</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="image" ng-model="productCategory.Image" placeholder="Image...">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">Parent ID</label>
+                <div class="col-sm-10">
+                    <select name="parentID" class="form-control" ng-model="productCategory.ParentID" ng-options="option.ID as option.Name for option in parentCategoryList">
+                        Parent ID
+                        <option disabled selected value="">---Select Category---</option>
+                    </select>
+
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">Display Order</label>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" name="displayOrder" ng-model="productCategory.DisplayOrder" placeholder="Display Order...">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">Meta Description</label>
+                <div class="col-sm-10">
+                    <textarea type="text" class="form-control" name="metaDescription" ng-model="productCategory.MetaDescription" placeholder="Meta Description..."></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">Meta Keyword</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="metaKeyword" ng-model="productCategory.MetaKeyword" placeholder="Meta Keyword...">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="status" ng-model="productCategory.Status" ng-checked="productCategory.Status"> Status
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-offset-2 col-sm-10">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="homeFlag" ng-model="productCategory.HomeFlag" ng-checked="productCategory.HomeFlag"> Home Flag
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.box-body -->
+        <div class="box-footer">
+            <button ui-sref="productCategories" class="btn btn-default">Cancel</button>
+            <button type="submit" class="btn btn-info pull-right">Submit</button>
+        </div><!-- /.box-footer -->
+    </form>
+</section>

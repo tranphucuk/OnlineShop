@@ -50,7 +50,7 @@
                             <td>{{item.CreatedDate | date:'dd/MMMM/yyyy - hh:mm:ss'}}</td>
                             <td><span ng-class="{'badge bg-red' :item.Status == false ,'badge bg-green' :item.Status == true }">{{item.Status | statusFilter }}</span></td>
                             <td>
-                                <button class="btn btn-sm btn-success"><i class="fa fa-pencil"></i></button>
+                                <button class="btn btn-sm btn-success" ui-sref="EditProductCategories({id:item.ID})"><i class="fa fa-pencil"></i></button>
                                 <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
                             </td>
                         </tr>

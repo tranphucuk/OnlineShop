@@ -14,6 +14,7 @@ namespace OnlineShop.Service
         ProductCategory Add(ProductCategory productCategory);
         void Update(ProductCategory productCategory);
         ProductCategory Delete(int id);
+        ProductCategory GetById(int id);
         IEnumerable<ProductCategory> GetAll();
         IEnumerable<ProductCategory> GetAll(string keyword);
         void Save();
@@ -51,6 +52,11 @@ namespace OnlineShop.Service
                 return _productCategory.GetMulti(x => x.Name.Contains(keyword) || x.Description.Contains(keyword));
             else
                 return _productCategory.GetAll();
+        }
+
+        public ProductCategory GetById(int id)
+        {
+            return _productCategory.GetSingleEntity(id);
         }
 
         public void Save()
