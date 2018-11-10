@@ -17,7 +17,7 @@ namespace OnlineShop.Web.Mappings
             Mapper.CreateMap<PostTag, PostTagViewModel>();
             Mapper.CreateMap<Tag, TagViewModel>();
 
-            Mapper.CreateMap<ProductCategory, ProducatCategoryViewModel>();
+            Mapper.CreateMap<ProductCategory, ProductCategoryViewModel>();
             Mapper.CreateMap<ProductTag, ProductTagViewModel>();
             Mapper.CreateMap<Product, ProductViewModel>();
         }

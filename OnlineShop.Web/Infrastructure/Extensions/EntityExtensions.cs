@@ -49,5 +49,24 @@ namespace OnlineShop.Web.Infrastructure.Extensions
             post.UpdatedDate = postViewModel.UpdatedDate;//
             post.ViewCount = postViewModel.ViewCount;//
         }
+
+        public static void UpdateProductCategory(this ProductCategory productCategory, ProductCategoryViewModel productCategoryViewModel)
+        {
+            productCategory.Alias = productCategoryViewModel.Alias;
+            productCategory.CreatedBy = productCategoryViewModel.CreatedBy;
+            productCategory.CreatedDate = productCategoryViewModel.CreatedDate;
+            productCategory.Description = productCategoryViewModel.Description;
+            productCategory.DisplayOrder = productCategoryViewModel.DisplayOrder;
+            productCategory.HomeFlag = productCategoryViewModel.HomeFlag;
+            productCategory.ID = productCategoryViewModel.ID;
+            productCategory.Image = productCategoryViewModel.Image;
+            productCategory.MetaDescription = productCategoryViewModel.MetaDescription;
+            productCategory.MetaKeyword = productCategoryViewModel.MetaKeyword;
+            productCategory.Name = productCategoryViewModel.Name;
+            productCategory.ParentID = productCategoryViewModel.ParentID;
+            productCategory.Status = productCategoryViewModel.Status;
+            productCategory.UpdatedBy = productCategoryViewModel.UpdatedBy;
+            productCategory.UpdatedDate = productCategoryViewModel.UpdatedDate;
+        }
     }
 }

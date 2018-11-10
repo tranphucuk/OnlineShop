@@ -27,10 +27,10 @@
         function displayError(error) {
             if (Array.isArray(error)) {
                 error.forEach(function (err) {
-                    toastr.DisplayError(error);
+                    toastr.error(error);
                 })
             } else {
-                toastr.DisplayError(error);
+                toastr.error(error);
             }
         }
 

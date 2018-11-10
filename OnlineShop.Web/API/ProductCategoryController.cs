@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
+using OnlineShop.Model.Model;
 using OnlineShop.Service;
 using OnlineShop.Web.Infrastructure.Core;
+using OnlineShop.Web.Infrastructure.Extensions;
 using OnlineShop.Web.Models;
 using System;
 using System.Collections.Generic;
@@ -32,9 +34,9 @@ namespace OnlineShop.Web.API
 
                 totalRow = model.Count();
                 var query = model.OrderByDescending(x => x.CreatedDate).Skip(page * pageSize).Take(pageSize);
-                var responseData = Mapper.Map<List<ProducatCategoryViewModel>>(query);
+                var responseData = Mapper.Map<List<ProductCategoryViewModel>>(query);
 
-                var paginationSet = new PaginationSet<ProducatCategoryViewModel>()
+                var paginationSet = new PaginationSet<ProductCategoryViewModel>()
                 {
                     Items = responseData,
                     Page = page,
@@ -43,6 +45,45 @@ namespace OnlineShop.Web.API
                 };
                 return request.CreateResponse(HttpStatusCode.OK, paginationSet);
             });
+        }
+
+        [Route("getallParentId")]
+        public HttpResponseMessage GetAll(HttpRequestMessage request)
+        {
+            return CreateHttpReponse(request, () =>
+            {
+                var model = _productCategoryService.GetAll();
+                var responseData = Mapper.Map<List<ProductCategoryViewModel>>(model);
+
+                return request.CreateResponse(HttpStatusCode.OK, responseData);
+            });
+        }
+
+        
+        [Route("create")]
+        [HttpPost]
+        [AllowAnonymous]
+        public HttpResponseMessage Create(HttpRequestMessage request, ProductCategoryViewModel productCategoryViewModel)
+        {
+            return CreateHttpReponse(request, () =>
+             {
+                 HttpResponseMessage response = null;
+                 if (!ModelState.IsValid)
+                 {
+                     response = request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
+                 }
+                 else
+                 {
+                     var productCategory = new ProductCategory();
+                     productCategory.UpdateProductCategory(productCategoryViewModel);
+                     _productCategoryService.Add(productCategory);
+                     _productCategoryService.Save();
+
+                     var responseData = Mapper.Map<ProductCategory, ProductCategoryViewModel>(productCategory);
+                     response = request.CreateResponse(HttpStatusCode.Created, responseData);
+                 }
+                 return response;
+             });
         }
     }
 }

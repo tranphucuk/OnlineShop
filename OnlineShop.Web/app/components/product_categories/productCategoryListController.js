@@ -25,9 +25,7 @@
                 }
             };
             apiService.get('/api/product_category/getall', config, function (result) {
-                if (result.data.TotalCount != 0) {
-                    notificationService.DisplaySuccess('Found ' + result.data.TotalCount + ' items.');
-                } else {
+                if (result.data.TotalCount == 0) {
                     notificationService.DisplayInfo('not found.');
                 }
                 $scope.productCategoryList = result.data.Items;

@@ -15,7 +15,7 @@ namespace OnlineShop.Web.Models
 
         public int CategoryID { get; set; }
 
-        public virtual ProducatCategoryViewModel ProductCategory { get; set; }
+        public virtual ProductCategoryViewModel ProductCategory { get; set; }
 
         public virtual IEnumerable<OrderDetailViewModel> OrderDetails { get; set; }
 
