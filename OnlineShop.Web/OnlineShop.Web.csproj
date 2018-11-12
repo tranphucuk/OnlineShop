@@ -264,6 +264,7 @@
     <Content Include="app\shared\services\notificationService.js" />
     <Content Include="Assets\Admin\css\AdminLTE.css" />
     <Content Include="Assets\Admin\css\AdminLTE.min.css" />
+    <Content Include="Assets\Admin\css\custom.css" />
     <Content Include="Assets\Admin\css\skins\skin-black-light.css" />
     <Content Include="Assets\Admin\css\skins\skin-black-light.min.css" />
     <Content Include="Assets\Admin\css\skins\skin-black.css" />

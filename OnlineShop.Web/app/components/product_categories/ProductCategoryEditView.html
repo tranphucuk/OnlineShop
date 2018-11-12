@@ -15,19 +15,24 @@
             <div class="form-group">
                 <label for="inputEmail3" class="col-sm-2 control-label">Name</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="name" ng-change="GenerateAlias()" ng-model="productCategory.Name" placeholder="ProductCategory name...">
+                    <input type="text" ng-maxlength="3" class="form-control" required name="name" ng-change="GenerateAlias()" ng-model="productCategory.Name" placeholder="ProductCategory name...">
+                    <span ng-show="frmUpdateProductCategory.name.$invalid && !frmUpdateProductCategory.name.$error.maxlength" class="has-error">ProductCategory name must has value</span>
+                    <span ng-show="frmUpdateProductCategory.name.$error.maxlength" class="has-error">Maximum length of name is 256 character</span>
                 </div>
             </div>
             <div class="form-group">
                 <label for="inputEmail3" class="col-sm-2 control-label">Alias</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="alias" ng-model="productCategory.Alias" placeholder="Alias...">
+                    <input type="text" ng-maxlength="256" class="form-control" required name="alias" ng-model="productCategory.Alias" placeholder="Alias...">
+                    <span ng-show="frmUpdateProductCategory.alias.$invalid" class="has-error">Alisa must has value</span>
+                    <span ng-show="frmUpdateProductCategory.alias.$error.maxlength" class="has-error">Maximum length of alias is 256 character</span>
                 </div>
             </div>
             <div class="form-group">
                 <label for="inputEmail3" class="col-sm-2 control-label">Description</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="description" ng-model="productCategory.Description" placeholder="ProductCategory name...">
+                    <input type="text" class="form-control" ng-maxlength="500" name="description" ng-model="productCategory.Description" placeholder="ProductCategory name...">
+                    <span ng-show="frmUpdateProductCategory.description.$error.maxlength" class="has-error">Maximum length of description is 500 characters</span>
                 </div>
             </div>
             <div class="form-group">
@@ -49,19 +54,22 @@
             <div class="form-group">
                 <label for="inputEmail3" class="col-sm-2 control-label">Display Order</label>
                 <div class="col-sm-10">
-                    <input type="number" class="form-control" name="displayOrder" ng-model="productCategory.DisplayOrder" placeholder="Display Order...">
+                    <input type="number" class="form-control" required name="displayOrder" ng-model="productCategory.DisplayOrder" placeholder="Display Order...">
+                    <span ng-show="frmUpdateProductCategory.displayOrder.$invalid" class="has-error">Order must has value</span>
                 </div>
             </div>
             <div class="form-group">
                 <label for="inputEmail3" class="col-sm-2 control-label">Meta Description</label>
                 <div class="col-sm-10">
-                    <textarea type="text" class="form-control" name="metaDescription" ng-model="productCategory.MetaDescription" placeholder="Meta Description..."></textarea>
+                    <textarea type="text" ng-maxlength="256" class="form-control" name="metaDescription" ng-model="productCategory.MetaDescription" placeholder="Meta Description..."></textarea>
+                    <span ng-show="frmAddProductCategory.metaDescription.$error.maxlength" class="has-error">Maximum length of meta description is 256 characters</span>
                 </div>
             </div>
             <div class="form-group">
                 <label for="inputEmail3" class="col-sm-2 control-label">Meta Keyword</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="metaKeyword" ng-model="productCategory.MetaKeyword" placeholder="Meta Keyword...">
+                    <input type="text" ng-maxlength="256" class="form-control" name="metaKeyword" ng-model="productCategory.MetaKeyword" placeholder="Meta Keyword...">
+                    <span ng-show="frmUpdateProductCategory.metaKeyword.$error.maxlength" class="has-error">Maximum length of description is 256 characters</span>
                 </div>
             </div>
             <div class="form-group">
@@ -83,7 +91,7 @@
         </div><!-- /.box-body -->
         <div class="box-footer">
             <button ui-sref="productCategories" class="btn btn-default">Cancel</button>
-            <button type="submit" class="btn btn-info pull-right">Submit</button>
+            <button type="submit" class="btn btn-info pull-right" ng-disabled="frmUpdateProductCategory.$invalid">Submit</button>
         </div><!-- /.box-footer -->
     </form>
 </section>
