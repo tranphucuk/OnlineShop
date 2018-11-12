@@ -72,7 +72,6 @@ namespace OnlineShop.Data.Infrastructure
             return dbSet.Remove(entity);
         }
 
-
         /// <summary>
         /// Delete multi entities
         /// </summary>
@@ -114,17 +113,6 @@ namespace OnlineShop.Data.Infrastructure
             }
             return dataContext.Set<T>().FirstOrDefault(expression);
         }
-
-        ///// <summary>
-        ///// Get multiple entities by condition
-        ///// </summary>
-        ///// <param name="predicate"></param>
-        ///// <param name="includes"></param>
-        ///// <returns></returns>
-        //public virtual IEnumerable<T> GetMany(Expression<Func<T, bool>> where, string includes)
-        //{
-        //    return dbSet.Where(where).ToList();
-        //}
 
         /// <summary>
         /// Count number but matched condition

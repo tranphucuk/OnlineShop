@@ -329,6 +329,26 @@
     <Content Include="Assets\Admin\libs\angular\angular.js" />
     <Content Include="Assets\Admin\libs\angular\angular.min.js" />
     <Content Include="Assets\Admin\libs\angular\index.js" />
+    <Content Include="Assets\Admin\libs\bootbox\.gitignore" />
+    <Content Include="Assets\Admin\libs\bootbox\bootbox.js" />
+    <Content Include="Assets\Admin\libs\bootbox\Gruntfile.js" />
+    <Content Include="Assets\Admin\libs\bootbox\header.txt" />
+    <Content Include="Assets\Admin\libs\bootbox\karma-base.conf.js" />
+    <Content Include="Assets\Admin\libs\bootbox\karma-jquery-latest.conf.js" />
+    <Content Include="Assets\Admin\libs\bootbox\karma.conf.js" />
+    <Content Include="Assets\Admin\libs\bootbox\tests\alert.test.js" />
+    <Content Include="Assets\Admin\libs\bootbox\tests\bootbox.test.js" />
+    <Content Include="Assets\Admin\libs\bootbox\tests\confirm.test.js" />
+    <Content Include="Assets\Admin\libs\bootbox\tests\defaults.test.js" />
+    <Content Include="Assets\Admin\libs\bootbox\tests\dialog.test.js" />
+    <Content Include="Assets\Admin\libs\bootbox\tests\locales.test.js" />
+    <Content Include="Assets\Admin\libs\bootbox\tests\prompt.test.js" />
+    <Content Include="Assets\Admin\libs\bootbox\tests\vendor\bootstrap-3.0.0.min.js" />
+    <Content Include="Assets\Admin\libs\bootbox\tests\vendor\bootstrap-3.1.1.min.js" />
+    <Content Include="Assets\Admin\libs\bootbox\tests\vendor\bootstrap-3.3.2.min.js" />
+    <Content Include="Assets\Admin\libs\bootbox\tests\vendor\jquery-1.10.2.min.js" />
+    <Content Include="Assets\Admin\libs\bootbox\tests\vendor\jquery-1.11.2.min.js" />
+    <Content Include="Assets\Admin\libs\bootbox\tests\vendor\jquery-1.8.3.min.js" />
     <Content Include="Assets\Admin\libs\bootstrap-3.3.7\.gitattributes" />
     <Content Include="Assets\Admin\libs\bootstrap-3.3.7\.gitignore" />
     <Content Include="Assets\Admin\libs\bootstrap-3.3.7\dist\css\bootstrap-theme.css" />
@@ -691,6 +711,23 @@
     <Content Include="Assets\Admin\libs\jquery\src\var\support.js" />
     <Content Include="Assets\Admin\libs\jquery\src\var\toString.js" />
     <Content Include="Assets\Admin\libs\jquery\src\wrap.js" />
+    <Content Include="Assets\Admin\libs\ng-Bootbox\.gitignore" />
+    <Content Include="Assets\Admin\libs\ng-Bootbox\bower_components\font-awesome\.gitignore" />
+    <Content Include="Assets\Admin\libs\ng-Bootbox\bower_components\font-awesome\css\font-awesome.css" />
+    <Content Include="Assets\Admin\libs\ng-Bootbox\bower_components\font-awesome\css\font-awesome.min.css" />
+    <Content Include="Assets\Admin\libs\ng-Bootbox\bower_components\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="Assets\Admin\libs\ng-Bootbox\dist\ngBootbox.js" />
+    <Content Include="Assets\Admin\libs\ng-Bootbox\dist\ngBootbox.min.js" />
+    <Content Include="Assets\Admin\libs\ng-Bootbox\examples\example-1\app.js" />
+    <Content Include="Assets\Admin\libs\ng-Bootbox\examples\example-1\custom-dialog.tpl.html" />
+    <Content Include="Assets\Admin\libs\ng-Bootbox\examples\example-1\index.html" />
+    <Content Include="Assets\Admin\libs\ng-Bootbox\examples\example-2\app.js" />
+    <Content Include="Assets\Admin\libs\ng-Bootbox\examples\example-2\index.html" />
+    <Content Include="Assets\Admin\libs\ng-Bootbox\examples\example-2\main.js" />
+    <Content Include="Assets\Admin\libs\ng-Bootbox\examples\example-2\require.js" />
+    <Content Include="Assets\Admin\libs\ng-Bootbox\examples\index.html" />
+    <Content Include="Assets\Admin\libs\ng-Bootbox\gulpfile.js" />
+    <Content Include="Assets\Admin\libs\ng-Bootbox\ngBootbox.js" />
     <Content Include="Assets\Admin\libs\slimScroll\jquery.slimscroll.js" />
     <Content Include="Assets\Admin\libs\slimScroll\jquery.slimscroll.min.js" />
     <Content Include="Assets\Admin\libs\toastr\.gitattributes" />
@@ -949,6 +986,52 @@
     <Content Include="Assets\Admin\libs\toastr\release checklist.md" />
     <Content Include="Assets\Admin\libs\toastr\toastr.less" />
     <Content Include="Assets\Admin\libs\toastr\toastr.scss" />
+    <Content Include="Assets\Admin\libs\bootbox\.jshintrc" />
+    <Content Include="Assets\Admin\libs\bootbox\.npmignore" />
+    <Content Include="Assets\Admin\libs\bootbox\.travis.yml" />
+    <Content Include="Assets\Admin\libs\bootbox\bower.json" />
+    <Content Include="Assets\Admin\libs\bootbox\build\calculate-size" />
+    <Content Include="Assets\Admin\libs\bootbox\CHANGELOG.md" />
+    <Content Include="Assets\Admin\libs\bootbox\composer.json" />
+    <Content Include="Assets\Admin\libs\bootbox\CONTRIBUTING.md" />
+    <Content Include="Assets\Admin\libs\bootbox\LICENSE.md" />
+    <Content Include="Assets\Admin\libs\bootbox\package.json" />
+    <Content Include="Assets\Admin\libs\bootbox\README.md" />
+    <Content Include="Assets\Admin\libs\ng-Bootbox\bower.json" />
+    <Content Include="Assets\Admin\libs\ng-Bootbox\bower_components\font-awesome\.bower.json" />
+    <Content Include="Assets\Admin\libs\ng-Bootbox\bower_components\font-awesome\.npmignore" />
+    <Content Include="Assets\Admin\libs\ng-Bootbox\bower_components\font-awesome\bower.json" />
+    <Content Include="Assets\Admin\libs\ng-Bootbox\bower_components\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="Assets\Admin\libs\ng-Bootbox\bower_components\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Assets\Admin\libs\ng-Bootbox\bower_components\font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="Assets\Admin\libs\ng-Bootbox\bower_components\font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="Assets\Admin\libs\ng-Bootbox\bower_components\font-awesome\less\bordered-pulled.less" />
+    <Content Include="Assets\Admin\libs\ng-Bootbox\bower_components\font-awesome\less\core.less" />
+    <Content Include="Assets\Admin\libs\ng-Bootbox\bower_components\font-awesome\less\fixed-width.less" />
+    <Content Include="Assets\Admin\libs\ng-Bootbox\bower_components\font-awesome\less\font-awesome.less" />
+    <Content Include="Assets\Admin\libs\ng-Bootbox\bower_components\font-awesome\less\icons.less" />
+    <Content Include="Assets\Admin\libs\ng-Bootbox\bower_components\font-awesome\less\larger.less" />
+    <Content Include="Assets\Admin\libs\ng-Bootbox\bower_components\font-awesome\less\list.less" />
+    <Content Include="Assets\Admin\libs\ng-Bootbox\bower_components\font-awesome\less\mixins.less" />
+    <Content Include="Assets\Admin\libs\ng-Bootbox\bower_components\font-awesome\less\path.less" />
+    <Content Include="Assets\Admin\libs\ng-Bootbox\bower_components\font-awesome\less\rotated-flipped.less" />
+    <Content Include="Assets\Admin\libs\ng-Bootbox\bower_components\font-awesome\less\stacked.less" />
+    <Content Include="Assets\Admin\libs\ng-Bootbox\bower_components\font-awesome\less\variables.less" />
+    <Content Include="Assets\Admin\libs\ng-Bootbox\bower_components\font-awesome\scss\font-awesome.scss" />
+    <Content Include="Assets\Admin\libs\ng-Bootbox\bower_components\font-awesome\scss\_bordered-pulled.scss" />
+    <Content Include="Assets\Admin\libs\ng-Bootbox\bower_components\font-awesome\scss\_core.scss" />
+    <Content Include="Assets\Admin\libs\ng-Bootbox\bower_components\font-awesome\scss\_fixed-width.scss" />
+    <Content Include="Assets\Admin\libs\ng-Bootbox\bower_components\font-awesome\scss\_icons.scss" />
+    <Content Include="Assets\Admin\libs\ng-Bootbox\bower_components\font-awesome\scss\_larger.scss" />
+    <Content Include="Assets\Admin\libs\ng-Bootbox\bower_components\font-awesome\scss\_list.scss" />
+    <Content Include="Assets\Admin\libs\ng-Bootbox\bower_components\font-awesome\scss\_mixins.scss" />
+    <Content Include="Assets\Admin\libs\ng-Bootbox\bower_components\font-awesome\scss\_path.scss" />
+    <Content Include="Assets\Admin\libs\ng-Bootbox\bower_components\font-awesome\scss\_rotated-flipped.scss" />
+    <Content Include="Assets\Admin\libs\ng-Bootbox\bower_components\font-awesome\scss\_stacked.scss" />
+    <Content Include="Assets\Admin\libs\ng-Bootbox\bower_components\font-awesome\scss\_variables.scss" />
+    <Content Include="Assets\Admin\libs\ng-Bootbox\package.json" />
+    <Content Include="Assets\Admin\libs\ng-Bootbox\README.md" />
+    <Content Include="Assets\Admin\libs\ng-Bootbox\tsd.json" />
     <None Include="packages.config" />
     <Content Include="Views\Admin\Index.cshtml" />
   </ItemGroup>
@@ -972,6 +1055,11 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Assets\Admin\libs\ng-Bootbox\typings\angularjs\angular.d.ts" />
+    <TypeScriptCompile Include="Assets\Admin\libs\ng-Bootbox\typings\jquery\jquery.d.ts" />
+    <TypeScriptCompile Include="Assets\Admin\libs\ng-Bootbox\typings\tsd.d.ts" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -25,6 +25,7 @@ namespace OnlineShop.Web.API
         }
 
         [Route("getall")]
+        [HttpGet]
         public HttpResponseMessage GetAll(HttpRequestMessage request, string keyword, int page, int pageSize = 20)
         {
             return CreateHttpReponse(request, () =>
@@ -48,6 +49,7 @@ namespace OnlineShop.Web.API
         }
 
         [Route("getallParentId")]
+        [HttpGet]
         public HttpResponseMessage GetAll(HttpRequestMessage request)
         {
             return CreateHttpReponse(request, () =>
@@ -118,6 +120,29 @@ namespace OnlineShop.Web.API
                     _productCategoryService.Save();
 
                     var responseData = Mapper.Map<ProductCategory, ProductCategoryViewModel>(dbProductCategory);
+                    response = request.CreateResponse(HttpStatusCode.Created, responseData);
+                }
+                return response;
+            });
+        }
+
+        [Route("delete/{id:int}")]
+        [HttpDelete]
+        [AllowAnonymous]
+        public HttpResponseMessage Delete(HttpRequestMessage request, int id)
+        {
+            return CreateHttpReponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+                if (!ModelState.IsValid)
+                {
+                    response = request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var productCategoryToDelete = _productCategoryService.Delete(id);
+                    _productCategoryService.Save();
+                    var responseData = Mapper.Map<ProductCategoryViewModel>(productCategoryToDelete);
                     response = request.CreateResponse(HttpStatusCode.Created, responseData);
                 }
                 return response;

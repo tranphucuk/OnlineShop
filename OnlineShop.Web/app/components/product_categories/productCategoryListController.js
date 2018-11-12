@@ -2,9 +2,9 @@
 (function (app) {
     app.controller('productCategoryListController', productCategoryListController);
 
-    productCategoryListController.$inject = ['$scope', 'apiService', 'notificationService'];
+    productCategoryListController.$inject = ['$scope', 'apiService', 'notificationService', '$ngBootbox'];
 
-    function productCategoryListController($scope, apiService, notificationService) {
+    function productCategoryListController($scope, apiService, notificationService, $ngBootbox) {
         $scope.productCategoryList = [];
         $scope.page = 0;
         $scope.pagesCount = 0;
@@ -14,6 +14,24 @@
         function search() {
             $scope.GetProductCategoryList();
         }
+
+        $scope.DeleteProductCategory = deleteProductCategory;
+        function deleteProductCategory(id) {
+            $ngBootbox.confirm('Are you sure to delete ?').then(function () {
+                var config = {
+                    param: {
+                        id: id
+                    }
+                }
+
+                apiService.del('/api/product_category/delete/' + config.param.id, null, function (result) {
+                    notificationService.DisplaySuccess('Remove ' + result.data.Name + ' succeeded');
+                    search();
+                }, function (error) {
+                    notificationService.DisplayError('Remove ' + error.data.Name + ' failed');
+                });
+            })
+        };
 
         $scope.GetProductCategoryList = function GetProductCategoryList(page) {
             page = page || 0;
