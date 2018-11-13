@@ -2,9 +2,9 @@
 (function (app) {
     app.controller('productCategoryListController', productCategoryListController);
 
-    productCategoryListController.$inject = ['$scope', 'apiService', 'notificationService', '$ngBootbox'];
+    productCategoryListController.$inject = ['$scope', 'apiService', 'notificationService', '$ngBootbox', '$filter'];
 
-    function productCategoryListController($scope, apiService, notificationService, $ngBootbox) {
+    function productCategoryListController($scope, apiService, notificationService, $ngBootbox, $filter) {
         $scope.productCategoryList = [];
         $scope.page = 0;
         $scope.pagesCount = 0;
@@ -14,6 +14,54 @@
         function search() {
             $scope.GetProductCategoryList();
         }
+
+        $scope.DeleteMultiProductCategory = DeleteMultiProductCategory;
+        function DeleteMultiProductCategory() {
+            var listId = [];
+            $.each($scope.selected, function (i, item) {
+                listId.push(item.ID);
+            });
+
+            $ngBootbox.confirm('Are you sure to delete ' + listId.length + ' items ?').then(function () {
+                var config = {
+                    params: {
+                        listId: JSON.stringify(listId),
+                    }
+                };
+                apiService.del('/api/product_category/deletemulti', config, function (success) {
+                    notificationService.DisplaySuccess('Remove ' + success.data + ' items succeeded');
+                    search();
+                }, function (error) {
+                    notificationService.DisplayError('Remove ' + error.data + ' items failed');
+                });
+            });
+        }
+
+        $scope.SelectAll = SelectAll;
+        $scope.isAll = false;
+        function SelectAll() {
+            if ($scope.isAll == false) {
+                angular.forEach($scope.productCategoryList, function (item, i) {
+                    item.checked = true;
+                })
+                $scope.isAll = true;
+            } else {
+                angular.forEach($scope.productCategoryList, function (item, i) {
+                    item.checked = false;
+                });
+                $scope.isAll = false;
+            }
+        };
+
+        $scope.$watch('productCategoryList', function (n, o) {
+            var checked = $filter('filter')(n, { checked: true });
+            if (checked.length) {
+                $scope.selected = checked;
+                $('#btnDelete').removeAttr('disabled');
+            } else {
+                $('#btnDelete').attr('disabled', 'disabled');
+            }
+        }, true);
 
         $scope.DeleteProductCategory = deleteProductCategory;
         function deleteProductCategory(id) {

@@ -10,6 +10,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Script.Serialization;
 
 namespace OnlineShop.Web.API
 {
@@ -144,6 +145,32 @@ namespace OnlineShop.Web.API
                     _productCategoryService.Save();
                     var responseData = Mapper.Map<ProductCategoryViewModel>(productCategoryToDelete);
                     response = request.CreateResponse(HttpStatusCode.Created, responseData);
+                }
+                return response;
+            });
+        }
+
+        [Route("deletemulti")]
+        [HttpDelete]
+        [AllowAnonymous]
+        public HttpResponseMessage DeleteMulti(HttpRequestMessage request, string listId)
+        {
+            return CreateHttpReponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+                if (!ModelState.IsValid)
+                {
+                    response = request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var listProductCategoryChecked = new JavaScriptSerializer().Deserialize<List<int>>(listId);
+                    foreach (var item in listProductCategoryChecked)
+                    {
+                        _productCategoryService.Delete(item);
+                    }
+                    _productCategoryService.Save();
+                    response = request.CreateResponse(HttpStatusCode.Created, listProductCategoryChecked.Count);
                 }
                 return response;
             });
