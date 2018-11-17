@@ -30,7 +30,7 @@
                 if (error.status == 401) {
                     notificationService.DisplayError('Authentication is required');
                 } else if (failure != null) {
-                    failure(error);
+                    notificationService.DisplayError(failure(error));
                 }
             });
         }

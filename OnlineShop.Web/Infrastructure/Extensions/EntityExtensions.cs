@@ -68,5 +68,29 @@ namespace OnlineShop.Web.Infrastructure.Extensions
             productCategory.UpdatedBy = productCategoryViewModel.UpdatedBy;
             productCategory.UpdatedDate = productCategoryViewModel.UpdatedDate;
         }
+
+        public static void UpdateProduct(this Product product, ProductViewModel productViewModel)
+        {
+            product.Alias = productViewModel.Alias;//
+            product.CreatedBy = productViewModel.CreatedBy;//
+            product.CreatedDate = productViewModel.CreatedDate;//
+            product.Description = productViewModel.Description;//
+            product.Content = productViewModel.Content;//
+            product.DisplayOrder = productViewModel.DisplayOrder;//
+            product.HomeFlag = productViewModel.HomeFlag;//
+            product.HotFlag = productViewModel.HotFlag;//
+            product.ID = productViewModel.ID;//
+            product.Image = productViewModel.Image;//
+            product.MetaDescription = productViewModel.MetaDescription;//
+            product.MetaKeyword = productViewModel.MetaKeyword;//
+            product.Name = productViewModel.Name;//
+            product.CategoryID = productViewModel.CategoryID;//
+            product.Price = productViewModel.Price;//
+            product.PromotionPrice = productViewModel.PromotionPrice;//
+            product.Warranty = productViewModel.Warranty;//
+            product.Status = productViewModel.Status;//
+            product.UpdatedBy = productViewModel.UpdatedBy;//
+            product.UpdatedDate = productViewModel.UpdatedDate;//
+        }
     }
 }
