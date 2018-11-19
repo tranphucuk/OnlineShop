@@ -8,6 +8,15 @@
             CreatedDate: new Date(),
         }
 
+        $scope.ChooseImage = function () {
+            var ckfinder = new CKFinder();
+            ckfinder.selectActionFunction = function (fileUrl) {
+                $scope.productCategory.Image = fileUrl;
+                $scope.$apply();
+            }
+            ckfinder.popup();
+        };
+
         $scope.GenerateAlias = GenerateAlias;
         function GenerateAlias() {
             $scope.productCategory.Alias = unsignNameService.Alias($scope.productCategory.Name);

@@ -1,4 +1,5 @@
-﻿using OnlineShop.Data.Infrastructure;
+﻿using OnlineShop.Common;
+using OnlineShop.Data.Infrastructure;
 using OnlineShop.Data.Repositories;
 using OnlineShop.Model.Model;
 using System;
@@ -24,16 +25,43 @@ namespace OnlineShop.Service
     {
         IProductRepository _productRepository;
         IUnitOfWork _unitOfWork;
+        ITagRepository _tagRepository;
+        IProductTagRepository _productTagRepository;
 
-        public ProductService(IProductRepository productRepository, IUnitOfWork unitOfWork)
+        public ProductService(IProductRepository productRepository, IProductTagRepository productTagRepository,
+            ITagRepository tagRepository, IUnitOfWork unitOfWork)
         {
             this._productRepository = productRepository;
             this._unitOfWork = unitOfWork;
+            this._productTagRepository = productTagRepository;
+            this._tagRepository = tagRepository;
         }
 
         public Product Add(Product product)
         {
-            return _productRepository.Add(product);
+            var tempProduct = _productRepository.Add(product);
+            _unitOfWork.Commit();
+            if (!string.IsNullOrEmpty(product.Tags))
+            {
+                string[] tags = product.Tags.Split(',');
+                for (int i = 0; i < tags.Length; i++)
+                {
+                    var tagId = StringHelper.ToUnsignString(tags[i]);
+                    if (_tagRepository.Count(t => t.ID == tagId) == 0)
+                    {
+                        Tag tag = new Tag();
+                        tag.ID = tagId;
+                        tag.Name = tags[i];
+                        tag.Type = CommonConstants.productTag;
+                        _tagRepository.Add(tag);
+                    }
+                    ProductTag productTag = new ProductTag();
+                    productTag.ProductID = product.ID;
+                    productTag.TagID = tagId;
+                    _productTagRepository.Add(productTag);
+                }
+            }
+            return tempProduct;
         }
 
         public Product Delete(int id)
@@ -67,6 +95,27 @@ namespace OnlineShop.Service
         public void Update(Product product)
         {
             _productRepository.Update(product);
+            if (!string.IsNullOrEmpty(product.Tags))
+            {
+                string[] tags = product.Tags.Split(',');
+                for (int i = 0; i < tags.Length; i++)
+                {
+                    var tagId = StringHelper.ToUnsignString(tags[i]);
+                    if (_tagRepository.Count(t => t.ID == tagId) == 0)
+                    {
+                        Tag tag = new Tag();
+                        tag.ID = tagId;
+                        tag.Name = tags[i];
+                        tag.Type = CommonConstants.productTag;
+                        _tagRepository.Add(tag);
+                    }
+                    _productTagRepository.DeleteMulti(x => x.ProductID == product.ID);
+                    ProductTag productTag = new ProductTag();
+                    productTag.ProductID = product.ID;
+                    productTag.TagID = tagId;
+                    _productTagRepository.Add(productTag);
+                }
+            }
         }
     }
 }

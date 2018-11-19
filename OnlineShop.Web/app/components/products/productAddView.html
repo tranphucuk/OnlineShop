@@ -97,6 +97,29 @@
                         </div>
 
                         <div class="form-group">
+                            <label class="col-sm-2 control-label">MetaDescription</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" ng-maxlength="256" name="metaDescription" ng-model="ProductInfo.MetaDescription" placeholder="Meta description">
+                                <span ng-show="frmAddProduct.name.metaDescription.maxlength" class="has-error">Your meta description seem too long </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">MetaKeyword</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" ng-maxlength="256" name="metaKeyword" ng-model="ProductInfo.MetaKeyword" placeholder="Meta Keyword">
+                                <span ng-show="frmAddProduct.MetaKeyword.$error.maxlength" class="has-error">Your meta keyword seem too long </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Tags</label>  
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" ng-maxlength="256" name="tags" ng-model="ProductInfo.Tags" placeholder="Tags">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
                             <label class="col-sm-2 control-label">Warranty</label>
                             <div class="col-sm-10">
                                 <input type="number" class="form-control" name="warranty" ng-model="ProductInfo.Warranty" placeholder="Warranty">
@@ -129,7 +152,7 @@
                     </div><!-- /.box-body -->
                     <div class="box-footer">
                         <button ui-sref="productList" class="btn btn-default">Cancel</button>
-                        <button type="submit" class="btn btn-success pull-right" ng-click="AddNewProduct()">Submit</button>
+                        <button type="submit" class="btn btn-success pull-right" ng-disabled="frmAddProduct.$invalid" ng-click="AddNewProduct()">Submit</button>
                     </div><!-- /.box-footer -->
                 </form>
             </div><!-- /.box -->

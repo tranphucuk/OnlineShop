@@ -10,7 +10,7 @@
             multiItems: multiItems
         };
 
-        function singleItem(url,callback) {
+        function singleItem(url, callback) {
             $ngBootbox.confirm('Are you sure to delete this item ?').then(function () {
                 apiService.del(url, null, function (result) {
                     notificationService.DisplaySuccess('Remove ' + result.data.Name + ' succeeded.')
@@ -21,7 +21,7 @@
             });
         }
 
-        function multiItems(url,callback) {
+        function multiItems(url, callback) {
 
         }
     };

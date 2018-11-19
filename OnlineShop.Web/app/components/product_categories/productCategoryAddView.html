@@ -10,7 +10,7 @@
 </section>
 <!-- Main content -->
 <section class="content">
-    <form class="form-horizontal" novalidate name="frmAddProductCategory"  role="form" ng-submit="AddProductCategory()">
+    <form class="form-horizontal" novalidate name="frmAddProductCategory"  role="form">
         <div class="box-body">
             <div class="form-group">
                 <label for="inputEmail3" class="col-sm-2 control-label">Name</label>
@@ -37,9 +37,10 @@
             </div>
             <div class="form-group">
                 <label for="inputEmail3" class="col-sm-2 control-label">Image</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" name="image" ng-model="productCategory.Image" placeholder="Image...">
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" name="image" readonly ng-model="productCategory.Image" placeholder="Image...">
                 </div>
+                <button ng-click="ChooseImage()" class="btn btn-default">Select Image</button>
             </div>
             <div class="form-group">
                 <label for="inputEmail3" class="col-sm-2 control-label">Parent ID</label>
@@ -90,7 +91,7 @@
         </div><!-- /.box-body -->
         <div class="box-footer">
             <button ui-sref="productCategories" class="btn btn-default">Cancel</button>
-            <button type="submit" class="btn btn-info pull-right" ng-disabled="frmAddProductCategory.$invalid">Submit</button>
+            <button type="submit" class="btn btn-info pull-right" ng-click="AddProductCategory()" ng-disabled="frmAddProductCategory.$invalid">Submit</button>
         </div><!-- /.box-footer -->
     </form>
 </section>

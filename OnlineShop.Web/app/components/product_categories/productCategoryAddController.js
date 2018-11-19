@@ -10,6 +10,15 @@
             Name: 'Product Category 1',
         }
 
+        $scope.ChooseImage = function () {
+            var ckfinder = new CKFinder();
+            ckfinder.selectActionFunction = function (fileUrl) {
+                $scope.productCategory.Image = fileUrl;
+                $scope.$apply();
+            }
+            ckfinder.popup();
+        };
+
         $scope.AddProductCategory = AddProductCategory;
         function AddProductCategory() {
             apiService.post('/api/product_category/create', $scope.productCategory, function (result) {

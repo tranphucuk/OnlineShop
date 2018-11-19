@@ -83,6 +83,7 @@ namespace OnlineShop.Web.Infrastructure.Extensions
             product.Image = productViewModel.Image;//
             product.MetaDescription = productViewModel.MetaDescription;//
             product.MetaKeyword = productViewModel.MetaKeyword;//
+            product.Tags = productViewModel.Tags;
             product.Name = productViewModel.Name;//
             product.CategoryID = productViewModel.CategoryID;//
             product.Price = productViewModel.Price;//

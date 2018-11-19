@@ -15,6 +15,14 @@
             UpdatedDate: new Date,
         };
 
+        $scope.ChooseImage = function () {
+            var ckfinder = new CKFinder();
+            ckfinder.selectActionFunction = function (fileUrl) {
+                $scope.ProductInfo.Image = fileUrl;
+            }
+            ckfinder.popup();
+        };
+
         $scope.AutogenAlias = function () {
             $scope.ProductInfo.Alias = unsignNameService.Alias($scope.ProductInfo.Name);
         }

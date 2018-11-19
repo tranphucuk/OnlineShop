@@ -19,14 +19,14 @@
                     <!--<h3 class="box-title">Horizontal Form</h3>-->
                 </div><!-- /.box-header -->
                 <!-- form start -->
-                <form class="form-horizontal" name="frmAddProduct" role="form" novalidate>
+                <form class="form-horizontal" name="frmEditProduct" role="form" novalidate>
                     <div class="box-body">
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Name</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" ng-change="AutogenAlias()" ng-maxlength="256" required name="name" ng-model="ProductInfo.Name" placeholder="Name">
-                                <span ng-show="frmAddProduct.name.$invalid && !frmAddProduct.name.$error.maxlength" class="has-error">Please enter product name.</span>
-                                <span ng-show="frmAddProduct.name.$error.maxlength" class="has-error">Your product name seem too long </span>
+                                <span ng-show="frmEditProduct.name.$invalid && !frmEditProduct.name.$error.maxlength" class="has-error">Please enter product name.</span>
+                                <span ng-show="frmEditProduct.name.$error.maxlength" class="has-error">Your product name seem too long </span>
                             </div>
                         </div>
 
@@ -34,8 +34,8 @@
                             <label class="col-sm-2 control-label">Alias</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" name="alias" required ng-maxlength="50" ng-model="ProductInfo.Alias" placeholder="Alias">
-                                <span ng-show="frmAddProduct.alias.$invalid && !frmAddProduct.alias.$error.maxlength" class="has-error">Please enter alias.</span>
-                                <span ng-show="frmAddProduct.alias.$error.maxlength" class="has-error">Your alias seem too long </span>
+                                <span ng-show="frmEditProduct.alias.$invalid && !frmEditProduct.alias.$error.maxlength" class="has-error">Please enter alias.</span>
+                                <span ng-show="frmEditProduct.alias.$error.maxlength" class="has-error">Your alias seem too long </span>
                             </div>
                         </div>
 
@@ -50,16 +50,17 @@
 
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Image</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" name="image" ng-model="ProductInfo.Image" placeholder="Image">
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" name="image" readonly ng-model="ProductInfo.Image" placeholder="Image">
                             </div>
+                            <button ng-click="ChooseImage()" class="btn btn-default">Select Image</button>
                         </div>
 
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Display order</label>
                             <div class="col-sm-10">
                                 <input type="number" class="form-control" name="displayOrder" required ng-model="ProductInfo.DisplayOrder" placeholder="Order">
-                                <span ng-show="frmAddProduct.displayOrder.$invalid" class="has-error">Please enter a valid display order.</span>
+                                <span ng-show="frmEditProduct.displayOrder.$invalid" class="has-error">Please enter a valid display order.</span>
                             </div>
                         </div>
 
@@ -67,7 +68,7 @@
                             <label class="col-sm-2 control-label">Price</label>
                             <div class="col-sm-10">
                                 <input type="number" class="form-control" name="price" required ng-model="ProductInfo.Price" placeholder="Price">
-                                <span ng-show="frmAddProduct.price.$invalid" class="has-error">Please enter a valid Price.</span>
+                                <span ng-show="frmEditProduct.price.$invalid" class="has-error">Please enter a valid Price.</span>
                             </div>
                         </div>
 
@@ -82,8 +83,8 @@
                             <label class="col-sm-2 control-label">Description</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" name="description" required ng-maxlength="500" ng-model="ProductInfo.Description" placeholder="Description">
-                                <span ng-show="frmAddProduct.description.$invalid && !frmAddProduct.description.$error.maxlength" class="has-error">Please enter description.</span>
-                                <span ng-show="frmAddProduct.description.$error.maxlength" class="has-error">Your description seem too long </span>
+                                <span ng-show="frmEditProduct.description.$invalid && !frmEditProduct.description.$error.maxlength" class="has-error">Please enter description.</span>
+                                <span ng-show="frmEditProduct.description.$error.maxlength" class="has-error">Your description seem too long </span>
                             </div>
                         </div>
 
@@ -91,7 +92,30 @@
                             <label class="col-sm-2 control-label">Content</label>
                             <div class="col-sm-10">
                                 <textarea class="form-control" ckeditor="ckEditorOptions" name="content" required ng-model="ProductInfo.Content" placeholder="Content"></textarea>
-                                <span ng-show="frmAddProduct.description.$invalid" class="has-error">Please enter content.</span>
+                                <span ng-show="frmEditProduct.description.$invalid" class="has-error">Please enter content.</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">MetaDescription</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" ng-maxlength="256" name="metaDescription" ng-model="ProductInfo.MetaDescription" placeholder="Meta description">
+                                <span ng-show="frmAddProduct.name.metaDescription.maxlength" class="has-error">Your meta description seem too long </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">MetaKeyword</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" ng-maxlength="256" name="metaKeyword" ng-model="ProductInfo.MetaKeyword" placeholder="Meta Keyword">
+                                <span ng-show="frmAddProduct.MetaKeyword.$error.maxlength" class="has-error">Your meta keyword seem too long </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Tags</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" ng-maxlength="256" name="tags" ng-model="ProductInfo.Tags" placeholder="Tags">
                             </div>
                         </div>
 
@@ -128,7 +152,7 @@
                     </div><!-- /.box-body -->
                     <div class="box-footer">
                         <button ui-sref="productList" class="btn btn-default">Cancel</button>
-                        <button type="submit" class="btn btn-success pull-right" ng-click="UpdateProductInfo()">Submit</button>
+                        <button type="submit" class="btn btn-success pull-right" ng-disabled="frmEditProduct.$invalid" ng-click="UpdateProductInfo()">Submit</button>
                     </div><!-- /.box-footer -->
                 </form>
             </div><!-- /.box -->
