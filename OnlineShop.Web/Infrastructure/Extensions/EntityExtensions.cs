@@ -81,6 +81,7 @@ namespace OnlineShop.Web.Infrastructure.Extensions
             product.HotFlag = productViewModel.HotFlag;//
             product.ID = productViewModel.ID;//
             product.Image = productViewModel.Image;//
+            product.MoreImages = productViewModel.MoreImages;
             product.MetaDescription = productViewModel.MetaDescription;//
             product.MetaKeyword = productViewModel.MetaKeyword;//
             product.Tags = productViewModel.Tags;

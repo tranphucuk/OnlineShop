@@ -4,7 +4,7 @@
     productEditController.$inject = ['$scope', 'apiService', 'notificationService', '$state', 'unsignNameService', '$stateParams'];
 
     function productEditController($scope, apiService, notificationService, $state, unsignNameService, $stateParams) {
-
+        //$scope.moreImges = [];
         $scope.ckEditorOptions = {
             language: 'en',
             height: '200px',
@@ -23,13 +23,32 @@
             ckfinder.popup();
         };
 
+        $scope.ChooseMoreImages = function () {
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (fileUrl) {
+                $scope.$apply(function () {
+                    $scope.moreImges.push(fileUrl);
+                });
+            }
+            finder.popup();
+        };
+
         $scope.AutogenAlias = function () {
             $scope.ProductInfo.Alias = unsignNameService.Alias($scope.ProductInfo.Name);
+        }
+
+        function ListProductCategory() {
+            apiService.get('api/product_category/getallParentId', null, function (result) {
+                $scope.ListProductCategory = result.data;
+            }, function (error) {
+                console.log(error.data);
+            });
         }
 
         function GetProductInfo() {
             var userId = $stateParams.id;
             apiService.get('api/product/getProductId/' + userId, null, function (success) {
+                $scope.moreImges = JSON.parse(success.data.MoreImages);
                 $scope.ProductInfo = success.data;
             }, function (error) {
                 console.log(error.data);
@@ -47,6 +66,7 @@
         }
 
         GetProductInfo();
+        ListProductCategory();
     };
 
 })(angular.module('onlineShop.products'))

@@ -4,7 +4,7 @@
     productAddController.$inject = ['$scope', 'apiService', 'notificationService', '$state', 'unsignNameService']
 
     function productAddController($scope, apiService, notificationService, $state, unsignNameService) {
-
+        $scope.moreImges = [];
         $scope.ckEditorOptions = {
             language: 'en',
             height: '200px',
@@ -18,6 +18,16 @@
                 $scope.$apply();
             }
             ckfinder.popup();
+        };
+
+        $scope.ChooseMoreImages = function () {
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (fileUrl) {
+                $scope.$apply(function () {
+                    $scope.moreImges.push(fileUrl);
+                });
+            }
+            finder.popup();
         };
 
         $scope.ProductInfo = {
@@ -34,6 +44,7 @@
 
         $scope.AddNewProduct = AddNewProduct;
         function AddNewProduct() {
+            $scope.ProductInfo.MoreImages = JSON.stringify($scope.moreImges);
             apiService.post('api/product/create', $scope.ProductInfo, function (result) {
                 notificationService.DisplaySuccess('Add ' + result.data.Name + ' succeeded.')
                 $state.go('productList');
