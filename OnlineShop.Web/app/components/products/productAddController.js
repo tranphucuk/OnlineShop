@@ -11,11 +11,21 @@
             uiColor: '#A2AFBD'
         };
 
+        $scope.ChooseImage = function () {
+            var ckfinder = new CKFinder();
+            ckfinder.selectActionFunction = function (fileUrl) {
+                $scope.ProductInfo.Image = fileUrl;
+                $scope.$apply();
+            }
+            ckfinder.popup();
+        };
+
         $scope.ProductInfo = {
             CreatedDate: new Date,
             Status: true,
             Name: 'Product 1',
             ViewCount: 0,
+            Image: '',
         }
 
         $scope.AutogenAlias = function () {
