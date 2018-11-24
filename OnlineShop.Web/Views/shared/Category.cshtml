@@ -1,59 +1,31 @@
-﻿<div class="sub-cate">
+﻿@model IEnumerable<OnlineShop.Web.Models.ProductCategoryViewModel>
+
+<div class="sub-cate">
     <div class="top-nav rsidebar span_1_of_left">
         <h3 class="cate">CATEGORIES</h3>
         <ul class="menu">
-            <li class="item1">
-                <a href="#">Curabitur sapien<img class="arrow-img" src="/Assets/Client/images/arrow1.png" alt="" /> </a>
-                <ul class="cute">
-                    <li class="subitem1"><a href="product.html">Cute Kittens </a></li>
-                    <li class="subitem2"><a href="product.html">Strange Stuff </a></li>
-                    <li class="subitem3"><a href="product.html">Automatic Fails </a></li>
-                </ul>
-            </li>
-            <li class="item2">
-                <a href="#">Dignissim purus <img class="arrow-img " src="/Assets/Client/images/arrow1.png" alt="" /></a>
-                <ul class="cute">
-                    <li class="subitem1"><a href="product.html">Cute Kittens </a></li>
-                    <li class="subitem2"><a href="product.html">Strange Stuff </a></li>
-                    <li class="subitem3"><a href="product.html">Automatic Fails </a></li>
-                </ul>
-            </li>
-            <li class="item3">
-                <a href="#">Ultrices id du<img class="arrow-img img-arrow" src="/Assets/Client/images/arrow1.png" alt="" /> </a>
-                <ul class="cute">
-                    <li class="subitem1"><a href="product.html">Cute Kittens </a></li>
-                    <li class="subitem2"><a href="product.html">Strange Stuff </a></li>
-                    <li class="subitem3"><a href="product.html">Automatic Fails</a></li>
-                </ul>
-            </li>
-            <li class="item4">
-                <a href="#">Cras iacaus rhone <img class="arrow-img img-left-arrow" src="/Assets/Client/images/arrow1.png" alt="" /></a>
-                <ul class="cute">
-                    <li class="subitem1"><a href="product.html">Cute Kittens </a></li>
-                    <li class="subitem2"><a href="product.html">Strange Stuff </a></li>
-                    <li class="subitem3"><a href="product.html">Automatic Fails </a></li>
-                </ul>
-            </li>
-            <li>
-                <ul class="kid-menu">
-                    <li><a href="product.html">Tempus pretium</a></li>
-                    <li><a href="product.html">Dignissim neque</a></li>
-                    <li><a href="product.html">Ornared id aliquet</a></li>
-                </ul>
-            </li>
-            <ul class="kid-menu ">
-                <li><a href="product.html">Commodo sit</a></li>
-                <li><a href="product.html">Urna ac tortor sc</a></li>
-                <li><a href="product.html">Ornared id aliquet</a></li>
-                <li><a href="product.html">Urna ac tortor sc</a></li>
-                <li><a href="product.html">Eget nisi laoreet</a></li>
-                <li><a href="product.html">Faciisis ornare</a></li>
-                <li class="menu-kid-left"><a href="contact.html">Contact us</a></li>
-            </ul>
+            @foreach (var productCategories in Model.Where(x => x.ParentID == 0))
+            {
+                var url = "/" + productCategories.Alias + ".pc-" + productCategories.ID + ".html";
+                var childProductCategories = Model.Where(x => x.ParentID == productCategories.ID);
+                <li class="item1">
+                    <a href="@url">@productCategories.Name @(childProductCategories.Count() > 0 ? "<img class=\"arrow-img\" src=\"images/arrow1.png\" alt=\"\"/>" : "")</a>
+                    @if (childProductCategories.Count() > 0)
+                    {
+                        <ul class="cute">
+                            @foreach (var childProductCategory in childProductCategories)
+                            {
+                                var urlChild = "/" + productCategories.Alias + ".pc-" + productCategories.ID + ".html";
+                                <li class="subitem2"><a href="@urlChild">@childProductCategory.Name</a></li>
+                            }
+                        </ul>
+                    }
+                </li>
+            }
         </ul>
     </div>
     <!--initiate accordion-->
-    <script type="text/javascript">
+    @*<script type="text/javascript">
             $(function () {
                 var menu_ul = $('.menu > li > ul'),
                     menu_a = $('.menu > li > a');
@@ -71,7 +43,7 @@
                 });
 
             });
-    </script>
+        </script>*@
     <div class=" chain-grid menu-chain">
         <a href="single.html"><img class="img-responsive chain" src="/Assets/Client/images/wat.jpg" alt=" " /></a>
         <div class="grid-chain-bottom chain-watch">

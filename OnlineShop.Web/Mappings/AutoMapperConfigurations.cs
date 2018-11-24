@@ -20,6 +20,7 @@ namespace OnlineShop.Web.Mappings
             Mapper.CreateMap<ProductCategory, ProductCategoryViewModel>();
             Mapper.CreateMap<ProductTag, ProductTagViewModel>();
             Mapper.CreateMap<Product, ProductViewModel>();
+            Mapper.CreateMap<Footer, FooterViewModel>();
         }
     }
 }

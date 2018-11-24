@@ -10,5 +10,6 @@ namespace OnlineShop.Common
     {
         public const string productTag = "product";
         public const string postTag = "post";
+        public const string footerId = "default";
     }
 }
