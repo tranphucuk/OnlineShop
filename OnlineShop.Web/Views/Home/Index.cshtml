@@ -80,11 +80,12 @@
     <div class="product-left">
         @foreach (var product in Model.LatestProducts)
         {
+            var url = "/" + product.Alias + ".p-" + product.ID + ".html";
             <div class="col-md-4 chain-grid @(product.Name == Model.LatestProducts.Last().Name ? "grid-top-chain" :"")">
-                <a href="single.html"><img class="img-responsive chain" src="/Assets/Client/images/bo.jpg" alt="@product.Name" /></a>
+                <a href="@url"><img class="img-responsive chain" src="@product.Image" alt="@product.Name" /></a>
                 <span class="star"> </span>
                 <div class="grid-chain-bottom">
-                    <h6><a href="single.html">@product.Name</a></h6>
+                    <h6><a href="@url">@product.Name</a></h6>
                     <div class="star-price">
                         <div class="dolor-grid">
                             @if (product.PromotionPrice.HasValue)
@@ -121,11 +122,12 @@
     <div class="product-left">
         @foreach (var product in Model.HotProducts)
         {
+            var url = "/" + product.Alias + ".p-" + product.ID + ".html";
             <div class="col-md-4 chain-grid @(product.Name == Model.HotProducts.Last().Name ? "grid-top-chain" :"")">
-                <a href="single.html"><img class="img-responsive chain" src="/Assets/Client/images/ch.jpg" alt="@product.Name" /></a>
+                <a href="@url"><img class="img-responsive chain" src="@product.Image" alt="@product.Name" /></a>
                 <span class="star"> </span>
                 <div class="grid-chain-bottom">
-                    <h6><a href="single.html">@product.Name</a></h6>
+                    <h6><a href="@url">@product.Name</a></h6>
                     <div class="star-price">
                         <div class="dolor-grid">
                             @if (product.PromotionPrice.HasValue)

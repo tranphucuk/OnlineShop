@@ -2,12 +2,17 @@
 (function (app) {
     app.controller('productCategoryAddController', productCategoryAddController);
 
-    productCategoryAddController.$inject = ['apiService', '$scope', 'notificationService', '$state']
-    function productCategoryAddController(apiService, $scope, notificationService, $state) {
+    productCategoryAddController.$inject = ['apiService', '$scope', 'notificationService', '$state','unsignNameService']
+    function productCategoryAddController(apiService, $scope, notificationService, $state, unsignNameService) {
         $scope.productCategory = {
             CreatedDate: new Date(),
             Status: true,
             Name: 'Product Category 1',
+        }
+
+        $scope.GenerateAlias = GenerateAlias;
+        function GenerateAlias() {
+            $scope.productCategory.Alias = unsignNameService.Alias($scope.productCategory.Name);
         }
 
         $scope.ChooseImage = function () {
