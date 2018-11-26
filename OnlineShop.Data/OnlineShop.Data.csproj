@@ -82,6 +82,10 @@
     <Compile Include="Migrations\201811191608414_AddTagsField.Designer.cs">
       <DependentUpon>201811191608414_AddTagsField.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811261140192_AddColumnContentToSlide.cs" />
+    <Compile Include="Migrations\201811261140192_AddColumnContentToSlide.Designer.cs">
+      <DependentUpon>201811261140192_AddColumnContentToSlide.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="OnlineShopDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -133,6 +137,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811191608414_AddTagsField.resx">
       <DependentUpon>201811191608414_AddTagsField.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811261140192_AddColumnContentToSlide.resx">
+      <DependentUpon>201811261140192_AddColumnContentToSlide.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

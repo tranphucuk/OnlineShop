@@ -14,16 +14,32 @@ namespace OnlineShop.Web.Controllers
     {
         IProductCategoryService _productCategory;
         ICommonService _commonService;
+        IProductService _productService;
 
-        public HomeController(IProductCategoryService productCategory, ICommonService commonService)
+        public HomeController(IProductCategoryService productCategory, ICommonService commonService,
+            IProductService productService)
         {
             this._productCategory = productCategory;
             this._commonService = commonService;
+            this._productService = productService;
         }
 
         public ActionResult Index()
         {
-            return View();
+            var slideModel = _commonService.GetSlides();
+            var SlideViewModel = Mapper.Map<IEnumerable<Slide>, IEnumerable<SlideViewModel>>(slideModel);
+
+            var latestProductModels = _productService.GetLatestProducts(3);
+            var latestProductViewModels = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(latestProductModels);
+            var hotProductModels = _productService.GetHotProducts();
+            var hotProductViewModels = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(hotProductModels);
+
+            var homeViewModel = new HomeViewModel();
+            homeViewModel.Slides = SlideViewModel;
+            homeViewModel.LatestProducts = latestProductViewModels;
+            homeViewModel.HotProducts = hotProductViewModels;
+
+            return View(homeViewModel);
         }
 
         [ChildActionOnly]

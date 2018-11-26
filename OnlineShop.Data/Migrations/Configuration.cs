@@ -20,6 +20,11 @@ namespace OnlineShop.Data.Migrations
         {
             CreateProductCategorySample(context);
             CreateProductSample(context);
+            CreateSlide(context);
+        }
+
+        public void CreateUser(OnlineShopDbContext context)
+        {
             //var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new OnlineShopDbContext()));
 
             //var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new OnlineShopDbContext()));
@@ -77,6 +82,39 @@ namespace OnlineShop.Data.Migrations
                     new Product(){Name = "Iphone 6", Alias = "iphone-6",CategoryID=2,DisplayOrder=1,Price=500,Description="Iphone 6",Content="Iphone 6",Status=true},
                 };
                 context.Products.AddRange(listProducts);
+                context.SaveChanges();
+            }
+        }
+
+        public void CreateSlide(OnlineShopDbContext context)
+        {
+            if (context.Slides.Count() == 0)
+            {
+                var listSlide = new List<Slide>
+                {
+                    new Slide(){
+                        Name = "Slide1",
+                        DisplayOrder =1,
+                        Status = true,
+                        URL = "#",
+                        Image = "/Assets/Client/images/bag.jpg",
+                        Content = @"<h2>FLAT 50% 0FF</h2>
+                                <label>FOR ALL PURCHASE <b>VALUE</b></label>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et</p>
+                                <span class=""on-get"">GET NOW</span>"},
+
+                    new Slide(){
+                        Name = "Slide2",
+                        DisplayOrder =2,
+                        Status = true,
+                        URL = "#",
+                        Image = "/Assets/Client/images/bag1.jpg",
+                        Content = @"<h2>FLAT 50% 0FF</h2>
+                                <label>FOR ALL PURCHASE <b>VALUE</b></label>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et</p>
+                                <span class=""on-get"">GET NOW</span>"},
+                };
+                context.Slides.AddRange(listSlide);
                 context.SaveChanges();
             }
         }

@@ -32,5 +32,7 @@ namespace OnlineShop.Model.Model
         public int? DisplayOrder { get; set; }
 
         public bool Status { get; set; }
+
+        public string Content { get; set; }
     }
 }

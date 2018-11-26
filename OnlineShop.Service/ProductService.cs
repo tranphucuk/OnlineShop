@@ -18,6 +18,8 @@ namespace OnlineShop.Service
         Product Delete(int id);
         IEnumerable<Product> Getall();
         IEnumerable<Product> Getall(string keyword);
+        IEnumerable<Product> GetLatestProducts(int size);
+        IEnumerable<Product> GetHotProducts();
         void Save();
     }
 
@@ -80,6 +82,16 @@ namespace OnlineShop.Service
                 return _productRepository.GetMulti(x => x.Name.Contains(keyword) || x.Description.Contains(keyword));
             else
                 return _productRepository.GetAll();
+        }
+
+        public IEnumerable<Product> GetHotProducts()
+        {
+            return _productRepository.GetMulti(x => x.Status == true && x.HotFlag == true).OrderByDescending(x => x.CreatedDate);
+        }
+
+        public IEnumerable<Product> GetLatestProducts(int size)
+        {
+            return _productRepository.GetMulti(x => x.Status == true).OrderByDescending(x => x.CreatedDate).Take(size);
         }
 
         public Product GetSingleProduct(int id)
