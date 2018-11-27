@@ -2,8 +2,9 @@
 @{
     ViewBag.Title = "Category";
     Layout = "~/Views/shared/Layout.cshtml";
-    var productCategory = (OnlineShop.Web.Models.ProductCategoryViewModel)ViewBag.CategoryName;
+    var productCategory = (OnlineShop.Web.Models.ProductCategoryViewModel)ViewBag.Category;
     var pcUrl = "/" + productCategory.Alias + ".pc-" + productCategory.ID + ".html";
+    var sortType = (string)ViewBag.sortType;
 }
 
 <div class="women-product">
@@ -12,10 +13,10 @@
             <a href="@pcUrl"><h4>@productCategory.Name - <span>@Model.TotalCount items</span> </h4></a>
             <ul class="w_nav">
                 <li>Sort : </li>
-                <li><a class="active" href="#">popular</a></li> |
-                <li><a href="#">new </a></li> |
-                <li><a href="#">discount</a></li> |
-                <li><a href="#">price: Low High </a></li>
+                <li><a class="active" href="?page=@Model.Page&sort=popular">popular</a></li> |
+                <li><a href="?page=@Model.Page&sort=hot">hot</a></li> |
+                <li><a href="?page=@Model.Page&sort=discount">discount</a></li> |
+                <li><a href="?page=@Model.Page&sort=price">price: Low High </a></li>
                 <div class="clearfix"> </div>
             </ul>
             <div class="clearfix"> </div>
@@ -56,12 +57,12 @@
                         @if (Model.Page > 1)
                         {
                             <li>
-                                <a href="?page=1" aria-label="First">
+                                <a href="?page=1&sort=@sortType" aria-label="First">
                                     <i class="fa fa-angle-double-left"></i>
                                 </a>
                             </li>
                             <li>
-                                <a href="?page=@(Model.Page-1)" aria-label="Previous">
+                                <a href="?page=@(Model.Page-1)&sort=@sortType" aria-label="Previous">
                                     <i class="fa fa-angle-left"></i>
                                 </a>
                             </li>
@@ -71,22 +72,22 @@
                         {
                             if (Model.Page == i)
                             {
-                                <li class="active"><a href="?page=@i" title="Trang @i">@i</a></li>
+                                <li class="active"><a href="?page=@i&sort=@sortType" title="Trang @i">@i</a></li>
                             }
                             else
                             {
-                                <li><a href="?page=@i" title="Trang @i">@i</a></li>
+                                <li><a href="?page=@i&sort=@sortType" title="Trang @i">@i</a></li>
                             }
                         }
                         @if (Model.Page < Model.TotalPage)
                         {
                             <li>
-                                <a href="?page=@(Model.Page+1)" aria-label="Next">
+                                <a href="?page=@(Model.Page+1)&sort=@sortType" aria-label="Next">
                                     <i class="fa fa-angle-right"></i>
                                 </a>
                             </li>
                             <li>
-                                <a href="?page=@Model.TotalPage" aria-label="Last">
+                                <a href="?page=@Model.TotalPage&sort=@sortType" aria-label="Last">
                                     <i class="fa fa-angle-double-right"></i>
                                 </a>
                             </li>

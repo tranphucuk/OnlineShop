@@ -29,11 +29,16 @@ namespace OnlineShop.Web.Controllers
             return View();
         }
 
-        public ActionResult Category(int id, int page = 1)
+        public ActionResult Category(int id, string sort, int page = 1)
         {
             var totalRow = 0;
+            var productCategory = _productCategoryService.GetById(id);
+            var productCategoryViewModel = Mapper.Map<ProductCategory, ProductCategoryViewModel>(productCategory);
+            ViewBag.Category = productCategoryViewModel;
+            ViewBag.sortType = sort;
+
             var pageSize = int.Parse(ConfigHelper.GetValueByKey("pageSize"));
-            var productList = _productService.GetProductByCategoryIdPaging(id, page, pageSize, out totalRow);
+            var productList = _productService.GetProductByCategoryIdPaging(id, sort, page, pageSize, out totalRow);
             var productViewModel = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(productList);
             var pageginationSet = new PaginationSet<ProductViewModel>()
             {
@@ -44,9 +49,7 @@ namespace OnlineShop.Web.Controllers
                 MaxPage = int.Parse(ConfigHelper.GetValueByKey("maxPage"))
             };
 
-            var productCategory = _productCategoryService.GetById(id);
-            var productCategoryViewModel = Mapper.Map<ProductCategory, ProductCategoryViewModel>(productCategory);
-            ViewBag.CategoryName = productCategoryViewModel;
+
             return View(pageginationSet);
         }
     }
