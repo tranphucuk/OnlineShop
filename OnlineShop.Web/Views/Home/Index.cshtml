@@ -10,69 +10,32 @@
         $('.example1').wmuSlider();
     </script>
 }
-<div class="shoes-grid">
-    <a href="single.html">
-        <div class="wrap-in">
-            <div class="wmuSlider example1 slide-grid">
-                <div class="wmuSliderWrapper">
-                    @foreach (var slide in Model.Slides)
-                    {
-                        <article style="position: absolute; width: 100%; opacity: 0;">
-                            <div class="banner-matter">
-                                <div class="col-md-5 banner-bag">
-                                    <img class="img-responsive " src="@slide.Image" alt="@slide.Name" />
-                                </div>
-                                <div class="col-md-7 banner-off">
-                                    @Html.Raw(slide.Content)
-                                </div>
 
-                                <div class="clearfix"> </div>
+<div class="shoes-grid">
+    <a href="single.html"></a>
+    <div class="wrap-in">
+        <div class="wmuSlider example1 slide-grid">
+            <div class="wmuSliderWrapper">
+                @foreach (var slide in Model.Slides)
+                {
+                    <article style="position: absolute; width: 100%; opacity: 0;">
+                        <div class="banner-matter">
+                            <div class="col-md-5 banner-bag">
+                                <img class="img-responsive " src="@slide.Image" alt="@slide.Name" />
+                            </div>
+                            <div class="col-md-7 banner-off">
+                                @Html.Raw(slide.Content)
                             </div>
 
-                        </article>
-                    }
-                </div>
-    </a>
-    <ul class="wmuSliderPagination">
-        @foreach (var slide in Model.Slides)
-        {
-            <li><a href="#" class="">@slide.DisplayOrder</a></li>
-        }
-    </ul>
-</div>
+                            <div class="clearfix"> </div>
+                        </div>
 
-@section HomeProducts{
-    @*<div class="shoes-grid-left">
-            <a href="single.html">
-                <div class="col-md-6 con-sed-grid">
-
-                    <div class="elit-grid">
-
-                        <h4>consectetur  elit</h4>
-                        <label>FOR ALL PURCHASE VALUE</label>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, </p>
-                        <span class="on-get">GET NOW</span>
-                    </div>
-                    <img class="img-responsive shoe-left" src="/Assets/Client/images/sh.jpg" alt=" " />
-
-                    <div class="clearfix"> </div>
-
-                </div>
-            </a>
-            <a href="single.html">
-                <div class="col-md-6 con-sed-grid sed-left-top">
-                    <div class=" elit-grid">
-                        <h4>consectetur  elit</h4>
-                        <label>FOR ALL PURCHASE VALUE</label>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, </p>
-                        <span class="on-get">GET NOW</span>
-                    </div>
-                    <img class="img-responsive shoe-left" src="/Assets/Client/images/wa.jpg" alt=" " />
-
-                    <div class="clearfix"> </div>
-                </div>
-            </a>
-        </div>*@
+                    </article>
+                }
+            </div>
+        </div>
+        <a href="single.html"></a>
+    </div>
     <div class="products">
         <h5 class="latest-product">LATEST PRODUCTS</h5>
         <a class="view-all" href="product.html">VIEW ALL<span> </span></a>
@@ -156,5 +119,5 @@
         }
         <div class="clearfix"> </div>
     </div>
-}
-
+    <div class="clearfix"> </div>
+</div>

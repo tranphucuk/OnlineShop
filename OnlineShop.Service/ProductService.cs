@@ -20,6 +20,7 @@ namespace OnlineShop.Service
         IEnumerable<Product> Getall(string keyword);
         IEnumerable<Product> GetLatestProducts(int size);
         IEnumerable<Product> GetHotProducts();
+        IEnumerable<Product> GetProductByCategoryIdPaging(int categoryId, int page, int pageSize, out int totalRow);
         void Save();
     }
 
@@ -92,6 +93,13 @@ namespace OnlineShop.Service
         public IEnumerable<Product> GetLatestProducts(int size)
         {
             return _productRepository.GetMulti(x => x.Status == true).OrderByDescending(x => x.CreatedDate).Take(size);
+        }
+
+        public IEnumerable<Product> GetProductByCategoryIdPaging(int categoryId, int page, int pageSize, out int totalRow)
+        {
+            var query = _productRepository.GetMulti(x => x.Status == true && x.CategoryID == categoryId);
+            totalRow = query.Count();
+            return query.Skip((page - 1) * pageSize).Take(pageSize);
         }
 
         public Product GetSingleProduct(int id)
