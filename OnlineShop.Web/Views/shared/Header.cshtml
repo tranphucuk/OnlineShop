@@ -42,9 +42,10 @@
                     <a href="/"><img src="/Assets/Client/images/logo.png" alt=" " /></a>
                 </div>
                 <div class="search">
-                    <input type="text" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}">
-                    <input type="submit" value="SEARCH">
-
+                    <form method="get" action="/search.html">
+                        <input type="text" id="txtKeyword" name="keyword" placeholder="Keyword...">
+                        <input type="submit" id="btnSearch" value="SEARCH">
+                    </form>
                 </div>
                 <div class="clearfix"> </div>
             </div>

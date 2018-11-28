@@ -9,6 +9,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <head>
     <title>Big shope A Ecommerce Category Flat Bootstarp Resposive Website Template | Home :: w3layouts</title>
     <link href="/Assets/Client/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="/Assets/Client/css/jquery.auto-complete.css" rel="stylesheet" />
     <link href="/Assets/Client/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet" />
     <!--theme-style-->
     <link href="/Assets/Client/css/style.css" rel="stylesheet" type="text/css" media="all" />
@@ -18,7 +19,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <!--fonts-->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
     <!--//fonts-->
-    <script src="/Assets/Client/js/jquery.min.js"></script>
     <!--script-->
 </head>
 <body>
@@ -29,9 +29,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         @RenderBody()
         @{ Html.RenderAction("Category", "Home");}
         <div class="clearfix"> </div>
-        @RenderSection("FooterJs", required: false)
     </div>
-    <!---->
     @{Html.RenderAction("Footer", "Home");}
+    <!---->
+    <script src="/Assets/Client/js/jquery.min.js"></script>
+    <script src="/Assets/Client/js/jquery.auto-complete.min.js"></script>
+    <script src="/Assets/Client/js/autoComplete.js"></script>
+    @RenderSection("FooterJs", required: false)
+
 </body>
 </html>

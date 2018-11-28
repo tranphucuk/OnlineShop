@@ -1861,6 +1861,7 @@
     <Content Include="Assets\Client\css\bootstrap.css" />
     <Content Include="Assets\Client\css\etalage.css" />
     <Content Include="Assets\Client\css\form.css" />
+    <Content Include="Assets\Client\css\jquery.auto-complete.css" />
     <Content Include="Assets\Client\css\style.css" />
     <Content Include="Assets\Client\font-awesome-4.7.0\css\font-awesome.css" />
     <Content Include="Assets\Client\font-awesome-4.7.0\css\font-awesome.min.css" />
@@ -1919,6 +1920,8 @@
     <Content Include="Assets\Client\images\wa.jpg" />
     <Content Include="Assets\Client\images\wat.jpg" />
     <Content Include="Assets\Client\images\zoom.png" />
+    <Content Include="Assets\Client\js\autoComplete.js" />
+    <Content Include="Assets\Client\js\jquery.auto-complete.min.js" />
     <Content Include="Assets\Client\js\jquery.etalage.min.js" />
     <Content Include="Assets\Client\js\jquery.flexisel.js" />
     <Content Include="Assets\Client\js\jquery.min.js" />
@@ -2309,6 +2312,7 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Product\Detail.cshtml" />
     <Content Include="Views\Product\Category.cshtml" />
+    <Content Include="Views\Product\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OnlineShop.Common\OnlineShop.Common.csproj">

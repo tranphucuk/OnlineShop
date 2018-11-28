@@ -48,9 +48,43 @@ namespace OnlineShop.Web.Controllers
                 TotalPage = (int)Math.Ceiling((double)totalRow / pageSize),
                 MaxPage = int.Parse(ConfigHelper.GetValueByKey("maxPage"))
             };
-
-
             return View(pageginationSet);
+        }
+
+        public ActionResult Search(string keyword, string sort, int page = 1)
+        {
+            var totalRow = 0;
+            ViewBag.sortType = sort;
+            ViewBag.productName = keyword;
+
+            var pageSize = int.Parse(ConfigHelper.GetValueByKey("pageSize"));
+            var productList = _productService.GetListProductByKeyword(keyword, sort, page, pageSize, out totalRow);
+            var productViewModel = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(productList);
+            var pageginationSet = new PaginationSet<ProductViewModel>()
+            {
+                Items = productViewModel,
+                Page = page,
+                TotalCount = totalRow,
+                TotalPage = (int)Math.Ceiling((double)totalRow / pageSize),
+                MaxPage = int.Parse(ConfigHelper.GetValueByKey("maxPage"))
+            };
+            return View(pageginationSet);
+        }
+
+        public JsonResult GetListProductByName(string keyword)
+        {
+            if (!string.IsNullOrEmpty(keyword) && !keyword.StartsWith(" "))
+            {
+                var listProductName = _productService.GetListProductName(keyword);
+                return Json(new
+                {
+                    data = listProductName,
+                }, JsonRequestBehavior.AllowGet);
+            }
+            return Json(new
+            {
+                data = "",
+            }, JsonRequestBehavior.AllowGet);
         }
     }
 }

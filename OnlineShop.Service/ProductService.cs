@@ -21,6 +21,8 @@ namespace OnlineShop.Service
         IEnumerable<Product> GetLatestProducts(int size);
         IEnumerable<Product> GetHotProducts();
         IEnumerable<Product> GetProductByCategoryIdPaging(int categoryId, string sort, int page, int pageSize, out int totalRow);
+        IEnumerable<Product> GetListProductByKeyword(string keyword, string sort, int page, int pageSize, out int totalRow);
+        IEnumerable<string> GetListProductName(string keyword);
         void Save();
     }
 
@@ -95,9 +97,38 @@ namespace OnlineShop.Service
             return _productRepository.GetMulti(x => x.Status == true).OrderByDescending(x => x.CreatedDate).Take(size);
         }
 
+        public IEnumerable<string> GetListProductName(string keyword)
+        {
+            return _productRepository.GetMulti(x => x.Status == true && x.Name.Contains(keyword)).Select(y => y.Name);
+        }
+
         public IEnumerable<Product> GetProductByCategoryIdPaging(int categoryId, string sort, int page, int pageSize, out int totalRow)
         {
             var query = _productRepository.GetMulti(x => x.Status == true && x.CategoryID == categoryId);
+            switch (sort)
+            {
+                case "popular":
+                    query = query.OrderByDescending(x => x.ViewCount);
+                    break;
+                case "price":
+                    query = query.OrderBy(x => x.Price);
+                    break;
+                case "discount":
+                    query = query.OrderBy(x => x.PromotionPrice.HasValue);
+                    break;
+                case "hot":
+                    query = query.OrderBy(x => x.HotFlag == true);
+                    break;
+                default:
+                    break;
+            }
+            totalRow = query.Count();
+            return query.Skip((page - 1) * pageSize).Take(pageSize);
+        }
+
+        public IEnumerable<Product> GetListProductByKeyword(string keyword, string sort, int page, int pageSize, out int totalRow)
+        {
+            var query = _productRepository.GetMulti(x => x.Status == true && x.Name.Contains(keyword));
             switch (sort)
             {
                 case "popular":
