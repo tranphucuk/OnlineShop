@@ -10,6 +10,7 @@ using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 
 namespace OnlineShop.Web.Controllers
 {
@@ -26,7 +27,15 @@ namespace OnlineShop.Web.Controllers
         // GET: Product
         public ActionResult Detail(int id)
         {
-            return View();
+            var productModel = _productService.GetSingleProduct(id);
+            var productViewModel = Mapper.Map<Product, ProductViewModel>(productModel);
+
+            ViewBag.MoreImages = new JavaScriptSerializer().Deserialize<List<string>>(productModel.MoreImages);
+
+            var relatedProducts = _productService.GetRelatedProducts(id, 8);
+            var relatedProductViewModel = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(relatedProducts);
+            ViewBag.RelatedProducts = relatedProductViewModel;
+            return View(productViewModel);
         }
 
         public ActionResult Category(int id, string sort, int page = 1)

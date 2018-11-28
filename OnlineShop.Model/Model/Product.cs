@@ -41,6 +41,7 @@ namespace OnlineShop.Model.Model
         public int DisplayOrder { get; set; }
 
         public decimal Price { get; set; }
+        public int Quantity { get; set; }
 
         public decimal? PromotionPrice { get; set; }
 

@@ -22,6 +22,7 @@ namespace OnlineShop.Service
         IEnumerable<Product> GetHotProducts();
         IEnumerable<Product> GetProductByCategoryIdPaging(int categoryId, string sort, int page, int pageSize, out int totalRow);
         IEnumerable<Product> GetListProductByKeyword(string keyword, string sort, int page, int pageSize, out int totalRow);
+        IEnumerable<Product> GetRelatedProducts(int id, int number);
         IEnumerable<string> GetListProductName(string keyword);
         void Save();
     }
@@ -184,6 +185,13 @@ namespace OnlineShop.Service
                     _productTagRepository.Add(productTag);
                 }
             }
+        }
+
+        public IEnumerable<Product> GetRelatedProducts(int id, int number)
+        {
+            var product = _productRepository.GetSingleEntity(id);
+            return _productRepository.GetMulti(x => x.Status == true && x.ID != id && x.CategoryID == product.CategoryID)
+                .OrderByDescending(x => x.CreatedDate).Take(number);
         }
     }
 }

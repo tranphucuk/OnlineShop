@@ -88,6 +88,7 @@ namespace OnlineShop.Web.Infrastructure.Extensions
             product.Name = productViewModel.Name;//
             product.CategoryID = productViewModel.CategoryID;//
             product.Price = productViewModel.Price;//
+            product.Quantity = productViewModel.Quantity;
             product.PromotionPrice = productViewModel.PromotionPrice;//
             product.Warranty = productViewModel.Warranty;//
             product.Status = productViewModel.Status;//

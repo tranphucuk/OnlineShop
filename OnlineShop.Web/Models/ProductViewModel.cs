@@ -27,6 +27,8 @@ namespace OnlineShop.Web.Models
 
         public decimal Price { get; set; }
 
+        public int Quantity { get; set; }
+
         public decimal? PromotionPrice { get; set; }
 
         public int? Warranty { get; set; }
