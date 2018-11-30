@@ -57,6 +57,7 @@
 
         $scope.UpdateProductInfo = EditProductInfo;
         function EditProductInfo() {
+            $scope.ProductInfo.MoreImages = JSON.stringify($scope.moreImges);
             apiService.put('api/product/update', $scope.ProductInfo, function (result) {
                 notificationService.DisplaySuccess('Update ' + result.data.Name + ' succeeded.');
                 $state.go('productList');

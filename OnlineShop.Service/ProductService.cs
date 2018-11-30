@@ -24,6 +24,10 @@ namespace OnlineShop.Service
         IEnumerable<Product> GetListProductByKeyword(string keyword, string sort, int page, int pageSize, out int totalRow);
         IEnumerable<Product> GetRelatedProducts(int id, int number);
         IEnumerable<string> GetListProductName(string keyword);
+
+        IEnumerable<Tag> GetListTagsByProductId(int id);
+        void IncreaseView(int id);
+        IEnumerable<Product> GetListProductByTagId(string tagid, int page, int pageSize, out int totalRow);
         void Save();
     }
 
@@ -192,6 +196,27 @@ namespace OnlineShop.Service
             var product = _productRepository.GetSingleEntity(id);
             return _productRepository.GetMulti(x => x.Status == true && x.ID != id && x.CategoryID == product.CategoryID)
                 .OrderByDescending(x => x.CreatedDate).Take(number);
+        }
+
+        public IEnumerable<Tag> GetListTagsByProductId(int id)
+        {
+            return _productTagRepository.GetMulti(x => x.ProductID == id, new string[] { "Tag" }).Select(y => y.Tag);
+        }
+
+        public void IncreaseView(int id)
+        {
+            var product = _productRepository.GetSingleEntity(id);
+            if (product.ViewCount.HasValue)
+                product.ViewCount += 1;
+            else
+                product.ViewCount = 1;
+        }
+
+        public IEnumerable<Product> GetListProductByTagId(string tagid, int page, int pageSize, out int totalRow)
+        {
+            var model = _productRepository.GetProductsByTagId(tagid);
+            totalRow = model.Count();
+            return model.OrderByDescending(x=>x.CreatedDate).Skip((page - 1) * pageSize).Take(pageSize);
         }
     }
 }

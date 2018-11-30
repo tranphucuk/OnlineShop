@@ -1,0 +1,16 @@
+﻿.tag {
+    display: block;
+}
+
+.custom_style {
+    float: left;
+}
+
+    .custom_style li {
+        display: inline-block;
+        margin: 1px 1px;
+    }
+
+        .custom_style li a {
+            color: cadetblue;
+        }

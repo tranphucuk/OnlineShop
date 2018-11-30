@@ -1859,6 +1859,7 @@
     <Content Include="Assets\Admin\libs\toastr\toastr-icon.png" />
     <Content Include="Assets\Admin\libs\toastr\toastr.js" />
     <Content Include="Assets\Client\css\bootstrap.css" />
+    <Content Include="Assets\Client\css\customStyle.css" />
     <Content Include="Assets\Client\css\etalage.css" />
     <Content Include="Assets\Client\css\form.css" />
     <Content Include="Assets\Client\css\jquery.auto-complete.css" />
@@ -2313,6 +2314,7 @@
     <Content Include="Views\Product\Category.cshtml" />
     <Content Include="Views\Product\Search.cshtml" />
     <Content Include="Views\Product\Detail.cshtml" />
+    <Content Include="Views\Product\ListProductsByTag.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OnlineShop.Common\OnlineShop.Common.csproj">

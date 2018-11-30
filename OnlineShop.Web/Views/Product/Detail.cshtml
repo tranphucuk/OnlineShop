@@ -5,6 +5,7 @@
     Layout = "~/Views/shared/Layout.cshtml";
     var moreImages = (List<string>)ViewBag.MoreImages;
     var relatedProducts = (IEnumerable<OnlineShop.Web.Models.ProductViewModel>)ViewBag.RelatedProducts;
+    var listTags = (IEnumerable<OnlineShop.Web.Models.TagViewModel>)ViewBag.ListTags;
 }
 <link rel="stylesheet" href="/Assets/Client/css/etalage.css" type="text/css" media="all" />
 @section FooterJs {
@@ -92,6 +93,16 @@
             </div>
             <h6>@Model.Quantity items in stock</h6>
             <p>@Model.Description</p>
+            <div class="tag">
+                <ul class="custom_style">
+                    Tags:
+                    @foreach (var tag in listTags)
+                    {
+                        <li><a href="/tag/@(tag.ID).html">@(tag.Name == listTags.Last().Name ? tag.Name : tag.Name + ",")</a></li>
+                    }
+                </ul>
+            </div>
+            <div class="clearfix"> </div>
             <div class="share">
                 <h5>Share Product :</h5>
                 <ul class="share_nav">

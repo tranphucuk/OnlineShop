@@ -35,7 +35,31 @@ namespace OnlineShop.Web.Controllers
             var relatedProducts = _productService.GetRelatedProducts(id, 8);
             var relatedProductViewModel = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(relatedProducts);
             ViewBag.RelatedProducts = relatedProductViewModel;
+
+            var listTagViewModel = Mapper.Map<IEnumerable<Tag>, IEnumerable<TagViewModel>>(_productService.GetListTagsByProductId(id));
+            ViewBag.ListTags = listTagViewModel;
+
             return View(productViewModel);
+        }
+
+        public ActionResult ListProductsByTag(string tagId, int page = 1)
+        {
+            var pageSize = int.Parse(ConfigHelper.GetValueByKey("pageSize"));
+            var totalRow = 0;
+            ViewBag.TagName = tagId;
+
+            var productViewModel = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(_productService.GetListProductByTagId(tagId, page, pageSize, out totalRow));
+
+            var paginationSet = new PaginationSet<ProductViewModel>()
+            {
+                Items = productViewModel,
+                MaxPage = int.Parse(ConfigHelper.GetValueByKey("maxPage")),
+                Page = page,
+                TotalCount = totalRow,
+                TotalPage = (int)Math.Ceiling((double)totalRow / pageSize)
+            };
+
+            return View(paginationSet);
         }
 
         public ActionResult Category(int id, string sort, int page = 1)
