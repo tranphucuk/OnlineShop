@@ -8,6 +8,7 @@ using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI;
 
 namespace OnlineShop.Web.Controllers
 {
@@ -25,6 +26,7 @@ namespace OnlineShop.Web.Controllers
             this._productService = productService;
         }
 
+        [OutputCache(CacheProfile = "cache1min")]
         public ActionResult Index()
         {
             var slideModel = _commonService.GetSlides();
@@ -44,6 +46,7 @@ namespace OnlineShop.Web.Controllers
         }
 
         [ChildActionOnly]
+        [OutputCache(Duration = 3600, VaryByParam = "none")]
         public ActionResult Footer()
         {
             var footer = _commonService.GetFooter();
@@ -52,12 +55,14 @@ namespace OnlineShop.Web.Controllers
         }
 
         [ChildActionOnly]
+        [OutputCache(Duration = 3600)]
         public ActionResult Header()
         {
             return PartialView();
         }
 
         [ChildActionOnly]
+        [OutputCache(Duration = 3600)]
         public ActionResult Category()
         {
             var listProductCategory = _productCategory.GetAll();

@@ -120,7 +120,12 @@
         {
             foreach (var product in relatedProducts)
             {
-                <li><img src="@product.Image" /><div class="grid-flex"><a href="/@(product.Alias).p-@(product.ID).html">@product.Name</a><p>@(product.Price == 0 ? "Contact" : product.Price.ToString("n0"))</p></div></li>
+                <li>
+                    <div class="grid-flex">
+                        <a href="/@(product.Alias).p-@(product.ID).html"><img src="@product.Image" />@product.Name</a>
+                        <p>@(product.Price == 0 ? "Contact" : CommonConstants.GetCurrency(product.Price))</p>
+                    </div>
+                </li>
             }
         }
     </ul>
