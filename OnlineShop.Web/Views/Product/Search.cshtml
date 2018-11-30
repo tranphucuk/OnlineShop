@@ -1,4 +1,5 @@
 ﻿@model OnlineShop.Web.Infrastructure.Core.PaginationSet<OnlineShop.Web.Models.ProductViewModel>
+@using System.Globalization
 @{
     var productName = (string)ViewBag.productName;
     ViewBag.Title = (string)ViewBag.productName;
@@ -43,7 +44,7 @@
                         </div>
                         <h4><a href="@url">@product.Name</a></h4>
                         <p></p>
-                        @(product.Price == 0 ? "Contact" : product.Price.ToString("n0") + "$")
+                        @(product.Price == 0 ? "Contact" : product.Price.ToString("C", new CultureInfo("en-US"))
                     </div>
                 </div>
             }

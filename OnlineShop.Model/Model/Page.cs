@@ -20,13 +20,15 @@ namespace OnlineShop.Model.Model
         public string Name { get; set; }
 
         [Required]
-        public string Content { get; set; }
+        [MaxLength(256)]
+        public string Alias { get; set; }
 
         [Required]
+        public string Content { get; set; }
+
         [MaxLength(256)]
         public string MetaKeyword { get; set; }
 
-        [Required]
         [MaxLength(256)]
         public string MetaDescription { get; set; }
 

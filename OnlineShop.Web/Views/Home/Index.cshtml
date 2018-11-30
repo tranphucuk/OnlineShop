@@ -1,4 +1,5 @@
 ﻿@model OnlineShop.Web.Models.HomeViewModel
+@using OnlineShop.Common
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/shared/Layout.cshtml";
@@ -51,11 +52,11 @@
                     <h6><a href="@url">@product.Name</a></h6>
                     <div class="star-price">
                         <div class="dolor-grid">
+                            <span class="actual">@CommonConstants.GetCurrency(product.Price)</span>
                             @if (product.PromotionPrice.HasValue)
                             {
-                                <span class="actual">@product.PromotionPrice.Value.ToString("n0")</span>
+                                <span class="reducedfrom">@CommonConstants.GetCurrency(product.PromotionPrice.Value)</span>
                             }
-                            <span class="reducedfrom">@product.Price.ToString("n0")</span>
                             <span class="rating">
                                 <input type="radio" class="rating-input" id="rating-input-1-5" name="rating-input-1">
                                 <label for="rating-input-1-5" class="rating-star1"> </label>
@@ -94,11 +95,11 @@
                     <h6><a href="@url">@product.Name</a></h6>
                     <div class="star-price">
                         <div class="dolor-grid">
+                            <span class="actual">@CommonConstants.GetCurrency(product.Price)</span>
                             @if (product.PromotionPrice.HasValue)
                             {
-                                <span class="actual">@product.PromotionPrice.Value.ToString("n0")</span>
+                            <span class="reducedfrom">@CommonConstants.GetCurrency(product.PromotionPrice.Value)</span>
                             }
-                            <span class="reducedfrom">@product.Price.ToString("n0")</span>
                             <span class="rating">
                                 <input type="radio" class="rating-input" id="rating-input-1-5" name="rating-input-1">
                                 <label for="rating-input-1-5" class="rating-star1"> </label>

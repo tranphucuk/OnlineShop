@@ -1,5 +1,5 @@
 ﻿@model OnlineShop.Web.Models.ProductViewModel
-
+@using OnlineShop.Common
 @{
     ViewBag.Title = "Detail";
     Layout = "~/Views/shared/Layout.cshtml";
@@ -87,7 +87,7 @@
         <div class="desc1 span_3_of_2">
             <h4>@Model.Name</h4>
             <div class="cart-b">
-                <div class="left-n ">@(Model.Price == 0 ? "Contact" : Model.Price.ToString("n0") + "$")</div>
+                <div class="left-n ">@(Model.Price == 0 ? "Contact" : CommonConstants.GetCurrency(Model.Price))</div>
                 <a class="now-get get-cart-in" href="#">ADD TO CART</a>
                 <div class="clearfix"></div>
             </div>

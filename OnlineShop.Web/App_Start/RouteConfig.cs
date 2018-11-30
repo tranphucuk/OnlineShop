@@ -17,9 +17,9 @@ namespace OnlineShop.Web
             );
 
             routes.MapRoute(
-                name: "About",
-                url: "about.html",
-                defaults: new { controller = "About", action = "Index", id = UrlParameter.Optional },
+                name: "Page Redirect",
+                url: "page/{alias}.html",
+                defaults: new { controller = "Page", action = "Index", alias = UrlParameter.Optional },
                 namespaces: new string[] { "OnlineShop.Web.Controllers" }
             );
 

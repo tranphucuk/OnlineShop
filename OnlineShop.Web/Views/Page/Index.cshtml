@@ -1,0 +1,21 @@
+﻿@model OnlineShop.Web.Models.PageViewModel
+
+@{
+    ViewBag.Title = Model.Name;
+    Layout = "~/Views/shared/Layout.cshtml";
+}
+
+<div class="women-product">
+    <div class=" w_content">
+        <div class="women">
+            <a href="/"><h4>Home</h4></a>
+            <a href="/page/@(Model.Alias).html"><h4>&nbsp;- @Model.Name</h4></a>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+    <div>
+        <h2 class="text-center">@Model.Name</h2>
+        <div class="clearfix"></div>
+        <div>@Html.Raw(Model.Content)</div>
+    </div>
+</div>

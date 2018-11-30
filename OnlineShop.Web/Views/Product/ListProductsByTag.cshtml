@@ -1,4 +1,5 @@
 ﻿@model OnlineShop.Web.Infrastructure.Core.PaginationSet<OnlineShop.Web.Models.ProductViewModel>
+@using OnlineShop.Common
 @{
     var tagName = (string)ViewBag.TagName;
     ViewBag.Title = (string)ViewBag.TagName;
@@ -33,7 +34,7 @@
                         </div>
                         <h4><a href="@url">@product.Name</a></h4>
                         <p></p>
-                        @(product.Price == 0 ? "Contact" : product.Price.ToString("n0") + "$")
+                        @(product.Price == 0 ? "Contact" : CommonConstants.GetCurrency(product.Price))
                     </div>
                 </div>
             }

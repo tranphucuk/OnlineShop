@@ -89,6 +89,14 @@
     <Compile Include="Migrations\201811282219334_AddQuantityToProduct.Designer.cs">
       <DependentUpon>201811282219334_AddQuantityToProduct.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811301918040_AddAliasToPage.cs" />
+    <Compile Include="Migrations\201811301918040_AddAliasToPage.Designer.cs">
+      <DependentUpon>201811301918040_AddAliasToPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811301930312_EditPage.cs" />
+    <Compile Include="Migrations\201811301930312_EditPage.Designer.cs">
+      <DependentUpon>201811301930312_EditPage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="OnlineShopDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -146,6 +154,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811282219334_AddQuantityToProduct.resx">
       <DependentUpon>201811282219334_AddQuantityToProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811301918040_AddAliasToPage.resx">
+      <DependentUpon>201811301918040_AddAliasToPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811301930312_EditPage.resx">
+      <DependentUpon>201811301930312_EditPage.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
