@@ -97,6 +97,10 @@
     <Compile Include="Migrations\201811301930312_EditPage.Designer.cs">
       <DependentUpon>201811301930312_EditPage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812031804080_addpropertiesPage.cs" />
+    <Compile Include="Migrations\201812031804080_addpropertiesPage.Designer.cs">
+      <DependentUpon>201812031804080_addpropertiesPage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="OnlineShopDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -160,6 +164,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811301930312_EditPage.resx">
       <DependentUpon>201811301930312_EditPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812031804080_addpropertiesPage.resx">
+      <DependentUpon>201812031804080_addpropertiesPage.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

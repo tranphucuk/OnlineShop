@@ -3,7 +3,8 @@
     angular.module("onlineShop",
         ['onlineShop.products',
             'onlineShop.productCategory',
-            'onlineShop.common'])
+            'onlineShop.common',
+            'onlineShop.page'])
         .config(config)
         .config(configAuthentication);
 

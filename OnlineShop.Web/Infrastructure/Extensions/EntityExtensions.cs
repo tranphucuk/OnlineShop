@@ -3,7 +3,6 @@ using OnlineShop.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
 namespace OnlineShop.Web.Infrastructure.Extensions
 {
@@ -94,6 +93,21 @@ namespace OnlineShop.Web.Infrastructure.Extensions
             product.Status = productViewModel.Status;//
             product.UpdatedBy = productViewModel.UpdatedBy;//
             product.UpdatedDate = productViewModel.UpdatedDate;//
+        }
+
+        public static void UpdatePage(this Page page, PageViewModel pageViewModel)
+        {
+            page.ID = pageViewModel.ID;
+            page.Name = pageViewModel.Name;
+            page.Alias = pageViewModel.Alias;
+            page.Content = pageViewModel.Content;
+            page.MetaKeyword = pageViewModel.MetaKeyword;
+            page.MetaDescription = pageViewModel.MetaDescription;
+            page.CreatedDate = pageViewModel.CreatedDate;
+            page.UpdatedDate = pageViewModel.UpdatedDate;
+            page.CreatedBy = pageViewModel.CreatedBy;
+            page.UpdatedBy = pageViewModel.UpdatedBy;
+            page.Status = pageViewModel.Status;
         }
     }
 }

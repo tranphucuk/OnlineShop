@@ -203,7 +203,6 @@ namespace OnlineShop.Data.Infrastructure
                     query = query.Include(include);
                 return query.Where<T>(predicate).AsQueryable<T>();
             }
-
             return dataContext.Set<T>().Where<T>(predicate).AsQueryable<T>();
         }
     }

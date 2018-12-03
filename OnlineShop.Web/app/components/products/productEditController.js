@@ -69,5 +69,4 @@
         GetProductInfo();
         ListProductCategory();
     };
-
 })(angular.module('onlineShop.products'))

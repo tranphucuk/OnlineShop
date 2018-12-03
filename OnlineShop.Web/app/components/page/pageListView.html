@@ -1,11 +1,11 @@
 ﻿<section class="content-header">
     <h1>
-        Product manager
-        <small>preview of products</small>
+        Page manager
+        <small>preview of pages</small>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Product manager</li>
+        <li><a href="/admin"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Page Manager</li>
     </ol>
 </section>
 <section class="content">
@@ -23,8 +23,8 @@
                         </span>
                     </div><!-- /input-group -->
                 </div><!-- /.col-lg-6 -->
-                <button class="btn btn-success" style="width:10%" name="create" ui-sref="productAdd">Create</button>
-                <button class="btn btn-danger" style="width:10%" name="delete" disabled id="btnDelete" ng-click="deleteMultiProduct()">Delete</button>
+                <button class="btn btn-success" style="width:10%" name="create" ui-sref="pageAdd">Create</button>
+                <button class="btn btn-danger" style="width:10%" name="delete" disabled id="pageDelete" ng-click="deleteMultiPages()">Delete</button>
             </div><br />
             <div class="row">
                 <div class="col-md-12">
@@ -33,28 +33,28 @@
                             <th><input type="checkbox" ng-model="isAll" ng-click="SelectAll()" /></th>
                             <th style="width: 10px">ID</th>
                             <th>Name</th>
-                            <th>Price</th>
+                            <th>Alias</th>
                             <th>Created Date</th>
                             <th style="width: 40px">Status</th>
                             <th>Options</th>
                         </tr>
-                        <tr ng-repeat="product in ProductList">
-                            <td><input type="checkbox" ng-model="product.checked" /></td>
-                            <td>{{product.ID}}</td>
-                            <td>{{product.Name}}</td>
-                            <td>{{product.Price | currency: $}}</td>
-                            <td>{{product.CreatedDate | date :'MMM/dd/yyyy - hh:mm:ss'}}</td>
-                            <td width="10%"><span ng-class="{'badge bg-red':product.Status == false ,'badge bg-green':product.Status == true}">{{product.Status | statusFilter}}</span></td>
+                        <tr ng-repeat="p in pageList">
+                            <td><input type="checkbox" ng-model="p.select" /></td>
+                            <td>{{p.ID}}</td>
+                            <td>{{p.Name}}</td>
+                            <td>{{p.Alias}}</td>
+                            <td>{{p.CreatedDate | date: 'MM/dd/yyyy - hh:mm:ss a'}}</td>
+                            <td width="10%"><span ng-class="{'badge bg-red':p.Status == false ,'badge bg-green':p.Status == true}">{{p.Status | statusFilter}}</span></td>
                             <td width="10%">
-                                <button class="btn btn-sm btn-success" ui-sref="productEdit({id:product.ID})"><i class="fa fa-pencil"></i></button>
-                                <button class="btn btn-sm btn-danger" ng-click="deleteSingleProduct(product.ID)"><i class="fa fa-trash"></i></button>
+                                <button class="btn btn-sm btn-success" ui-sref="pageEdit({id:p.ID})"><i class="fa fa-pencil"></i></button>
+                                <button class="btn btn-sm btn-danger" ng-click="deleteSinglePage(p)"><i class="fa fa-trash"></i></button>
                             </td>
                         </tr>
                     </table>
                 </div><!-- /.box-body -->
             </div>
             <div class="box-footer">
-                <pager-directive page="{{page}}" custom-path="{{customPath}}" pages-count="{{pagesCount}}" total-count="{{totalCount}}" search-func="GetProductList(page)"></pager-directive>
+                <!--<pager-directive page="{{page}}" custom-path="{{customPath}}" pages-count="{{pagesCount}}" total-count="{{totalCount}}" search-func="GetProductList(page)"></pager-directive>-->
             </div><!-- /.box-footer-->
         </div>
     </div>

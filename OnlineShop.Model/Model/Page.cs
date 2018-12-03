@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OnlineShop.Model.Abstract;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 namespace OnlineShop.Model.Model
 {
     [Table("Pages")]
-    public class Page
+    public class Page : Auditable
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -25,13 +26,5 @@ namespace OnlineShop.Model.Model
 
         [Required]
         public string Content { get; set; }
-
-        [MaxLength(256)]
-        public string MetaKeyword { get; set; }
-
-        [MaxLength(256)]
-        public string MetaDescription { get; set; }
-
-        public bool Status { get; set; }
     }
 }

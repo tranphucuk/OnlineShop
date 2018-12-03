@@ -48,7 +48,8 @@ namespace OnlineShop.Web.Controllers
             var totalRow = 0;
             ViewBag.TagName = tagId;
 
-            var productViewModel = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(_productService.GetListProductByTagId(tagId, page, pageSize, out totalRow));
+            var viewModel = _productService.GetListProductByTagId(tagId, page, pageSize, out totalRow);
+            var productViewModel = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(viewModel);
 
             var paginationSet = new PaginationSet<ProductViewModel>()
             {

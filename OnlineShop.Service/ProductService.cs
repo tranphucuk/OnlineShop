@@ -87,7 +87,7 @@ namespace OnlineShop.Service
         public IEnumerable<Product> Getall(string keyword)
         {
             if (!string.IsNullOrEmpty(keyword))
-                return _productRepository.GetMulti(x => x.Name.Contains(keyword) || x.Description.Contains(keyword));
+                return _productRepository.GetMulti(x => x.Name.Contains(keyword));
             else
                 return _productRepository.GetAll();
         }
@@ -200,7 +200,7 @@ namespace OnlineShop.Service
 
         public IEnumerable<Tag> GetListTagsByProductId(int id)
         {
-            return _productTagRepository.GetMulti(x => x.ProductID == id, new string[] { "Tag" }).Select(y => y.Tag);
+            return _productTagRepository.GetMulti(x => x.ProductID == id, new string[] { "Tag"}).Select(y => y.Tag);
         }
 
         public void IncreaseView(int id)
@@ -216,7 +216,7 @@ namespace OnlineShop.Service
         {
             var model = _productRepository.GetProductsByTagId(tagid);
             totalRow = model.Count();
-            return model.OrderByDescending(x=>x.CreatedDate).Skip((page - 1) * pageSize).Take(pageSize);
+            return model.OrderByDescending(x => x.CreatedDate).Skip((page - 1) * pageSize).Take(pageSize);
         }
     }
 }
