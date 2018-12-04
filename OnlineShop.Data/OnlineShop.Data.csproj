@@ -105,11 +105,24 @@
     <Compile Include="Migrations\201812040118218_AddContactDetails.Designer.cs">
       <DependentUpon>201812040118218_AddContactDetails.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812041218025_AddFeedbackTable.cs" />
+    <Compile Include="Migrations\201812041218025_AddFeedbackTable.Designer.cs">
+      <DependentUpon>201812041218025_AddFeedbackTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812041221134_UpdateFeedbackTable.cs" />
+    <Compile Include="Migrations\201812041221134_UpdateFeedbackTable.Designer.cs">
+      <DependentUpon>201812041221134_UpdateFeedbackTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812041400212_UpdateTables.cs" />
+    <Compile Include="Migrations\201812041400212_UpdateTables.Designer.cs">
+      <DependentUpon>201812041400212_UpdateTables.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="OnlineShopDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ContactDetailRepository.cs" />
     <Compile Include="Repositories\ErrorRepository.cs" />
+    <Compile Include="Repositories\FeedbackRepository.cs" />
     <Compile Include="Repositories\FooterRepository.cs" />
     <Compile Include="Repositories\MenuGroupRepository.cs" />
     <Compile Include="Repositories\MenuRepository.cs" />
@@ -175,6 +188,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812040118218_AddContactDetails.resx">
       <DependentUpon>201812040118218_AddContactDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812041218025_AddFeedbackTable.resx">
+      <DependentUpon>201812041218025_AddFeedbackTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812041221134_UpdateFeedbackTable.resx">
+      <DependentUpon>201812041221134_UpdateFeedbackTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812041400212_UpdateTables.resx">
+      <DependentUpon>201812041400212_UpdateTables.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,5 +1,5 @@
-﻿@model OnlineShop.Web.Models.ContactDetailViewModel
-
+﻿@model OnlineShop.Web.Models.FeedbackViewModel
+@using BotDetect.Web.Mvc;
 @{
     ViewBag.Title = "Contact Details";
     Layout = "~/Views/shared/Layout.cshtml";
@@ -8,24 +8,45 @@
 <div class="main">
     <div class="reservation_top">
         <div class=" contact_right">
-            <h3>Contact</h3><br />
+            <h3 class="text-center">Contact</h3><br />
             <address class="address">
-                <p><b>@Model.Name</b></p>
+                <p><b>@Model.ContactDetailVm.Name</b></p>
                 <dl>
                     <dt> </dt>
-                    <dd>Address:<span> @Model.Address</span></dd>
-                    <dd>Phone:<span> @Model.Phone</span></dd>
-                    <dd>E-mail:&nbsp; <a href="mailto:@(Model.Email)">@(Model.Email)</a></dd>
+                    <dd>Address:<span> @Model.ContactDetailVm.Address</span></dd>
+                    <dd>Phone:<span> @Model.ContactDetailVm.Phone</span></dd>
+                    <dd>E-mail:&nbsp; <a href="mailto:@(Model.ContactDetailVm.Email)">@(Model.ContactDetailVm.Email)</a></dd>
                 </dl>
             </address>
             <div class="contact-form">
-                <form method="post" action="contact-post.html">
-                    <input type="text" class="textbox" value="Name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Name';}">
-                    <input type="text" class="textbox" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}">
-                    <textarea value="Message" onfocus="this.value= '';" onblur="if (this.value == '') {this.value = 'Message';}">Message</textarea>
+                @using (Html.BeginForm("SendFeedback", "Contact", FormMethod.Post))
+                {
+                    if (TempData["SuccessMsg"] != null)
+                    {
+                        <div class="alert alert-success" role="alert">
+                            <strong>Message sent!!</strong>
+                            <br />We will reply your message as soon as possible
+                        </div>
+                    }
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" });
+
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                    @Html.TextBoxFor(model => model.Name, new { placeholder = "Name", @class = "textbox" });
+
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    @Html.TextBoxFor(model => model.Email, new { placeholder = "Your email", @class = "textbox" });
+
+                    @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
+                    @Html.TextAreaFor(model => model.Content, new { placeholder = "Message" });
+                    @*<div class="clearfix"></div>
+                    <br />*@
+                    @Html.Label("CaptchaCode", "Retype the code from the picture:")
+                    MvcSimpleCaptcha exampleCaptcha = new MvcSimpleCaptcha("ExampleCaptcha");
+                    @Html.SimpleCaptcha(exampleCaptcha)
+                    @Html.TextBox("CaptchaCode")
                     <input type="submit" value="Send">
-                    <div class="clearfix"> </div>
-                </form>
+                    <div class="clearfix"></div>
+                }
             </div>
         </div>
     </div>

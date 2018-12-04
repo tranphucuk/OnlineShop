@@ -120,5 +120,15 @@ namespace OnlineShop.Web.Infrastructure.Extensions
             contact.Status = contactViewModel.Status;
             contact.Other = contactViewModel.Other;
         }
+
+        public static void UpdateFeedback(this Feedback feedback, FeedbackViewModel feedbackViewModel)
+        {
+            feedback.ID = feedbackViewModel.ID;
+            feedback.Name = feedbackViewModel.Name;
+            feedback.Email = feedbackViewModel.Email;
+            feedback.Content = feedbackViewModel.Content;
+            feedback.CreatedDate = feedbackViewModel.CreatedDate == null ? DateTime.Now : feedbackViewModel.CreatedDate;
+            feedback.Status = feedbackViewModel.Status;
+        }
     }
 }
