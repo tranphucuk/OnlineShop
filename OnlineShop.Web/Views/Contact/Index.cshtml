@@ -1,0 +1,32 @@
+﻿@model OnlineShop.Web.Models.ContactDetailViewModel
+
+@{
+    ViewBag.Title = "Contact Details";
+    Layout = "~/Views/shared/Layout.cshtml";
+}
+
+<div class="main">
+    <div class="reservation_top">
+        <div class=" contact_right">
+            <h3>Contact</h3><br />
+            <address class="address">
+                <p><b>@Model.Name</b></p>
+                <dl>
+                    <dt> </dt>
+                    <dd>Address:<span> @Model.Address</span></dd>
+                    <dd>Phone:<span> @Model.Phone</span></dd>
+                    <dd>E-mail:&nbsp; <a href="mailto:@(Model.Email)">@(Model.Email)</a></dd>
+                </dl>
+            </address>
+            <div class="contact-form">
+                <form method="post" action="contact-post.html">
+                    <input type="text" class="textbox" value="Name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Name';}">
+                    <input type="text" class="textbox" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}">
+                    <textarea value="Message" onfocus="this.value= '';" onblur="if (this.value == '') {this.value = 'Message';}">Message</textarea>
+                    <input type="submit" value="Send">
+                    <div class="clearfix"> </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

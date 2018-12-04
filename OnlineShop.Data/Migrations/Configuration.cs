@@ -22,6 +22,7 @@ namespace OnlineShop.Data.Migrations
             CreateProductSample(context);
             CreateSlide(context);
             CreatePageSample(context);
+            CreateContactDetails(context);
         }
 
         private void CreatePageSample(OnlineShopDbContext context)
@@ -41,7 +42,7 @@ namespace OnlineShop.Data.Migrations
                     Letraset sheets containing Lorem Ipsum passages,and more recently with desktop publishing 
                     software like Aldus PageMaker including versions of Lorem Ipsum.",
                     Status = true,
-                    
+
                 };
 
                 context.Pages.Add(page);
@@ -145,6 +146,23 @@ namespace OnlineShop.Data.Migrations
             }
         }
 
+        public void CreateContactDetails(OnlineShopDbContext context)
+        {
+            if (context.ContactDetails.Count() == 0)
+            {
+                var contactDetail = new ContactDetail()
+                {
+                    Name = "Nga Vy Cosmetic",
+                    Address = "287 Ton Duc Thang-Le Chan-Hai Phong",
+                    Email = "ngavy.cosmetic@gmail.com",
+                    Phone = "0977838569",
+                    Status = true,
+                    Other = ""
+                };
+                context.ContactDetails.Add(contactDetail);
+                context.SaveChanges();
+            }
+        }
 
     }
 }

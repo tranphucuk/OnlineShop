@@ -109,5 +109,16 @@ namespace OnlineShop.Web.Infrastructure.Extensions
             page.UpdatedBy = pageViewModel.UpdatedBy;
             page.Status = pageViewModel.Status;
         }
+
+        public static void UpdateContactDetails(this ContactDetail contact, ContactDetailViewModel contactViewModel)
+        {
+            contact.ID = contactViewModel.ID;
+            contact.Name = contactViewModel.Name;
+            contact.Phone = contactViewModel.Phone;
+            contact.Address = contactViewModel.Address;
+            contact.Email = contactViewModel.Email;
+            contact.Status = contactViewModel.Status;
+            contact.Other = contactViewModel.Other;
+        }
     }
 }
