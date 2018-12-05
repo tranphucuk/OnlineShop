@@ -260,6 +260,7 @@
     <Compile Include="Models\ProductCategoryViewModel.cs" />
     <Compile Include="Models\ProductTagViewModel.cs" />
     <Compile Include="Models\ProductViewModel.cs" />
+    <Compile Include="Models\RegisterViewModel.cs" />
     <Compile Include="Models\SlideViewModel.cs" />
     <Compile Include="Models\TagViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -1949,6 +1950,7 @@
     <Content Include="Assets\Client\js\jquery.flexisel.js" />
     <Content Include="Assets\Client\js\jquery.min.js" />
     <Content Include="Assets\Client\js\jquery.wmuSlider.js" />
+    <Content Include="Assets\Client\template\customerNotice.html" />
     <Content Include="Assets\Client\template\mailBody.html" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -2340,6 +2342,8 @@
     <Content Include="Views\Product\ListProductsByTag.cshtml" />
     <Content Include="Views\Page\Index.cshtml" />
     <Content Include="Views\Contact\Index.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\Success.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OnlineShop.Common\OnlineShop.Common.csproj">

@@ -12,6 +12,19 @@ namespace OnlineShop.Web
             routes.IgnoreRoute("{*botdetect}",
             new { botdetect = @"(.*)BotDetectCaptcha\.ashx" });
 
+            routes.MapRoute(
+                name: "Register",
+                url: "register.html",
+                defaults: new { controller = "Account", action = "Register", id = UrlParameter.Optional },
+                namespaces: new string[] { "OnlineShop.Web.Controllers" }
+            );
+
+            routes.MapRoute(
+                name: "Register Succeeded",
+                url: "register-succeeded/{username}.html",
+                defaults: new { controller = "Account", action = "Success", username = UrlParameter.Optional },
+                namespaces: new string[] { "OnlineShop.Web.Controllers" }
+            );
 
             routes.MapRoute(
                 name: "Login",
