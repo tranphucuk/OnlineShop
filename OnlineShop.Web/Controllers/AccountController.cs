@@ -2,6 +2,7 @@
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
 using OnlineShop.Common;
 using OnlineShop.Model.Model;
 using OnlineShop.Web.App_Start;
@@ -9,6 +10,7 @@ using OnlineShop.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -35,9 +37,54 @@ namespace OnlineShop.Web.Controllers
             }
         }
         // GET: Account
-        public ActionResult Login()
+        [HttpGet]
+        public ActionResult Login(string returnUrl)
         {
+            ViewBag.returnUrl = returnUrl;
             return View();
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Login(LoginViewModel loginVm, string returnUrl)
+        {
+            if (ModelState.IsValid)
+            {
+                ApplicationUser user = await UserManager.FindAsync(loginVm.Username, loginVm.Password);
+                if (user != null)
+                {
+                    IAuthenticationManager authenticationManager = HttpContext.GetOwinContext().Authentication;
+                    authenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
+                    ClaimsIdentity identity = _userManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
+                    AuthenticationProperties props = new AuthenticationProperties();
+                    props.IsPersistent = loginVm.RememberMe;
+                    authenticationManager.SignIn(props, identity);
+                    if (Url.IsLocalUrl(returnUrl))
+                    {
+                        return Redirect(returnUrl);
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Invalid username or password.");
+                }
+            }
+            ViewBag.returnUrl = returnUrl;
+            return View();
+        }
+
+        [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Logout()
+        {
+            IAuthenticationManager authenticationManager = HttpContext.GetOwinContext().Authentication;
+            authenticationManager.SignOut();
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpGet]
