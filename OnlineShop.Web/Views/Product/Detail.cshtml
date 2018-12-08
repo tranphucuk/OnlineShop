@@ -88,7 +88,7 @@
             <h4>@Model.Name</h4>
             <div class="cart-b">
                 <div class="left-n ">@(Model.Price == 0 ? "Contact" : CommonConstants.GetCurrency(Model.Price))</div>
-                <a class="now-get get-cart-in" href="#">ADD TO CART</a>
+                <a class="now-get get-cart-in btnAddToCart" href="#" data-id="@Model.ID">ADD TO CART</a>
                 <div class="clearfix"></div>
             </div>
             <h6>@Model.Quantity items in stock</h6>

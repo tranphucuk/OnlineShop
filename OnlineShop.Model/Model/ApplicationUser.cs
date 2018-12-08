@@ -27,5 +27,7 @@ namespace OnlineShop.Model.Model
             // Add custom user claims here
             return userIdentity;
         }
+
+        public virtual IEnumerable<Order> Orders { get; set; } 
     }
 }

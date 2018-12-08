@@ -27,6 +27,20 @@ namespace OnlineShop.Web
             );
 
             routes.MapRoute(
+                name: "Shopping Cart",
+                url: "yourcart.html",
+                defaults: new { controller = "ShoppingCart", action = "Index", id = UrlParameter.Optional },    
+                namespaces: new string[] { "OnlineShop.Web.Controllers" }
+            );
+
+            routes.MapRoute(
+               name: "Checkout",
+               url: "checkout.html",
+               defaults: new { controller = "ShoppingCart", action = "Checkout", id = UrlParameter.Optional },
+               namespaces: new string[] { "OnlineShop.Web.Controllers" }
+           );
+
+            routes.MapRoute(
                 name: "Login",
                 url: "login.html",
                 defaults: new { controller = "Account", action = "Login", id = UrlParameter.Optional },

@@ -2,32 +2,22 @@
 <div class="header">
     <div class="top-header">
         <div class="container">
-            <div class="top-header-left">
-                <ul class="support">
-                    <li><a href="#"><label> </label></a></li>
-                    <li><a href="#">24x7 live<span class="live"> support</span></a></li>
-                </ul>
-                <ul class="support">
-                    <li class="van"><a href="#"><label> </label></a></li>
-                    <li><a href="#">Free shipping <span class="live">on order over 500</span></a></li>
-                </ul>
-                <div class="clearfix"> </div>
-            </div>
+            @*<div class="top-header-left">
+                    <ul class="support">
+                        <li><a href="#"><label> </label></a></li>
+                        <li><a href="#">24x7 live<span class="live"> support</span></a></li>
+                    </ul>
+                    <ul class="support">
+                        <li class="van"><a href="#"><label> </label></a></li>
+                        <li><a href="#">Free shipping <span class="live">on order over 500</span></a></li>
+                    </ul>
+                    <div class="clearfix"> </div>
+                </div>*@
             <div class="top-header-right">
                 <div class="down-top">
                     <select class="in-drop">
+                        <option value="Japanese" class="in-of">Vietnamese</option>
                         <option value="English" class="in-of">English</option>
-                        <option value="Japanese" class="in-of">Japanese</option>
-                        <option value="French" class="in-of">French</option>
-                        <option value="German" class="in-of">German</option>
-                    </select>
-                </div>
-                <div class="down-top top-down">
-                    <select class="in-drop">
-
-                        <option value="Dollar" class="in-of">Dollar</option>
-                        <option value="Yen" class="in-of">Yen</option>
-                        <option value="Euro" class="in-of">Euro</option>
                     </select>
                 </div>
                 <!---->
@@ -51,14 +41,15 @@
                 <div class="clearfix"> </div>
             </div>
             <div class="header-bottom-right">
-                @using (Html.BeginForm("Logout", "Account", FormMethod.Post,new {@id = "frmLogout" }))
+                @using (Html.BeginForm("Logout", "Account", FormMethod.Post, new { @id = "frmLogout" }))
                 {
                     if (Request.IsAuthenticated)
                     {
                         @Html.AntiForgeryToken()
+                        <div class="account"><a href="/your-account.html"><span> </span>YOUR ACCOUNT</a></div>
                         <ul class="login">
-                            <li><a href="/your-account.html"><span class="imgAccount"></span>YOUR ACCOUNT</a></li>|
-                            <li><a href="/logout.html" id="btnLogout">LOGOUT</a></li>
+                            <li><a href="/logout.html" id="btnLogout" class="logout"><span> </span>LOGOUT</a></li> |
+                            <li><a href="login.html">GIFT</a></li>
                         </ul>
                     }
                     else
@@ -69,7 +60,7 @@
                         </ul>
                     }
                 }
-                <div class="cart"><a href="#"><span> </span>CART</a></div>
+                <div class="cart"><a href="/yourcart.html" id="yourCart"><span> </span>CART</a></div>
                 <div class="clearfix"> </div>
             </div>
             <div class="clearfix"> </div>

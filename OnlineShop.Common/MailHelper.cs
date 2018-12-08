@@ -44,7 +44,7 @@ namespace OnlineShop.Common
 
                 return true;
             }
-            catch (SmtpException smex)
+            catch (SmtpException ex)
             {
                 return false;
             }

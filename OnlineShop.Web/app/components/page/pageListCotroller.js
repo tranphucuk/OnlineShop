@@ -1,9 +1,9 @@
 ﻿(function (app) {
     app.controller('pageListCotroller', pageListCotroller);
 
-    pageListCotroller.$inject = ['$scope', 'apiService', 'notificationService', '$ngBootbox', '$filter'];
+    pageListCotroller.$inject = ['$scope', 'apiService', 'notificationService', '$ngBootbox', '$filter', 'authData', '$location'];
 
-    function pageListCotroller($scope, apiService, notificationService, $ngBootbox, $filter) {
+    function pageListCotroller($scope, apiService, notificationService, $ngBootbox, $filter, authData, $location) {
 
         $scope.keyword = '';
         $scope.searchFunc = search;

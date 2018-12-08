@@ -117,6 +117,10 @@
     <Compile Include="Migrations\201812041400212_UpdateTables.Designer.cs">
       <DependentUpon>201812041400212_UpdateTables.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812072028562_addCustomerId.cs" />
+    <Compile Include="Migrations\201812072028562_addCustomerId.Designer.cs">
+      <DependentUpon>201812072028562_addCustomerId.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="OnlineShopDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -197,6 +201,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812041400212_UpdateTables.resx">
       <DependentUpon>201812041400212_UpdateTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812072028562_addCustomerId.resx">
+      <DependentUpon>201812072028562_addCustomerId.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

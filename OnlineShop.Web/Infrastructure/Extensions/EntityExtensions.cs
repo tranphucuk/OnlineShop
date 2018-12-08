@@ -1,4 +1,5 @@
-﻿using OnlineShop.Model.Model;
+﻿using AutoMapper;
+using OnlineShop.Model.Model;
 using OnlineShop.Web.Models;
 using System;
 using System.Collections.Generic;
@@ -129,6 +130,23 @@ namespace OnlineShop.Web.Infrastructure.Extensions
             feedback.Content = feedbackViewModel.Content;
             feedback.CreatedDate = feedbackViewModel.CreatedDate == null ? DateTime.Now : feedbackViewModel.CreatedDate;
             feedback.Status = feedbackViewModel.Status;
+        }
+
+        public static void UpdateOrder(this Order order, OrderViewModel orderViewModel)
+        {
+            order.ID = orderViewModel.ID;
+            order.CustomerName = orderViewModel.CustomerName;
+            order.CustomerAddress = orderViewModel.CustomerAddress;
+            order.CustomerEmail = orderViewModel.CustomerEmail;
+            order.CustomerMobile = orderViewModel.CustomerMobile;
+            order.CreatedDate = DateTime.Now;
+            order.CreatedBy = orderViewModel.CreatedBy;
+            order.CustomerMessage = orderViewModel.CustomerMessage;
+            order.Status = orderViewModel.Status;
+            order.PaymentMethod = orderViewModel.PaymentMethod;
+            order.PaymentStatus = orderViewModel.PaymentStatus;
+            order.CreatedBy = orderViewModel.CreatedBy;
+            order.OrderDetails = Mapper.Map<IEnumerable<OrderDetailViewModel>, IEnumerable<OrderDetail>>(orderViewModel.OrderDetails);
         }
     }
 }

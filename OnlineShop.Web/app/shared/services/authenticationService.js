@@ -1,7 +1,7 @@
 ﻿(function (app) {
     'use strict';
     app.service('authenticationService', ['$http', '$q', '$window', 'localStorageService', 'authData',
-        function ($http, $q, $window, localStorageService, authData) {
+        function ($http, $q, $window, localStorageService, authData, $location) {
             var tokenInfo;
 
             this.setTokenInfo = function (data) {
@@ -21,7 +21,7 @@
             }
 
             this.init = function () {
-                var tokenInfo = localStorageService.get("TokenInfo");
+                tokenInfo = localStorageService.get("TokenInfo");
                 if (tokenInfo) {
                     tokenInfo = JSON.parse(tokenInfo);
                     authData.authenticationData.IsAuthenticated = true;
@@ -35,6 +35,9 @@
                 if ((authData.authenticationData != undefined) && (authData.authenticationData.accessToken != undefined) && (authData.authenticationData.accessToken != null) && (authData.authenticationData.accessToken != "")) {
                     $http.defaults.headers.common['Authorization'] = 'Bearer ' + authData.authenticationData.accessToken;
                     $http.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
+                }
+                else {
+                    $location.path('login');
                 }
             }
 
