@@ -1,0 +1,89 @@
+﻿<section class="content-header">
+    <h1>
+        Create a new user
+        <small>preview of create user</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a ui-sref="application_listUser">Users manager</a></li>
+        <li class="active">Create</li>
+    </ol>
+</section>
+
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <!-- Horizontal Form -->
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <!--<h3 class="box-title">Horizontal Form</h3>-->
+                </div><!-- /.box-header -->
+                <!-- form start -->
+                <form class="form-horizontal" name="frmAddUser" role="form" novalidate>
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Fullname</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" ng-maxlength="256" name="fullname" ng-model="newUser.Fullname" placeholder="Full name">
+                                <span ng-show="frmAddUser.fullname.$error.maxlength" class="has-error">Your Name seem too long </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">UserName</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" ng-maxlength="50" name="username" ng-model="newUser.UserName" placeholder="UserName">
+                                <span ng-show="frmAddUser.username.$error.maxlength" class="has-error">Your username seem too long </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Email</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" ng-maxlength="50" name="email" ng-model="newUser.Email" placeholder="Email">
+                                <span ng-show="frmAddUser.email.$error.maxlength" class="has-error">Your email seem too long </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Password</label>
+                            <div class="col-sm-10">
+                                <input type="password" class="form-control" ng-maxlength="256" name="password" ng-model="newUser.Password" placeholder="Password">
+                                <span ng-show="frmAddUser.password.$error.maxlength" class="has-error">Your password seem too long </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Phone number</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" ng-maxlength="50" name="phone" ng-model="newUser.PhoneNumber" placeholder="Phone number">
+                                <span ng-show="frmAddUser.phone.$error.maxlength" class="has-error">Your phone number is invalid </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Birthday</label>
+                            <div class="col-sm-10">
+                                <input type="date" class="form-control" name="birthday" ng-model="newUser.Birthday" placeholder="Description">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label"></label>
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <label ng-repeat="group in groups">
+                                    &nbsp;&nbsp;<input type="checkbox" checklist-model="newUser.Groups" checklist-value="group">{{group.Name}}
+                                </label>
+                            </div>
+                        </div>
+
+                    </div><!-- /.box-body -->
+                    <div class="box-footer">
+                        <button ui-sref="application_listUser" class="btn btn-default">Cancel</button>
+                        <button type="submit" class="btn btn-success pull-right" ng-disabled="frmAddUser.$invalid" ng-click="AddNewUser()">Submit</button>
+                    </div><!-- /.box-footer -->
+                </form>
+            </div><!-- /.box -->
+        </div>
+    </div>
+</section>

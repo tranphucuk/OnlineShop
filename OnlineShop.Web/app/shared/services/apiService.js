@@ -1,7 +1,7 @@
 ﻿(function (app) {
     app.service("apiService", apiService);
 
-    apiService.$inject = ["$http", "notificationService", "authenticationService", "authData","$location"];
+    apiService.$inject = ["$http", "notificationService", "authenticationService", "authData", "$location"];
 
     function apiService($http, notificationService, authenticationService, authData, $location) {
         return {
@@ -70,6 +70,9 @@
                 $http.get(url, params).then(function (result) {
                     success(result);
                 }, function (error) {
+                    if (error.status == 401) {
+                        $location.path('/admin#!/admin');
+                    }
                     failure(error);
                 });
             }

@@ -1,0 +1,69 @@
+﻿<section class="content-header">
+    <h1>
+        Users manager
+        <small>preview of users manager</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Users manager</li>
+    </ol>
+</section>
+<section class="content">
+    <div class="box">
+        <div class="box-header with-border">
+
+        </div>
+        <div class="box-body">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="input-group">
+                        <input type="text" class="form-control" ng-model="keyword" placeholder="Search for...">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button" ng-click="GetUsers()">Go!</button>
+                        </span>
+                    </div><!-- /input-Role -->
+                </div><!-- /.col-lg-6 -->
+                <button class="btn btn-success" style="width:10%" name="create" ui-sref="application_addUser"><i class="fa fa-plus"></i> Create user</button>
+                <button class="btn btn-danger" style="width:10%" name="delete" disabled id="isAll" ng-click="DeleteAllUsers()">Delete</button>
+            </div><br />
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table table-bordered">
+                        <tr>
+                            <th style="width: 10px"><input type="checkbox" ng-model="isAll" ng-click="CheckAll()" /></th>
+                            <th style="width: 10px">#</th>
+                            <th>Name</th>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>Options</th>
+                        </tr>
+                        <tr ng-repeat="user in userList">
+                            <td><input type="checkbox" ng-checked="isAll" /></td>
+                            <td>{{$index +1}}</td>
+                            <td>{{user.Fullname}}</td>
+                            <td>{{user.UserName}}</td>
+                            <td>{{user.Email}}</td>
+                            <td width="10%">
+                                <button class="btn btn-sm btn-success" ui-sref="application_editUser({userId:user.Id})"><i class="fa fa-pencil"></i></button>
+                                <button class="btn btn-sm btn-danger" ng-click="DeleteUser(user)"><i class="fa fa-trash"></i></button>
+                            </td>
+                        </tr>
+                        <tfoot>
+                            <tr>
+                                <td colspan="6">
+                                    <span class="pull-right">
+                                        Page: {{page +1}}/{{pagesCount}} - Total users: {{totalCount}}
+                                    </span>
+
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div><!-- /.box-body -->
+            </div>
+            <div class="box-footer">
+                <pager-directive page="{{page}}" custom-path="{{customPath}}" pages-count="{{pagesCount}}" total-count="{{totalCount}}" search-func="GetListUser(page)"></pager-directive>
+            </div><!-- /.box-footer-->
+        </div>
+    </div>
+</section>

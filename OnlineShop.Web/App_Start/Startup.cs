@@ -34,6 +34,7 @@ namespace OnlineShop.Web.App_Start
             // Register your Web API controllers.
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly()); //Register WebApi Controllers
 
+
             builder.RegisterType<UnitOfWork>().As<IUnitOfWork>().InstancePerRequest();
             builder.RegisterType<DbFactory>().As<IDbFactory>().InstancePerRequest();
 
@@ -51,27 +52,10 @@ namespace OnlineShop.Web.App_Start
                 .Where(t => t.Name.EndsWith("Repository"))
                 .AsImplementedInterfaces().InstancePerRequest();
 
-            //builder.RegisterAssemblyTypes(typeof(PostCategoryRepository).Assembly)
-            //   .Where(t => t.Name.EndsWith("Repository"))
-            //   .AsImplementedInterfaces().InstancePerRequest();
-
-            //builder.RegisterAssemblyTypes(typeof(ProductRepository).Assembly)
-            //   .Where(t => t.Name.EndsWith("Repository"))
-            //   .AsImplementedInterfaces().InstancePerRequest();
-
             // Services
             builder.RegisterAssemblyTypes(typeof(ProductCategoryService).Assembly)
                .Where(t => t.Name.EndsWith("Service"))
                .AsImplementedInterfaces().InstancePerRequest();
-
-            //builder.RegisterAssemblyTypes(typeof(PostCategoryService).Assembly)
-            //   .Where(t => t.Name.EndsWith("Service"))
-            //   .AsImplementedInterfaces().InstancePerRequest();
-
-            //builder.RegisterAssemblyTypes(typeof(ProductService).Assembly)
-            //   .Where(t => t.Name.EndsWith("Service"))
-            //   .AsImplementedInterfaces().InstancePerRequest();
-
 
             Autofac.IContainer container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));

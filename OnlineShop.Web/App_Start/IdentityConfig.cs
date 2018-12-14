@@ -3,6 +3,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
+using Microsoft.Owin.Security.DataProtection;
 using OnlineShop.Data;
 using OnlineShop.Model.Model;
 using System;
@@ -13,7 +14,7 @@ namespace OnlineShop.Web.App_Start
 {
     public class ApplicationUserStore : UserStore<ApplicationUser>
     {
-        public ApplicationUserStore(OnlineShopDbContext dbContext): base(dbContext)
+        public ApplicationUserStore(OnlineShopDbContext dbContext) : base(dbContext)
         {
 
         }
@@ -58,6 +59,7 @@ namespace OnlineShop.Web.App_Start
                 manager.UserTokenProvider =
                     new DataProtectorTokenProvider<ApplicationUser>(dataProtectionProvider.Create("ASP.NET Identity"));
             }
+
             return manager;
         }
     }

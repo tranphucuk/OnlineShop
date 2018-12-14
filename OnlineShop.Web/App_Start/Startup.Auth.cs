@@ -3,6 +3,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
+using Microsoft.Owin.Security.DataProtection;
 using Microsoft.Owin.Security.OAuth;
 using OnlineShop.Data;
 using OnlineShop.Model.Model;
@@ -10,6 +11,7 @@ using Owin;
 using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 [assembly: OwinStartup(typeof(OnlineShop.Web.App_Start.Startup))]
 

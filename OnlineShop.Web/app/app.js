@@ -4,7 +4,10 @@
         ['onlineShop.products',
             'onlineShop.productCategory',
             'onlineShop.common',
-            'onlineShop.page'])
+            'onlineShop.page',
+            'onlineShop.applicationGroups',
+            'onlineShop.applicationRoles',
+            'onlineShop.applicationUsers'])
         .config(config)
         .config(configAuthentication);
 

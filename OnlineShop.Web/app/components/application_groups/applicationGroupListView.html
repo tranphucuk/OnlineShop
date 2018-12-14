@@ -1,0 +1,67 @@
+﻿<section class="content-header">
+    <h1>
+        Application group manager
+        <small>preview of appGroup</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Application group manager</li>
+    </ol>
+</section>
+<section class="content">
+    <div class="box">
+        <div class="box-header with-border">
+
+        </div>
+        <div class="box-body">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="input-group">
+                        <input type="text" class="form-control" ng-model="keyword" placeholder="Search for...">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button" ng-click="GetGroupUser()">Go!</button>
+                        </span>
+                    </div><!-- /input-group -->
+                </div><!-- /.col-lg-6 -->
+                <button class="btn btn-success" style="width:10%" name="create" ui-sref="add_application_group">Create</button>
+                <button class="btn btn-danger" style="width:10%" name="delete" disabled id="isAll" ng-click="DeleteAllGroups()">Delete</button>
+            </div><br />
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table table-bordered">
+                        <tr>
+                            <th style="width: 10px"><input type="checkbox" ng-model="isAll" ng-click="CheckAll()"/></th>
+                            <th style="width: 10px">ID</th>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Options</th>
+                        </tr>
+                        <tr ng-repeat="g in groupUserList">
+                            <td><input type="checkbox" ng-checked="isAll" /></td>
+                            <td>{{g.ID}}</td>
+                            <td>{{g.Name}}</td>
+                            <td>{{g.Description}}</td>
+                            <td width="10%">
+                                <button class="btn btn-sm btn-success" ui-sref="edit_application_group({groupId:g.ID})"><i class="fa fa-pencil"></i></button>
+                                <button class="btn btn-sm btn-danger" ng-click="DeleteGroup(g)"><i class="fa fa-trash"></i></button>
+                            </td>
+                        </tr>
+                        <tfoot>
+                            <tr>
+                                <td colspan="5">
+                                    <span class="pull-right">
+                                        Page: {{page +1}}/{{pagesCount}} - Total users: {{totalCount}}
+                                    </span>
+
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div><!-- /.box-body -->
+            </div>
+            <div class="box-footer">
+                <pager-directive page="{{page}}" custom-path="{{customPath}}" pages-count="{{pagesCount}}" total-count="{{totalCount}}" search-func="GetGroupUser(page)"></pager-directive>
+            </div><!-- /.box-footer-->
+        </div>
+    </div>
+</section>

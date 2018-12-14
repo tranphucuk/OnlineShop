@@ -1,0 +1,48 @@
+﻿<section class="content-header">
+    <h1>
+        Edit Group user
+        <small>preview of group user</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a ui-sref="list_application_group">Group user</a></li>
+        <li class="active">Edit</li>
+    </ol>
+</section>
+
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <!-- Horizontal Form -->
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <!--<h3 class="box-title">Horizontal Form</h3>-->
+                </div><!-- /.box-header -->
+                <!-- form start -->
+                <form class="form-horizontal" name="frmEditRole" role="form" novalidate>
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Name</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" ng-maxlength="256" name="name" ng-model="RoleVm.Name" placeholder="Name">
+                                <span ng-show="frmEditRole.name.$error.maxlength" class="has-error">Your Name seem too long </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Description</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" ng-maxlength="256" name="description" ng-model="RoleVm.Description" placeholder="Description">
+                                <span ng-show="frmEditRole.description.$error.maxlength" class="has-error">Your Description seem too long </span>
+                            </div>
+                        </div>
+                    </div><!-- /.box-body -->
+                    <div class="box-footer">
+                        <button ui-sref="list_application_group" class="btn btn-default">Cancel</button>
+                        <button type="submit" class="btn btn-success pull-right" ng-disabled="frmEditGroup.$invalid" ng-click="UpdateRoleInfo()">Submit</button>
+                    </div><!-- /.box-footer -->
+                </form>
+            </div><!-- /.box -->
+        </div>
+    </div>
+</section>

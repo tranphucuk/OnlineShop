@@ -148,5 +148,33 @@ namespace OnlineShop.Web.Infrastructure.Extensions
             order.CreatedBy = orderViewModel.CreatedBy;
             order.OrderDetails = Mapper.Map<IEnumerable<OrderDetailViewModel>, IEnumerable<OrderDetail>>(orderViewModel.OrderDetails);
         }
+
+        public static void UpdateAppGroup(this ApplicationGroup appGroup, ApplicationGroupViewModel appGroupVm)
+        {
+            appGroup.Description = appGroupVm.Description;
+            appGroup.ID = appGroupVm.ID;
+            appGroup.Name = appGroupVm.Name;
+        }
+
+        public static void UpdateRoles(this ApplicationRole appRole, ApplicationRoleViewModel appRoleVm, string action = "add")
+        {
+            if (action == "update")
+                appRole.Id = appRoleVm.Id;
+            else
+                appRole.Id = Guid.NewGuid().ToString();
+            appRole.Name = appRoleVm.Name;
+            appRole.Description = appRoleVm.Description;
+        }
+
+        public static void UpdateUser(this ApplicationUser appUser, ApplicationUserViewModel appUserVm)
+        {
+            appUser.Id = appUserVm.Id;
+            appUser.Fullname = appUserVm.Fullname;
+            appUser.UserName = appUserVm.UserName;
+            appUser.Email = appUserVm.Email;
+            appUser.PhoneNumber = appUserVm.PhoneNumber;
+            appUser.Birthday = appUserVm.Birthday;
+            appUser.Address = appUserVm.Address;
+        }
     }
 }

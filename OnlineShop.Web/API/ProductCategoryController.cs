@@ -65,7 +65,6 @@ namespace OnlineShop.Web.API
 
         [Route("create")]
         [HttpPost]
-        [AllowAnonymous]
         public HttpResponseMessage Create(HttpRequestMessage request, ProductCategoryViewModel productCategoryViewModel)
         {
             return CreateHttpReponse(request, () =>
@@ -103,7 +102,6 @@ namespace OnlineShop.Web.API
 
         [Route("update")]
         [HttpPut]
-        [AllowAnonymous]
         public HttpResponseMessage Update(HttpRequestMessage request, ProductCategoryViewModel productCategoryViewModel)
         {
             return CreateHttpReponse(request, () =>
@@ -130,7 +128,6 @@ namespace OnlineShop.Web.API
 
         [Route("delete/{id:int}")]
         [HttpDelete]
-        [AllowAnonymous]
         public HttpResponseMessage Delete(HttpRequestMessage request, int id)
         {
             return CreateHttpReponse(request, () =>
@@ -153,7 +150,6 @@ namespace OnlineShop.Web.API
 
         [Route("deletemulti")]
         [HttpDelete]
-        [AllowAnonymous]
         public HttpResponseMessage DeleteMulti(HttpRequestMessage request, string listId)
         {
             return CreateHttpReponse(request, () =>

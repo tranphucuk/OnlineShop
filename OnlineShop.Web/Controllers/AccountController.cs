@@ -125,7 +125,7 @@ namespace OnlineShop.Web.Controllers
                 await _userManager.CreateAsync(user, registerVm.Password);
                 var adminUser = await _userManager.FindByEmailAsync(registerVm.Email);
                 if (adminUser != null)
-                    await _userManager.AddToRolesAsync(adminUser.Id, new string[] { "User" });
+                    await _userManager.AddToRoleAsync(adminUser.Id, "Customer user");
 
                 var stringContent = System.IO.File.ReadAllText(Server.MapPath("~/Assets/Client/template/customerNotice.html"));
                 stringContent = stringContent.Replace("{{Name}}", registerVm.Username)

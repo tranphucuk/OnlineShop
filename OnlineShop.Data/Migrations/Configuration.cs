@@ -13,7 +13,7 @@ namespace OnlineShop.Data.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(OnlineShop.Data.OnlineShopDbContext context)
@@ -23,6 +23,8 @@ namespace OnlineShop.Data.Migrations
             CreateSlide(context);
             CreatePageSample(context);
             CreateContactDetails(context);
+            CreateApplicationGroup(context);
+            CreateSampleAppRole(context);
         }
 
         private void CreatePageSample(OnlineShopDbContext context)
@@ -164,5 +166,34 @@ namespace OnlineShop.Data.Migrations
             }
         }
 
+        public void CreateApplicationGroup(OnlineShopDbContext context)
+        {
+            if (context.ApplicationGroups.Count() == 0)
+            {
+                var listAppGroupUser = new List<ApplicationGroup>()
+                {
+                    new ApplicationGroup(){Name="Admin",Description="Admin group"},
+                    new ApplicationGroup(){Name="User",Description="User group"},
+                };
+
+                context.ApplicationGroups.AddRange(listAppGroupUser);
+                context.SaveChanges();
+            }
+        }
+
+        public void CreateSampleAppRole(OnlineShopDbContext context)
+        {
+            if (context.ApplicationRoles.Count() == 0)
+            {
+                var listRoles = new List<ApplicationRole>()
+                {
+                    new ApplicationRole(){Name = "Add user",Description = "Add new user"},
+                    new ApplicationRole(){Name = "View user",Description = "View list user"},
+                    new ApplicationRole(){Name = "Add product",Description = "Add new product"},
+                };
+                context.ApplicationRoles.AddRange(listRoles);
+                context.SaveChanges();
+            }
+        }
     }
 }
