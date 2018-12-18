@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
+using Microsoft.AspNet.Identity.EntityFramework;
 using OnlineShop.Common;
 using OnlineShop.Data.Repositories;
 using OnlineShop.Model.Model;
 using OnlineShop.Service;
 using OnlineShop.Web.App_Start;
 using OnlineShop.Web.Infrastructure.Core;
+using OnlineShop.Web.Infrastructure.ExtendedService;
 using OnlineShop.Web.Infrastructure.Extensions;
 using OnlineShop.Web.Models;
 using System;
@@ -26,15 +28,18 @@ namespace OnlineShop.Web.API
         IApplicationRoleService _appRoleService;
         ApplicationUserManager _userManager;
         IApplicationGroupService _appgroupService;
+        IApplicationUserRoleService _applicationUserRoleService;
 
         public ApplicationRoleController(IErrorService errorService,
             IApplicationRoleService appRoleService,
             ApplicationUserManager userManager,
-            IApplicationGroupService appgroupService) : base(errorService)
+            IApplicationGroupService appgroupService,
+            IApplicationUserRoleService applicationUserRoleService) : base(errorService)
         {
             this._appRoleService = appRoleService;
             this._userManager = userManager;
             this._appgroupService = appgroupService;
+            this._applicationUserRoleService = applicationUserRoleService;
         }
 
         [Route("get_all")]
@@ -122,62 +127,36 @@ namespace OnlineShop.Web.API
         [HttpDelete]
         public async Task<HttpResponseMessage> DeleteRole(HttpRequestMessage request, string roleId)
         {
-            var roleDetails = _appRoleService.GetDetails(roleId);
-            var listUser = _userManager.Users;
-
-            //List<string> listRoleToDelete = new List<string>();
-            //foreach (var user in listUser)
-            //{
-            //    var roles = await _userManager.GetRolesAsync(user.Id);
-            //    foreach (var role in roles)
-            //    {
-            //        if (role == roleDetails.Name)
-            //        {
-            //            listRoleToDelete.Add(role);
-            //        }
-            //    }
-            //}
-            _appRoleService.Delete(roleId);
-
-            foreach (var user in listUser)
+            var isSucceeded = await _applicationUserRoleService.RemoveUsersFromRoleByRoleId(roleId);
+            if (isSucceeded == false)
             {
-                try
-                {
-                    var isDeleted = await _userManager.RemoveFromRoleAsync(user.Id, roleDetails.Name);
-                    if (isDeleted.Succeeded)
-                    {
-                    }
-                    else
-                    {
-                        continue;
-                    }
-                }
-                catch (Exception ex)
-                {
-                }
+                return request.CreateErrorResponse(HttpStatusCode.BadRequest, "Error: Remove roles failed.");
             }
+            _appRoleService.Delete(roleId);
             _appRoleService.Save();
             return request.CreateResponse(HttpStatusCode.OK, roleId);
         }
 
         [Route("delete_multi_roles")]
         [HttpDelete]
-        public HttpResponseMessage DeleteMulti(HttpRequestMessage request, string idString)
+        public async Task<HttpResponseMessage> DeleteMulti(HttpRequestMessage request, string idString)
         {
             if (ModelState.IsValid)
             {
-                return CreateHttpReponse(request, () =>
+                var listIds = new JavaScriptSerializer().Deserialize<List<string>>(idString);
+                foreach (var id in listIds)
                 {
-                    var listIds = new JavaScriptSerializer().Deserialize<List<string>>(idString);
-                    foreach (var id in listIds)
+                    var isSucceeded = await _applicationUserRoleService.RemoveUsersFromRoleByRoleId(id);
+                    if (isSucceeded == false)
                     {
-                        _appRoleService.Delete(id);
+                        return request.CreateErrorResponse(HttpStatusCode.BadRequest, "Error: Remove roles failed.");
                     }
-                    _appRoleService.Save();
-                    return request.CreateResponse(HttpStatusCode.OK, listIds.Count);
-                });
+                    _appRoleService.Delete(id);
+                }
+                _appRoleService.Save();
+                return request.CreateResponse(HttpStatusCode.OK, listIds.Count);
             }
-            return request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
+            return request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
         }
     }
 }

@@ -129,6 +129,14 @@
     <Compile Include="Migrations\201812092313346_AddGroupUser.Designer.cs">
       <DependentUpon>201812092313346_AddGroupUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812150009260_AddtableUserRoles.cs" />
+    <Compile Include="Migrations\201812150009260_AddtableUserRoles.Designer.cs">
+      <DependentUpon>201812150009260_AddtableUserRoles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812152040351_ReviseTableIdentityUserRole.cs" />
+    <Compile Include="Migrations\201812152040351_ReviseTableIdentityUserRole.Designer.cs">
+      <DependentUpon>201812152040351_ReviseTableIdentityUserRole.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="OnlineShopDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -222,6 +230,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812092313346_AddGroupUser.resx">
       <DependentUpon>201812092313346_AddGroupUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812150009260_AddtableUserRoles.resx">
+      <DependentUpon>201812150009260_AddtableUserRoles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812152040351_ReviseTableIdentityUserRole.resx">
+      <DependentUpon>201812152040351_ReviseTableIdentityUserRole.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

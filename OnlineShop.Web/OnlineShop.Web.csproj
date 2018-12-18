@@ -252,6 +252,7 @@
     </Compile>
     <Compile Include="Infrastructure\Core\ApiControllerBase.cs" />
     <Compile Include="Infrastructure\Core\PaginationSet.cs" />
+    <Compile Include="Infrastructure\ExtendedService\ApplicationUserRoleService.cs" />
     <Compile Include="Infrastructure\Extensions\EntityExtensions.cs" />
     <Compile Include="Mappings\AutoMapperConfigurations.cs" />
     <Compile Include="Models\ApplicationGroupViewModel.cs" />

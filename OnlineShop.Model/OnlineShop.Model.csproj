@@ -61,7 +61,6 @@
     <Compile Include="Model\ApplicationRoleGroup.cs" />
     <Compile Include="Model\ApplicationUser.cs" />
     <Compile Include="Model\ApplicationUserGroup.cs" />
-    <Compile Include="Model\ApplicationUserRole.cs" />
     <Compile Include="Model\ContactDetail.cs" />
     <Compile Include="Model\Error.cs" />
     <Compile Include="Model\Feedback.cs" />

@@ -9,6 +9,7 @@ using OnlineShop.Data.Infrastructure;
 using OnlineShop.Data.Repositories;
 using OnlineShop.Model.Model;
 using OnlineShop.Service;
+using OnlineShop.Web.Infrastructure.ExtendedService;
 using Owin;
 using System.Reflection;
 using System.Web;
@@ -54,6 +55,10 @@ namespace OnlineShop.Web.App_Start
 
             // Services
             builder.RegisterAssemblyTypes(typeof(ProductCategoryService).Assembly)
+               .Where(t => t.Name.EndsWith("Service"))
+               .AsImplementedInterfaces().InstancePerRequest();
+
+            builder.RegisterAssemblyTypes(typeof(ApplicationUserRoleService).Assembly)
                .Where(t => t.Name.EndsWith("Service"))
                .AsImplementedInterfaces().InstancePerRequest();
 

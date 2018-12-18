@@ -36,7 +36,6 @@ namespace OnlineShop.Data
         public DbSet<ApplicationRole> ApplicationRoles { get; set; }
         public DbSet<ApplicationRoleGroup> ApplicationRoleGroups { get; set; }
         public DbSet<ApplicationUserGroup> ApplicationUserGroups { get; set; }
-        public DbSet<ApplicationUserRole> ApplicationUserRoles { get; set; }
 
         public static OnlineShopDbContext Create()
         {

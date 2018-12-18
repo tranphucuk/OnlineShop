@@ -24,13 +24,11 @@
                     </div><!-- /input-Role -->
                 </div><!-- /.col-lg-6 -->
                 <button class="btn btn-success" style="width:10%" name="create" ui-sref="application_addUser"><i class="fa fa-plus"></i> Create user</button>
-                <button class="btn btn-danger" style="width:10%" name="delete" disabled id="isAll" ng-click="DeleteAllUsers()">Delete</button>
             </div><br />
             <div class="row">
                 <div class="col-md-12">
                     <table class="table table-bordered">
                         <tr>
-                            <th style="width: 10px"><input type="checkbox" ng-model="isAll" ng-click="CheckAll()" /></th>
                             <th style="width: 10px">#</th>
                             <th>Name</th>
                             <th>Username</th>
@@ -38,7 +36,6 @@
                             <th>Options</th>
                         </tr>
                         <tr ng-repeat="user in userList">
-                            <td><input type="checkbox" ng-checked="isAll" /></td>
                             <td>{{$index +1}}</td>
                             <td>{{user.Fullname}}</td>
                             <td>{{user.UserName}}</td>

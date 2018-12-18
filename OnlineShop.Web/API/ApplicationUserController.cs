@@ -5,6 +5,7 @@ using OnlineShop.Model.Model;
 using OnlineShop.Service;
 using OnlineShop.Web.App_Start;
 using OnlineShop.Web.Infrastructure.Core;
+using OnlineShop.Web.Infrastructure.ExtendedService;
 using OnlineShop.Web.Infrastructure.Extensions;
 using OnlineShop.Web.Models;
 using System;
@@ -24,15 +25,18 @@ namespace OnlineShop.Web.API
         ApplicationUserManager _userManager;
         IApplicationGroupService _appGroupService;
         IApplicationRoleService _appRoleService;
+        IApplicationUserRoleService _applicationUserRoleService;
 
         public ApplicationUserController(IErrorService errorService,
             ApplicationUserManager userManager,
             IApplicationGroupService appGroupService,
-            IApplicationRoleService appRoleService) : base(errorService)
+            IApplicationRoleService appRoleService,
+            IApplicationUserRoleService applicationUserRoleService) : base(errorService)
         {
             this._userManager = userManager;
             this._appGroupService = appGroupService;
             this._appRoleService = appRoleService;
+            this._applicationUserRoleService = applicationUserRoleService;
         }
 
         [Route("get_all_user")]
@@ -74,7 +78,7 @@ namespace OnlineShop.Web.API
                                 UserId = appUserModel.Id
                             });
 
-                            var listRole = _appRoleService.GetListRolesByGroupId(group.ID);
+                            var listRole = _appRoleService.GetListSelectedRolesByGroupId(group.ID);
                             foreach (var role in listRole)
                             {
                                 await _userManager.RemoveFromRoleAsync(appUserModel.Id, role.Name);
@@ -142,21 +146,21 @@ namespace OnlineShop.Web.API
                     var result = await _userManager.UpdateAsync(userModel);
                     if (result.Succeeded)
                     {
+                        var userRoles = _userManager.GetRoles(userModel.Id).ToArray();
+                        if (userRoles.Count() > 0)
+                        {
+                            _userManager.RemoveFromRoles(userModel.Id, userRoles.ToArray());
+                        }
                         var listGroupUser = new List<ApplicationUserGroup>();
                         foreach (var group in appUserVm.Groups)
                         {
+                            var listRoleNameSelected = _appRoleService.GetListSelectedRolesByGroupId(group.ID).Select(x => x.Name);
                             listGroupUser.Add(new ApplicationUserGroup()
                             {
                                 GroupId = group.ID,
                                 UserId = userModel.Id
                             });
-
-                            var listRole = _appRoleService.GetListRolesByGroupId(group.ID);
-                            foreach (var role in listRole)
-                            {
-                                await _userManager.RemoveFromRoleAsync(userModel.Id, role.Name);
-                                await _userManager.AddToRoleAsync(userModel.Id, role.Name);
-                            }
+                            await _userManager.AddToRolesAsync(userModel.Id, listRoleNameSelected.ToArray());
                         }
                         _appGroupService.AddUserToGroups(listGroupUser, userModel.Id);
                         _appGroupService.Save();
@@ -188,11 +192,17 @@ namespace OnlineShop.Web.API
             var userModel = await _userManager.FindByIdAsync(userId);
             if (ModelState.IsValid)
             {
+                var userRoles = _userManager.GetRoles(userModel.Id).ToArray();
                 try
                 {
+                    if (userRoles.Count() > 0)
+                    {
+                        _userManager.RemoveFromRoles(userModel.Id, userRoles.ToArray());
+                    }
                     var result = await _userManager.DeleteAsync(userModel);
                     if (result.Succeeded)
                     {
+
                         var userViewModel = Mapper.Map<ApplicationUser, ApplicationUserViewModel>(userModel);
                         return request.CreateResponse(HttpStatusCode.OK, userViewModel.UserName);
                     }
@@ -204,6 +214,7 @@ namespace OnlineShop.Web.API
                 }
                 catch (Exception ex)
                 {
+                    _userManager.AddToRoles(userModel.Id, userRoles.ToArray());
                     return request.CreateErrorResponse(HttpStatusCode.BadRequest, CurrentUserDeleteException.message);
                 }
             }

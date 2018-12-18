@@ -1,4 +1,5 @@
-﻿using OnlineShop.Common.Exceptions;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using OnlineShop.Common.Exceptions;
 using OnlineShop.Data.Infrastructure;
 using OnlineShop.Data.Repositories;
 using OnlineShop.Model.Model;
@@ -22,7 +23,9 @@ namespace OnlineShop.Service
         // add to to group
         bool AddRolesToGroup(IEnumerable<ApplicationRoleGroup> roles, int groupId);
         //get list roles by groupId
-        IEnumerable<ApplicationRole> GetListRolesByGroupId(int groupId);
+        IEnumerable<ApplicationRole> GetListSelectedRolesByGroupId(int groupId);
+        //Get listUserId by roleId
+        IEnumerable<string> GetListUserIdByRoleId(string roleId);
 
         void Save();
     }
@@ -82,9 +85,14 @@ namespace OnlineShop.Service
             return _applicationRoleRepository.GetSingleEntity(x => x.Id == id);
         }
 
-        public IEnumerable<ApplicationRole> GetListRolesByGroupId(int groupId)
+        public IEnumerable<ApplicationRole> GetListSelectedRolesByGroupId(int groupId)
         {
-            return _applicationRoleRepository.GetListRolesByGroupId(groupId);
+            return _applicationRoleRepository.GetListRolesSelectedByGroupId(groupId);
+        }
+
+        public IEnumerable<string> GetListUserIdByRoleId(string roleId)
+        {
+            return _applicationRoleRepository.GetListUserIdRoleByRoleId(roleId);
         }
 
         public void Save()
