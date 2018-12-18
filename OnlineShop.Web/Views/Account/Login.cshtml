@@ -25,6 +25,9 @@
             </div>
             <input type="submit" value="Login">
         }
+
+        @Html.Partial("_ExternalLoginsListPartial", new OnlineShop.Web.Models.ExternalLoginListViewModel { ReturnUrl = ViewBag.returnUrl })
+
     </div>
     <div class=" login-left">
         <h3>NEW CUSTOMERS</h3>

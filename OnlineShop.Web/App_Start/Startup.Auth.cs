@@ -4,6 +4,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.DataProtection;
+using Microsoft.Owin.Security.Google;
 using Microsoft.Owin.Security.OAuth;
 using OnlineShop.Data;
 using OnlineShop.Model.Model;
@@ -60,15 +61,15 @@ namespace OnlineShop.Web.App_Start
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "344605529688121",
+               appSecret: "ff07a39099329cd919a615893bd279a2");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "687440526947-mpgjqdaerphq8h2e687nenb1u2u9ln6v.apps.googleusercontent.com",
+                ClientSecret = "3Kq5tn2WYqHQwc7iieoedd5c"
+            });
         }
 
         public class AuthorizationServerProvider : OAuthAuthorizationServerProvider

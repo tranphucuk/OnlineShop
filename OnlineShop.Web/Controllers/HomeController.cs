@@ -26,7 +26,7 @@ namespace OnlineShop.Web.Controllers
             this._productService = productService;
         }
 
-        [OutputCache(CacheProfile = "cache1min")]
+      //  [OutputCache(CacheProfile = "cache1min")]
         public ActionResult Index()
         {
             var slideModel = _commonService.GetSlides();
