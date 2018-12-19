@@ -17,5 +17,7 @@ namespace OnlineShop.Common
             return price.ToString("C0", new CultureInfo("en-US"));
         }
         public const string sessionCart = "sessionCart";
+        public const string admin = "Admin";
+        public const string user = "User";
     }
 }

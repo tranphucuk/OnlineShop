@@ -1,7 +1,7 @@
 ﻿(function (app) {
     'use strict';
-    app.service('loginService', ['$http', '$q', 'authenticationService', 'authData',
-        function ($http, $q, authenticationService, authData) {
+    app.service('loginService', ['$http', '$q', 'authenticationService', 'authData','apiService',
+        function ($http, $q, authenticationService, authData, apiService) {
             var userInfo;
             var deferred;
 
@@ -30,10 +30,14 @@
             }
 
             this.logOut = function () {
-                authenticationService.removeToken();
-                authData.authenticationData.IsAuthenticated = false;
-                authData.authenticationData.userName = "";
-                authData.authenticationData.accessToken = "";
+                apiService.post('api/account/logout', null, function (success) {
+                    authenticationService.removeToken();
+                    authData.authenticationData.IsAuthenticated = false;
+                    authData.authenticationData.userName = "";
+                    authData.authenticationData.accessToken = "";
+                }, function (error) {
+
+                });
             }
         }]);
 })(angular.module('onlineShop.common'));

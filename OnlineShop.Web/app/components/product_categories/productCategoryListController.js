@@ -81,6 +81,7 @@
             })
         };
 
+        $scope.loading = true;
         $scope.GetProductCategoryList = function GetProductCategoryList(page) {
             page = page || 0;
             var config = {
@@ -99,8 +100,10 @@
                 $scope.pageSize = Math.ceil(result.data.TotalCount / result.data.TotalPage)
                 $scope.totalCount = result.data.TotalCount;
                 $scope.pagesCount = result.data.TotalPage;
+                $scope.loading = false;
             }, function () {
                 console.log('get product category failed.');
+                $scope.loading = false;
             });
         };
         $scope.GetProductCategoryList();

@@ -6,10 +6,14 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.DataProtection;
 using Microsoft.Owin.Security.Google;
 using Microsoft.Owin.Security.OAuth;
+using OnlineShop.Common;
 using OnlineShop.Data;
 using OnlineShop.Model.Model;
+using OnlineShop.Service;
+using OnlineShop.Web.Infrastructure.ExtendedService;
 using Owin;
 using System;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web.Mvc;
@@ -101,15 +105,25 @@ namespace OnlineShop.Web.App_Start
                 }
                 if (user != null)
                 {
-                    ClaimsIdentity identity = await userManager.CreateIdentityAsync(
-                                                           user,
-                                                           DefaultAuthenticationTypes.ExternalBearer);
-                    context.Validated(identity);
+                    var applicationGroupService = ServiceFactory.Get<IApplicationGroupService>();
+                    var listGroup = applicationGroupService.GetListGroupByUserId(user.Id);
+                    if (listGroup.Any(x => x.Name == CommonConstants.admin))
+                    {
+                        ClaimsIdentity identity = await userManager.CreateIdentityAsync(
+                                                          user,
+                                                          DefaultAuthenticationTypes.ExternalBearer);
+                        context.Validated(identity);
+                    }
+                    else
+                    {
+                        context.Rejected();
+                        context.SetError("invalid_grant", "You don't  have permission to access this area.");
+                    }
                 }
                 else
                 {
-                    context.SetError("invalid_grant", "Tài khoản hoặc mật khẩu không đúng.'");
                     context.Rejected();
+                    context.SetError("invalid_grant", "You don't  have permission to access this area.");
                 }
             }
         }

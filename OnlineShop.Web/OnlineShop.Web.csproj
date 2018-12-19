@@ -56,8 +56,8 @@
     <Reference Include="Autofac.Integration.WebApi, Version=4.2.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <HintPath>..\packages\Autofac.WebApi2.4.2.0\lib\net45\Autofac.Integration.WebApi.dll</HintPath>
     </Reference>
-    <Reference Include="AutoMapper, Version=4.2.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
-      <HintPath>..\packages\AutoMapper.4.2.1\lib\net45\AutoMapper.dll</HintPath>
+    <Reference Include="AutoMapper, Version=8.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.8.0.0\lib\net461\AutoMapper.dll</HintPath>
     </Reference>
     <Reference Include="BotDetect, Version=4.4.0.0, Culture=neutral, PublicKeyToken=74616036388b765f, processorArchitecture=MSIL">
       <HintPath>..\packages\Captcha.4.4.0\lib\net35\BotDetect.dll</HintPath>
@@ -259,6 +259,7 @@
     <Compile Include="Infrastructure\Core\ApiControllerBase.cs" />
     <Compile Include="Infrastructure\Core\PaginationSet.cs" />
     <Compile Include="Infrastructure\ExtendedService\ApplicationUserRoleService.cs" />
+    <Compile Include="Infrastructure\ExtendedService\ServiceFactory.cs" />
     <Compile Include="Infrastructure\Extensions\EntityExtensions.cs" />
     <Compile Include="Mappings\AutoMapperConfigurations.cs" />
     <Compile Include="Models\ApplicationGroupViewModel.cs" />
@@ -343,6 +344,8 @@
     <Content Include="app\shared\services\DeleteItemService.js" />
     <Content Include="app\shared\services\unsignName.Service.js" />
     <Content Include="app\shared\services\notificationService.js" />
+    <Content Include="app\shared\view_include\main_sidebar.html" />
+    <Content Include="app\shared\view_include\top_SideBar.html" />
     <Content Include="Assets\Admin\css\AdminLTE.css" />
     <Content Include="Assets\Admin\css\AdminLTE.min.css" />
     <Content Include="Assets\Admin\css\custom.css" />
@@ -2547,6 +2550,81 @@
     <Content Include="Assets\Admin\libs\toastr\tests\unit\x.js" />
     <Content Include="Assets\Admin\libs\toastr\toastr-icon.png" />
     <Content Include="Assets\Admin\libs\toastr\toastr.js" />
+    <Content Include="Assets\Admin\libs\ui-select\.gitattributes" />
+    <Content Include="Assets\Admin\libs\ui-select\.gitignore" />
+    <Content Include="Assets\Admin\libs\ui-select\dist\select.css" />
+    <Content Include="Assets\Admin\libs\ui-select\dist\select.js" />
+    <Content Include="Assets\Admin\libs\ui-select\dist\select.min.css" />
+    <Content Include="Assets\Admin\libs\ui-select\dist\select.min.js" />
+    <Content Include="Assets\Admin\libs\ui-select\docs\assets\app.js" />
+    <Content Include="Assets\Admin\libs\ui-select\docs\assets\demo.js" />
+    <Content Include="Assets\Admin\libs\ui-select\docs\assets\docs.css" />
+    <Content Include="Assets\Admin\libs\ui-select\docs\assets\plunkr.js" />
+    <Content Include="Assets\Admin\libs\ui-select\docs\examples\demo-append-to-body.html" />
+    <Content Include="Assets\Admin\libs\ui-select\docs\examples\demo-basic.html" />
+    <Content Include="Assets\Admin\libs\ui-select\docs\examples\demo-bind-to-single-property-async.html" />
+    <Content Include="Assets\Admin\libs\ui-select\docs\examples\demo-bind-to-single-property.html" />
+    <Content Include="Assets\Admin\libs\ui-select\docs\examples\demo-bootstrap.html" />
+    <Content Include="Assets\Admin\libs\ui-select\docs\examples\demo-disable-search.html" />
+    <Content Include="Assets\Admin\libs\ui-select\docs\examples\demo-dropdown-position.html" />
+    <Content Include="Assets\Admin\libs\ui-select\docs\examples\demo-event-on-selection.html" />
+    <Content Include="Assets\Admin\libs\ui-select\docs\examples\demo-focus.html" />
+    <Content Include="Assets\Admin\libs\ui-select\docs\examples\demo-group-by.html" />
+    <Content Include="Assets\Admin\libs\ui-select\docs\examples\demo-group-filter.html" />
+    <Content Include="Assets\Admin\libs\ui-select\docs\examples\demo-header-and-footer.html" />
+    <Content Include="Assets\Admin\libs\ui-select\docs\examples\demo-multiple-selection.html" />
+    <Content Include="Assets\Admin\libs\ui-select\docs\examples\demo-object-as-source.html" />
+    <Content Include="Assets\Admin\libs\ui-select\docs\examples\demo-select2-with-bootstrap.html" />
+    <Content Include="Assets\Admin\libs\ui-select\docs\examples\demo-selectize-with-bootstrap.html" />
+    <Content Include="Assets\Admin\libs\ui-select\docs\examples\demo-tagging.html" />
+    <Content Include="Assets\Admin\libs\ui-select\docs\index.html" />
+    <Content Include="Assets\Admin\libs\ui-select\docs\partials\_footer.html" />
+    <Content Include="Assets\Admin\libs\ui-select\docs\partials\_header.html" />
+    <Content Include="Assets\Admin\libs\ui-select\gulpfile.js" />
+    <Content Include="Assets\Admin\libs\ui-select\index.js" />
+    <Content Include="Assets\Admin\libs\ui-select\karma.conf.js" />
+    <Content Include="Assets\Admin\libs\ui-select\src\bootstrap\choices.tpl.html" />
+    <Content Include="Assets\Admin\libs\ui-select\src\bootstrap\footer.tpl.html" />
+    <Content Include="Assets\Admin\libs\ui-select\src\bootstrap\header.tpl.html" />
+    <Content Include="Assets\Admin\libs\ui-select\src\bootstrap\match-multiple.tpl.html" />
+    <Content Include="Assets\Admin\libs\ui-select\src\bootstrap\match.tpl.html" />
+    <Content Include="Assets\Admin\libs\ui-select\src\bootstrap\no-choice.tpl.html" />
+    <Content Include="Assets\Admin\libs\ui-select\src\bootstrap\select-multiple.tpl.html" />
+    <Content Include="Assets\Admin\libs\ui-select\src\bootstrap\select.tpl.html" />
+    <Content Include="Assets\Admin\libs\ui-select\src\common.css" />
+    <Content Include="Assets\Admin\libs\ui-select\src\common.js" />
+    <Content Include="Assets\Admin\libs\ui-select\src\select2\choices.tpl.html" />
+    <Content Include="Assets\Admin\libs\ui-select\src\select2\footer.tpl.html" />
+    <Content Include="Assets\Admin\libs\ui-select\src\select2\header.tpl.html" />
+    <Content Include="Assets\Admin\libs\ui-select\src\select2\match-multiple.tpl.html" />
+    <Content Include="Assets\Admin\libs\ui-select\src\select2\match.tpl.html" />
+    <Content Include="Assets\Admin\libs\ui-select\src\select2\no-choice.tpl.html" />
+    <Content Include="Assets\Admin\libs\ui-select\src\select2\select-multiple.tpl.html" />
+    <Content Include="Assets\Admin\libs\ui-select\src\select2\select.tpl.html" />
+    <Content Include="Assets\Admin\libs\ui-select\src\selectize\choices.tpl.html" />
+    <Content Include="Assets\Admin\libs\ui-select\src\selectize\footer.tpl.html" />
+    <Content Include="Assets\Admin\libs\ui-select\src\selectize\header.tpl.html" />
+    <Content Include="Assets\Admin\libs\ui-select\src\selectize\match-multiple.tpl.html" />
+    <Content Include="Assets\Admin\libs\ui-select\src\selectize\match.tpl.html" />
+    <Content Include="Assets\Admin\libs\ui-select\src\selectize\no-choice.tpl.html" />
+    <Content Include="Assets\Admin\libs\ui-select\src\selectize\select-multiple.tpl.html" />
+    <Content Include="Assets\Admin\libs\ui-select\src\selectize\select.tpl.html" />
+    <Content Include="Assets\Admin\libs\ui-select\src\uisDebounceService.js" />
+    <Content Include="Assets\Admin\libs\ui-select\src\uiSelectChoicesDirective.js" />
+    <Content Include="Assets\Admin\libs\ui-select\src\uiSelectController.js" />
+    <Content Include="Assets\Admin\libs\ui-select\src\uiSelectDirective.js" />
+    <Content Include="Assets\Admin\libs\ui-select\src\uiSelectFooterDirective.js" />
+    <Content Include="Assets\Admin\libs\ui-select\src\uiSelectHeaderDirective.js" />
+    <Content Include="Assets\Admin\libs\ui-select\src\uiSelectHeaderGroupSelectableDirective.js" />
+    <Content Include="Assets\Admin\libs\ui-select\src\uiSelectMatchDirective.js" />
+    <Content Include="Assets\Admin\libs\ui-select\src\uiSelectMultipleDirective.js" />
+    <Content Include="Assets\Admin\libs\ui-select\src\uiSelectNoChoiceDirective.js" />
+    <Content Include="Assets\Admin\libs\ui-select\src\uiSelectSingleDirective.js" />
+    <Content Include="Assets\Admin\libs\ui-select\src\uiSelectSortDirective.js" />
+    <Content Include="Assets\Admin\libs\ui-select\src\uisOpenCloseDirective.js" />
+    <Content Include="Assets\Admin\libs\ui-select\src\uisRepeatParserService.js" />
+    <Content Include="Assets\Admin\libs\ui-select\test\helpers.js" />
+    <Content Include="Assets\Admin\libs\ui-select\test\select.spec.js" />
     <Content Include="Assets\Client\css\bootstrap.css" />
     <Content Include="Assets\Client\css\customStyle.css" />
     <Content Include="Assets\Client\css\etalage.css" />
@@ -3112,6 +3190,20 @@
     <Content Include="Assets\Admin\libs\checklist-model\package-lock.json" />
     <Content Include="Assets\Admin\libs\checklist-model\package.json" />
     <Content Include="Assets\Admin\libs\checklist-model\readme.md" />
+    <Content Include="Assets\Admin\libs\ui-select\.editorconfig" />
+    <Content Include="Assets\Admin\libs\ui-select\.github\ISSUE_TEMPLATE.md" />
+    <Content Include="Assets\Admin\libs\ui-select\.travis.yml" />
+    <Content Include="Assets\Admin\libs\ui-select\bower.json" />
+    <Content Include="Assets\Admin\libs\ui-select\CHANGELOG.md" />
+    <Content Include="Assets\Admin\libs\ui-select\composer.json" />
+    <Content Include="Assets\Admin\libs\ui-select\CONTRIBUTING.md" />
+    <Content Include="Assets\Admin\libs\ui-select\deploy-docs.sh" />
+    <Content Include="Assets\Admin\libs\ui-select\dist\select.min.css.map" />
+    <Content Include="Assets\Admin\libs\ui-select\dist\select.min.js.map" />
+    <Content Include="Assets\Admin\libs\ui-select\LICENSE" />
+    <Content Include="Assets\Admin\libs\ui-select\package.json" />
+    <Content Include="Assets\Admin\libs\ui-select\README.md" />
+    <Content Include="Assets\Admin\libs\ui-select\src\.jshintrc" />
     <None Include="packages.config" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />

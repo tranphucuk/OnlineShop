@@ -23,7 +23,20 @@ namespace OnlineShop.Service
 
         ApplicationGroup Delete(int id);
 
+        /// <summary>
+        /// Add an users to multiple groups
+        /// </summary>
+        /// <param name="groups"></param>
+        /// <param name="userId"></param>
+        /// <returns></returns>
         bool AddUserToGroups(IEnumerable<ApplicationUserGroup> groups, string userId);
+        /// <summary>
+        /// Add a new user to a group
+        /// </summary>
+        /// <param name="GroupName"></param>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        bool AddUserToGroup(string GroupName, string userId);
 
         IEnumerable<ApplicationGroup> GetListGroupByUserId(string userId);
 
@@ -51,6 +64,19 @@ namespace OnlineShop.Service
                 throw new NameDuplicatedException("Name could not be duplicated. Please provide a new name.");
             }
             return _appGroupRepository.Add(appGroup);
+        }
+
+        public bool AddUserToGroup(string GroupName, string userId)
+        {
+            _appUserGroupRepository.DeleteMulti(x => x.UserId == userId);
+            var group = _appGroupRepository.GetSingleEntity(x => x.Name == GroupName);
+            var userGroup = new ApplicationUserGroup()
+            {
+                GroupId = group.ID,
+                UserId = userId
+            };
+            _appUserGroupRepository.Add(userGroup);
+            return true;
         }
 
         public bool AddUserToGroups(IEnumerable<ApplicationUserGroup> groups, string userId)

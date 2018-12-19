@@ -8,7 +8,6 @@
             $state.go('login');
         };
         $scope.authentication = authData.authenticationData;
-        //authenticationService.validateRequest();
 
         function checkLogin() {
             if (authenticationService.getTokenInfo() == undefined) {
@@ -16,6 +15,8 @@
             }
         }
 
+        $scope.mainSidebar = "/app/shared/view_include/main_sidebar.html";
+        $scope.topSideBar = "/app/shared/view_include/top_SideBar.html";
         checkLogin();
     }
 

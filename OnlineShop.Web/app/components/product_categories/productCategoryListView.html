@@ -39,7 +39,7 @@
                 <div class="col-md-12">
                     <table class="table table-bordered">
                         <tr>
-                            <th><input type="checkbox" ng-model="isAll" ng-click="SelectAll()"/></th>
+                            <th><input type="checkbox" ng-model="isAll" ng-click="SelectAll()" /></th>
                             <th style="width: 10px">ID</th>
                             <th>Name</th>
                             <th>Date Created</th>
@@ -47,7 +47,7 @@
                             <th style="width: 10%">Option</th>
                         </tr>
                         <tr ng-repeat="item in productCategoryList">
-                            <td width="5"><input type="checkbox" ng-model="item.checked"/></td>
+                            <td width="5"><input type="checkbox" ng-model="item.checked" /></td>
                             <td>{{item.ID}}</td>
                             <td>{{item.Name}}</td>
                             <td>{{item.CreatedDate | date:'dd/MMMM/yyyy - hh:mm:ss'}}</td>
@@ -68,6 +68,13 @@
                             </tr>
                         </tfoot>
                     </table>
+                    <div ng-if="loading">
+                        <div class="col-xs-4"></div>
+                        <div class="col-xs-4">
+                            <i class="fa fa-refresh fa-4x fa-spin"></i> <label class="label label-primary">Đang tải...</label>
+                        </div>
+                        <div class="col-xs-4"></div>
+                    </div>
                 </div>
             </div>
         </div><!-- /.box-body -->

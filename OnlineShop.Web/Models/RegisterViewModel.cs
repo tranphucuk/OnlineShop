@@ -8,13 +8,9 @@ namespace OnlineShop.Web.Models
 {
     public class RegisterViewModel
     {
-        [MaxLength(50, ErrorMessage = "Your firstname seem too long")]
-        [Required(ErrorMessage = "Please enter your firstname")]
-        public string Firstname { get; set; }
-
-        [MaxLength(50, ErrorMessage = "Your lastname seem too long")]
-        [Required(ErrorMessage = "Please enter your lastname")]
-        public string Lastname { get; set; }
+        [MaxLength(50, ErrorMessage = "Your Name seem too long")]
+        [Required(ErrorMessage = "Please enter your name")]
+        public string Fullname { get; set; }
 
         [MaxLength(50, ErrorMessage = "Your Username seem too long")]
         [MinLength(6, ErrorMessage = "Your Username seem too short")]

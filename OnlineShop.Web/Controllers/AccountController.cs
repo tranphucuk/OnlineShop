@@ -5,6 +5,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using OnlineShop.Common;
 using OnlineShop.Model.Model;
+using OnlineShop.Service;
 using OnlineShop.Web.App_Start;
 using OnlineShop.Web.Models;
 using System;
@@ -21,10 +22,14 @@ namespace OnlineShop.Web.Controllers
     {
         private ApplicationUserManager _userManager;
         private ApplicationSignInManager _signInManager;
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+        private IApplicationGroupService _appGroupService;
+        public AccountController(ApplicationUserManager userManager,
+            ApplicationSignInManager signInManager,
+            IApplicationGroupService appGroupService)
         {
             UserManager = userManager;
             SignInManager = signInManager;
+            this._appGroupService = appGroupService;
         }
 
         public ApplicationSignInManager SignInManager
@@ -54,11 +59,19 @@ namespace OnlineShop.Web.Controllers
         [HttpGet]
         public ActionResult Login()
         {
-            ViewBag.returnUrl = Request.UrlReferrer.ToString();
+            if (Request.UrlReferrer != null)
+            {
+                ViewBag.returnUrl = Request.UrlReferrer.ToString();
+            }
+            else
+            {
+                ViewBag.returnUrl = Request.RawUrl;
+            }
             return View();
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel loginVm, string returnUrl)
         {
             if (ModelState.IsValid)
@@ -91,7 +104,6 @@ namespace OnlineShop.Web.Controllers
             return View();
         }
 
-        //  [AllowAnonymous]
         public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
         {
             var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync();
@@ -116,7 +128,6 @@ namespace OnlineShop.Web.Controllers
         }
 
         [HttpPost]
-        // [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public ActionResult ExternalLogin(string provider, string returnUrl)
         {
@@ -125,8 +136,6 @@ namespace OnlineShop.Web.Controllers
         }
 
         [HttpPost]
-        // [AllowAnonymous]
-        [ValidateAntiForgeryToken]
         public async Task<ActionResult> ExternalLoginConfirmation(ExternalLoginConfirmationViewModel model, string returnUrl)
         {
             if (User.Identity.IsAuthenticated)
@@ -168,7 +177,6 @@ namespace OnlineShop.Web.Controllers
 
         [Authorize]
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Logout()
         {
             IAuthenticationManager authenticationManager = HttpContext.GetOwinContext().Authentication;
@@ -183,6 +191,7 @@ namespace OnlineShop.Web.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         [SimpleCaptchaValidation("CaptchaCode", "ExampleCaptcha", "Incorrect CAPTCHA code!")]
         public async Task<ActionResult> Register(RegisterViewModel registerVm)
         {
@@ -191,13 +200,13 @@ namespace OnlineShop.Web.Controllers
                 var userEmail = await _userManager.FindByEmailAsync(registerVm.Email);
                 if (userEmail != null)
                 {
-                    ModelState.AddModelError("Error", "Email is existed");
+                    ModelState.AddModelError("Email", "Email is existed");
                     return View(registerVm);
                 }
                 var userName = await _userManager.FindByNameAsync(registerVm.Username);
                 if (userName != null)
                 {
-                    ModelState.AddModelError("Error", "Email is existed");
+                    ModelState.AddModelError("Username", "Username is existed");
                     return View(registerVm);
                 }
 
@@ -206,20 +215,23 @@ namespace OnlineShop.Web.Controllers
                     UserName = registerVm.Username,
                     Email = registerVm.Email,
                     EmailConfirmed = true,
-                    Fullname = registerVm.Firstname + registerVm.Lastname,
+                    Fullname = registerVm.Fullname,
                     PhoneNumber = registerVm.Phone,
                     Address = registerVm.Address,
                 };
 
                 await _userManager.CreateAsync(user, registerVm.Password);
-                var adminUser = await _userManager.FindByEmailAsync(registerVm.Email);
-                if (adminUser != null)
-                    await _userManager.AddToRoleAsync(adminUser.Id, "Customer user");
+                var newUser = await _userManager.FindByEmailAsync(registerVm.Email);
+                if (newUser != null)
+                {
+                    _appGroupService.AddUserToGroup(CommonConstants.user, newUser.Id);
+                    _appGroupService.Save();
+                }
 
                 var stringContent = System.IO.File.ReadAllText(Server.MapPath("~/Assets/Client/template/customerNotice.html"));
                 stringContent = stringContent.Replace("{{Name}}", registerVm.Username)
                                             .Replace("{{Date}}", DateTime.Now.ToShortDateString())
-                                            .Replace("{{Fullname}}", $"{registerVm.Firstname} {registerVm.Lastname}");
+                                            .Replace("{{Fullname}}", registerVm.Fullname);
 
                 var toEmail = ConfigHelper.GetValueByKey("toEmail");
                 MailHelper.SendMail(toEmail, $"*** Register Succeeded ***", stringContent);

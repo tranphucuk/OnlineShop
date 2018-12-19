@@ -68,6 +68,7 @@
             }
         }, true);
 
+        $scope.loading = true;
         $scope.GetProductList = GetProductList;
         function GetProductList(page) {
             page = page || 0;
@@ -84,8 +85,10 @@
                 $scope.page = success.data.Page;
                 $scope.pagesCount = success.data.TotalPage;
                 $scope.totalCount = success.data.TotalCount;
+                $scope.loading = false;
             }, function (error) {
                 notificationService.DisplayError(error.data)
+                $scope.loading = false;
             });
         }
         $scope.GetProductList();

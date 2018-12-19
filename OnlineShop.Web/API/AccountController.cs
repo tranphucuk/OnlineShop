@@ -61,5 +61,15 @@ namespace OnlineShop.Web.API
             }
             return request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
         }
+
+        [HttpPost]
+        [Authorize]
+        [Route("logout")]
+        public HttpResponseMessage Logout(HttpRequestMessage request)
+        {
+            var authenticationmanager = HttpContext.Current.GetOwinContext().Authentication;
+            authenticationmanager.SignOut();
+            return request.CreateResponse(HttpStatusCode.OK, new { success = true });
+        }
     }
 }
