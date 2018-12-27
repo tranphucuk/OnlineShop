@@ -29,22 +29,23 @@
                         </div>
                     }
                     @Html.AntiForgeryToken();
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" });
+                    @Html.ValidationSummary(true, "", new { @class = "validation" });
 
-                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "validation" })
                     @Html.TextBoxFor(model => model.Name, new { placeholder = "Name", @class = "textbox" });
 
-                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "validation" })
                     @Html.TextBoxFor(model => model.Email, new { placeholder = "Your email", @class = "textbox" });
 
-                    @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(model => model.Content, "", new { @class = "validation" })
                     @Html.TextAreaFor(model => model.Content, new { placeholder = "Message" });
 
+                    @Html.ValidationMessage("CaptchaCode", new { @class = "validation" })
                     @Html.Label("CaptchaCode", "Retype the code from the picture:")
                     MvcSimpleCaptcha exampleCaptcha = new MvcSimpleCaptcha("ExampleCaptcha");
                     @Html.SimpleCaptcha(exampleCaptcha)
                     @Html.TextBox("CaptchaCode")
-                    <input type="submit" value="Send">
+                    <input type="submit" class="btnContactDetail" value="Send">
                     <div class="clearfix"></div>
                 }
             </div>

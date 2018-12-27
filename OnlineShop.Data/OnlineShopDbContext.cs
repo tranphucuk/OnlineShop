@@ -31,6 +31,8 @@ namespace OnlineShop.Data
         public DbSet<Error> Errors { get; set; }
         public DbSet<ContactDetail> ContactDetails { get; set; }
         public DbSet<Feedback> Feedbacks { get; set; }
+        public DbSet<Email> Emails { get; set; }
+        public DbSet<EmailManager> EmailManagers { get; set; }
 
         public DbSet<ApplicationGroup> ApplicationGroups { get; set; }
         public DbSet<ApplicationRole> ApplicationRoles { get; set; }

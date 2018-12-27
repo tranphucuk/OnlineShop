@@ -14,6 +14,7 @@ namespace OnlineShop.Service
         Page GetPageByAlias(string alias);
         Page GetPagebyId(int id);
         IEnumerable<Page> GetAll(string keyword);
+        IEnumerable<Page> GetAll();
         Page Add(Page page);
         void Update(Page page);
         Page Delete(int id);
@@ -48,6 +49,11 @@ namespace OnlineShop.Service
                 return _pageRepository.GetAll();
             }
             return _pageRepository.GetMulti(x => x.Name.Contains(keyword));
+        }
+
+        public IEnumerable<Page> GetAll()
+        {
+            return _pageRepository.GetAll();
         }
 
         public Page GetPageByAlias(string alias)

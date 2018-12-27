@@ -31,7 +31,6 @@ namespace OnlineShop.Web.Controllers
         // GET: ShoppingCart
         public ActionResult Index()
         {
-            //Session[CommonConstants.sessionCart] = new List<ShoppingCartViewModel>();
             return View();
         }
 
@@ -95,16 +94,24 @@ namespace OnlineShop.Web.Controllers
             return Json(new
             {
                 status = true,
+                data = _productService.GetSingleProduct(productId).Name
             });
         }
 
+        [HttpGet]
         public JsonResult GetAll()
         {
             var cart = (List<ShoppingCartViewModel>)Session[CommonConstants.sessionCart];
-            var isCartEmpty = cart != null ? true : false;
+            if (cart == null || cart.Count() == 0)
+            {
+                return Json(new
+                {
+                    status = false,
+                }, JsonRequestBehavior.AllowGet);
+            }
             return Json(new
             {
-                status = isCartEmpty,
+                status = true,
                 data = cart,
             }, JsonRequestBehavior.AllowGet);
         }

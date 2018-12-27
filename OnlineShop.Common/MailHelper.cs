@@ -35,7 +35,12 @@ namespace OnlineShop.Common
                     From = new MailAddress(fromEmail, fromName)
                 };
 
-                mail.To.Add(new MailAddress(toEmail));
+                var listMailAddress = toEmail.Split(',');
+                foreach (var item in listMailAddress)
+                {
+                    mail.To.Add(new MailAddress(item));
+                }
+
                 mail.BodyEncoding = System.Text.Encoding.UTF8;
                 mail.IsBodyHtml = true;
                 mail.Priority = MailPriority.High;

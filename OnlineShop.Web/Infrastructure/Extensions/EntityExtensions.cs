@@ -176,5 +176,23 @@ namespace OnlineShop.Web.Infrastructure.Extensions
             appUser.Birthday = appUserVm.Birthday;
             appUser.Address = appUserVm.Address;
         }
+
+        public static void UpdateEmail(this Email email, EmailViewModel emailVm)
+        {
+            email.ID = emailVm.ID;
+            email.EmailAddress = emailVm.EmailAddress;
+            email.CreatedDate = emailVm.CreatedDate;
+            email.Status = emailVm.Status;
+        }
+
+        public static void UpdateEmailManager(this EmailManager emailManager, EmailManagerViewModel emailManagerVm)
+        {
+            emailManager.ID = emailManagerVm.ID;
+            emailManager.EmailUser = emailManagerVm.EmailUser;
+            emailManager.MailTitle = emailManagerVm.MailTitle;
+            emailManager.MailContent = emailManagerVm.MailContent;
+            emailManager.SendDate = DateTime.Now;
+            emailManager.RecipientCount = emailManagerVm.RecipientEmails.Count();
+        }
     }
 }

@@ -62,6 +62,8 @@
     <Compile Include="Model\ApplicationUser.cs" />
     <Compile Include="Model\ApplicationUserGroup.cs" />
     <Compile Include="Model\ContactDetail.cs" />
+    <Compile Include="Model\Email.cs" />
+    <Compile Include="Model\EmailManager.cs" />
     <Compile Include="Model\Error.cs" />
     <Compile Include="Model\Feedback.cs" />
     <Compile Include="Model\Footer.cs" />

@@ -23,13 +23,16 @@ namespace OnlineShop.Web.Controllers
         private ApplicationUserManager _userManager;
         private ApplicationSignInManager _signInManager;
         private IApplicationGroupService _appGroupService;
+        private IEmailService _emailService;
         public AccountController(ApplicationUserManager userManager,
             ApplicationSignInManager signInManager,
-            IApplicationGroupService appGroupService)
+            IApplicationGroupService appGroupService,
+             IEmailService emailService)
         {
             UserManager = userManager;
             SignInManager = signInManager;
             this._appGroupService = appGroupService;
+            this._emailService = emailService;
         }
 
         public ApplicationSignInManager SignInManager
@@ -155,6 +158,15 @@ namespace OnlineShop.Web.Controllers
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {
+                    // add emails to email table for newsletter purpose
+                    _emailService.Add(new Email()
+                    {
+                        CreatedDate = DateTime.Now,
+                        EmailAddress = user.Email,
+                        Status = true,
+                    });
+                    _emailService.Save();
+
                     result = await UserManager.AddLoginAsync(user.Id, info.Login);
                     if (result.Succeeded)
                     {
@@ -221,6 +233,15 @@ namespace OnlineShop.Web.Controllers
                 };
 
                 await _userManager.CreateAsync(user, registerVm.Password);
+                // add email to email table for newsletter purpose
+                _emailService.Add(new Email()
+                {
+                    CreatedDate = DateTime.Now,
+                    EmailAddress = registerVm.Email,
+                    Status = true
+                });
+                _emailService.Save();
+
                 var newUser = await _userManager.FindByEmailAsync(registerVm.Email);
                 if (newUser != null)
                 {

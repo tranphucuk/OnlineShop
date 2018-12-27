@@ -10,6 +10,7 @@
     <script>
         $('.example1').wmuSlider();
     </script>
+    
 }
 
 <div class="shoes-grid">
@@ -98,7 +99,7 @@
                             <span class="actual">@CommonConstants.GetCurrency(product.Price)</span>
                             @if (product.PromotionPrice.HasValue)
                             {
-                            <span class="reducedfrom">@CommonConstants.GetCurrency(product.PromotionPrice.Value)</span>
+                                <span class="reducedfrom">@CommonConstants.GetCurrency(product.PromotionPrice.Value)</span>
                             }
                             <span class="rating">
                                 <input type="radio" class="rating-input" id="rating-input-1-5" name="rating-input-1">

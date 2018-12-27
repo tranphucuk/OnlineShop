@@ -1,29 +1,38 @@
 ﻿using AutoMapper;
+using OnlineShop.Common.Exceptions;
 using OnlineShop.Model.Model;
 using OnlineShop.Service;
 using OnlineShop.Web.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using System.Globalization;
 using System.Linq;
+using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI;
+using Page = OnlineShop.Model.Model.Page;
 
 namespace OnlineShop.Web.Controllers
 {
     public class HomeController : Controller
     {
-        IProductCategoryService _productCategory;
+        IProductCategoryService _productCategoryService;
         ICommonService _commonService;
         IProductService _productService;
+        IPageService _pageService;
+        IEmailService _emailService;
 
-        public HomeController(IProductCategoryService productCategory, ICommonService commonService,
+        public HomeController(IProductCategoryService productCategory,
+            ICommonService commonService, IPageService pageService, IEmailService emailService,
             IProductService productService)
         {
-            this._productCategory = productCategory;
+            this._productCategoryService = productCategory;
             this._commonService = commonService;
             this._productService = productService;
+            this._pageService = pageService;
+            this._emailService = emailService;
         }
 
         [OutputCache(CacheProfile = "cache1min")]
@@ -49,8 +58,15 @@ namespace OnlineShop.Web.Controllers
         [OutputCache(Duration = 3600, VaryByParam = "none")]
         public ActionResult Footer()
         {
-            var footer = _commonService.GetFooter();
-            var footerViewModel = Mapper.Map<Footer, FooterViewModel>(footer);
+            var pagesViewModel = Mapper.Map<IEnumerable<Page>, IEnumerable<PageViewModel>>(_pageService.GetAll());
+            var productCategoriesViewModel = Mapper.Map<IEnumerable<ProductCategory>, IEnumerable<ProductCategoryViewModel>>(_productCategoryService.GetAll());
+            var productsViewModel = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(_productService.Getall());
+            var footerViewModel = new FooterViewModel()
+            {
+                Pages = pagesViewModel,
+                LatestProducts = productsViewModel,
+                ProductCategories = productCategoriesViewModel
+            };
             return PartialView(footerViewModel);
         }
 
@@ -64,9 +80,55 @@ namespace OnlineShop.Web.Controllers
         [OutputCache(Duration = 3600)]
         public ActionResult Category()
         {
-            var listProductCategory = _productCategory.GetAll();
+            var listProductCategory = _productCategoryService.GetAll();
             var listProductCategoryViewModel = Mapper.Map<IEnumerable<ProductCategory>, IEnumerable<ProductCategoryViewModel>>(listProductCategory);
             return PartialView(listProductCategoryViewModel);
+        }
+
+        [HttpPost]
+        public JsonResult NewsLester(string emailAddress)
+        {
+            if (string.IsNullOrEmpty(emailAddress))
+            {
+                return Json(new
+                {
+                    status = false,
+                    data = "Email address is empty."
+                });
+            }
+            var email = new Email()
+            {
+                CreatedDate = DateTime.Now,
+                EmailAddress = emailAddress,
+                Status = true
+            };
+            try
+            {
+                _emailService.Add(email);
+                _emailService.Save();
+
+                return Json(new
+                {
+                    data = email,
+                    status = true
+                });
+            }
+            catch (NameDuplicatedException dex)
+            {
+                return Json(new
+                {
+                    status = false,
+                    data = dex.Message
+                });
+            }
+            catch (Exception ex)
+            {
+                return Json(new
+                {
+                    status = false,
+                    data = "Email address is invalid, please check."
+                });
+            }
         }
     }
 }

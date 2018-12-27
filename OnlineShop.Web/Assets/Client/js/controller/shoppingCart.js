@@ -1,6 +1,6 @@
 ﻿var cart = {
     init: function () {
-        $('#yourCart').off('click').on('click', cart.loadData());
+        $("#yourCart").off('click').on('click', cart.loadData());
         cart.registerEvents();
     },
 
@@ -33,7 +33,6 @@
                 },
             },
         });
-
         $('.btnAddToCart').off('click').on('click', function (e) {
             e.preventDefault();
             var productId = parseInt($(this).data('id'));
@@ -156,7 +155,7 @@
             dataType: 'json',
             success: function (res) {
                 if (res.status) {
-                    alert('add success');
+                    $.notify(res.data + " added to cart successfully.", "success");
                 }
             }
         });
@@ -241,9 +240,11 @@
                     }
                     else {
                         $('#cartContent').html('Your cart is Empty.');
+                        $('.checkout').hide();
                     }
                 } else {
                     $('#cartContent').html('Your cart is Empty.');
+                    $('.checkout').hide();
                 }
                 cart.registerEvents();
             }

@@ -14,10 +14,12 @@
             @Html.ValidationSummary(true, "", new { @class = "validation" })
             <div>
                 <span>Email Address<label>*</label></span>
+                @Html.ValidationMessageFor(x => x.Username, "", new { @class = "validation" })
                 @Html.TextBoxFor(model => model.Username)
             </div>
             <div>
                 <span>Password<label>*</label></span>
+                @Html.ValidationMessageFor(x => x.Password, "", new { @class = "validation" })
                 @Html.PasswordFor(model => model.Password)
             </div>
             <div>
@@ -27,7 +29,6 @@
             </div>
             <input type="submit" value="Login">
         }
-
         @Html.Partial("_ExternalLoginsListPartial", new OnlineShop.Web.Models.ExternalLoginListViewModel { ReturnUrl = ViewBag.returnUrl })
 
     </div>

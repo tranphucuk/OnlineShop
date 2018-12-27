@@ -6,8 +6,8 @@
                 <h6>NEWS-LETTER</h6>
                 <div class="sub-left-right">
                     <form>
-                        <input type="text" placeholder="Enter email here"/>
-                        <input type="submit" value="SUBSCRIBE" />
+                        <input type="text" id="emailal" placeholder="Enter email here" />
+                        <input type="button" id="btnSubscribe" value="SUBSCRIBE" />
                     </form>
                 </div>
                 <div class="clearfix"> </div>
@@ -26,7 +26,46 @@
     </div>
     <div class="footer-bottom">
         <div class="container">
-            @Html.Raw(Model.Content)
+            <div class="footer-bottom-cate">
+                <h6>CATEGORIES</h6>
+                <ul>
+                    @foreach (var pc in Model.ProductCategories.Where(x => x.ParentID == 0))
+                    {
+                        var url = "/" + pc.Alias + ".pc-" + pc.ID + ".html";
+                        <li><a href="@url">@pc.Name</a></li>
+                    }
+                </ul>
+            </div>
+            <div class="footer-bottom-cate bottom-grid-cat">
+                <h6>LATEST PRODUCTS</h6>
+                <ul>
+                    @foreach (var product in Model.LatestProducts.OrderByDescending(x => x.CreatedDate))
+                    {
+                        var url = "/" + product.Alias + ".p-" + product.ID + ".html";
+                        <li><a href="@url">@product.Name</a></li>
+                    }
+                </ul>
+            </div>
+            <div class="footer-bottom-cate">
+                <h6>HELP & CONTACT</h6>
+                <ul>
+                    @foreach (var page in Model.Pages)
+                    {
+                        var url = "/page/" + page.Alias + ".html";
+                        <li><a href="@url">@page.Name</a></li>
+                    }
+                </ul>
+            </div>
+            <div class="footer-bottom-cate cate-bottom">
+                <h6>OUR ADDERSS</h6>
+                <ul>
+                    <li>187 Tôn Đức Thắng. </li>
+                    <li>An Đồng, An Dương</li>
+                    <li>Quận Lê Chân</li>
+                    <li>Thành phố Hải Phòng</li>
+                    <li class="phone">ĐT : 0936859879</li>
+                </ul>
+            </div>
             <div class="clearfix"> </div>
         </div>
     </div>

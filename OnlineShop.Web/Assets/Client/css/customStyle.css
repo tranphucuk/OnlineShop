@@ -83,3 +83,34 @@ ul.login li a.logout span {
 #frmClientDetail {
     color: red;
 }
+
+.emailAlert {
+    margin: 0 auto;
+    width: 300px;
+    max-width: 100% !important;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    position: relative;
+    top: 35px;
+    font-weight: 300;
+    text-align: center;
+    box-shadow: 0px 0px 15px #fff;
+}
+
+input[type="button"]#btnSubscribe {
+    -webkit-appearance: button;
+    cursor: pointer;
+    outline: none;
+    cursor: pointer;
+    width: 35%;
+    padding: 7px;
+    background: #000;
+    color: #fff;
+    font-size: 1.2em;
+    font-weight: 700;
+    border: none;
+    position: absolute;
+    left: 14.7em;
+    top: 15px;
+}

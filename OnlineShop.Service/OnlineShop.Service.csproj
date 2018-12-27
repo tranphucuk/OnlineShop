@@ -57,6 +57,8 @@
     <Compile Include="ApplicationGroupService.cs" />
     <Compile Include="ApplicationRoleService.cs" />
     <Compile Include="ContactDetailsService.cs" />
+    <Compile Include="EmailManagerService.cs" />
+    <Compile Include="EmailService.cs" />
     <Compile Include="ErrorService.cs" />
     <Compile Include="CommonService.cs" />
     <Compile Include="FeedbackService.cs" />

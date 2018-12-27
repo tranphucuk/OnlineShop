@@ -28,6 +28,7 @@ namespace OnlineShop.Web.Controllers
         }
 
         public ActionResult Index()
+
         {
             feedbackVm.ContactDetailVm = GetContact();
             return View(feedbackVm);
@@ -59,7 +60,6 @@ namespace OnlineShop.Web.Controllers
 
                 var toEmail = ConfigHelper.GetValueByKey("toEmail");
                 MailHelper.SendMail(toEmail, $"Customer: {feedback.Name} - ID: {feedback.ID} ", stringContent);
-
                 return RedirectToAction("Index", "Contact");
             }
             else

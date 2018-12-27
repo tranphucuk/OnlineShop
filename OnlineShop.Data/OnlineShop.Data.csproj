@@ -137,6 +137,30 @@
     <Compile Include="Migrations\201812152040351_ReviseTableIdentityUserRole.Designer.cs">
       <DependentUpon>201812152040351_ReviseTableIdentityUserRole.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812221428596_addEmailTable.cs" />
+    <Compile Include="Migrations\201812221428596_addEmailTable.Designer.cs">
+      <DependentUpon>201812221428596_addEmailTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812221448238_updateEmailTable.cs" />
+    <Compile Include="Migrations\201812221448238_updateEmailTable.Designer.cs">
+      <DependentUpon>201812221448238_updateEmailTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812222016237_updateEmailTableSecondTime.cs" />
+    <Compile Include="Migrations\201812222016237_updateEmailTableSecondTime.Designer.cs">
+      <DependentUpon>201812222016237_updateEmailTableSecondTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812262158101_AddEmailManagertable.cs" />
+    <Compile Include="Migrations\201812262158101_AddEmailManagertable.Designer.cs">
+      <DependentUpon>201812262158101_AddEmailManagertable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812262201063_UpdateEmailManagerTable.cs" />
+    <Compile Include="Migrations\201812262201063_UpdateEmailManagerTable.Designer.cs">
+      <DependentUpon>201812262201063_UpdateEmailManagerTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812271516161_UpdateEmailManager.cs" />
+    <Compile Include="Migrations\201812271516161_UpdateEmailManager.Designer.cs">
+      <DependentUpon>201812271516161_UpdateEmailManager.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="OnlineShopDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -145,6 +169,8 @@
     <Compile Include="Repositories\ApplicationRoleRepository.cs" />
     <Compile Include="Repositories\ApplicationUserGroupRepository.cs" />
     <Compile Include="Repositories\ContactDetailRepository.cs" />
+    <Compile Include="Repositories\EmailManagerRepository.cs" />
+    <Compile Include="Repositories\EmailRepository.cs" />
     <Compile Include="Repositories\ErrorRepository.cs" />
     <Compile Include="Repositories\FeedbackRepository.cs" />
     <Compile Include="Repositories\FooterRepository.cs" />
@@ -236,6 +262,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812152040351_ReviseTableIdentityUserRole.resx">
       <DependentUpon>201812152040351_ReviseTableIdentityUserRole.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812221428596_addEmailTable.resx">
+      <DependentUpon>201812221428596_addEmailTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812221448238_updateEmailTable.resx">
+      <DependentUpon>201812221448238_updateEmailTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812222016237_updateEmailTableSecondTime.resx">
+      <DependentUpon>201812222016237_updateEmailTableSecondTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812262158101_AddEmailManagertable.resx">
+      <DependentUpon>201812262158101_AddEmailManagertable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812262201063_UpdateEmailManagerTable.resx">
+      <DependentUpon>201812262201063_UpdateEmailManagerTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812271516161_UpdateEmailManager.resx">
+      <DependentUpon>201812271516161_UpdateEmailManager.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

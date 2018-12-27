@@ -1,0 +1,60 @@
+﻿<section class="content-header">
+    <h1>
+        Email sent manager
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="/admin"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Email Sent Manager</li>
+    </ol>
+</section>
+
+<section class="content">
+    <div class="box">
+        <div class="box-header with-border">
+
+        </div>
+        <div class="box-body">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="input-group">
+                        <input type="text" ng-model="keyword" class="form-control" placeholder="Search for...">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button" ng-click="searchFunc()">Go!</button>
+                        </span>
+                    </div><!-- /input-group -->
+                </div><!-- /.col-lg-6 -->
+                <button class="btn btn-danger" style="width:10%" name="delete" disabled id="emailDelete" ng-click="deleteMultiEmails()">Delete</button>
+            </div><br />
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table table-bordered">
+                        <tr>
+                            <th><input type="checkbox" ng-model="isAll" ng-click="SelectAll()" /></th>
+                            <th style="width: 10px">ID</th>
+                            <th>Email user</th>
+                            <th>Mail title</th>
+                            <th>Recipients count</th>
+                            <th>Send date</th>
+                            <th>Options</th>
+                        </tr>
+                        <tr ng-repeat="email in emailList">
+                            <td><input type="checkbox" ng-model="email.select" /></td>
+                            <td>{{email.ID}}</td>
+                            <td>{{email.EmailUser}}</td>
+                            <td>{{email.MailTitle}}</td>
+                            <td>{{email.RecipientCount}}</td>
+                            <td>{{email.SendDate | date: 'MM/dd/yyyy - hh:mm:ss a'}}</td>
+                            <td width="10%">
+                                <button class="btn btn-sm btn-success" ui-sref="load_email_content({emailId:email.ID})"><i class="fa fa-pencil"></i></button>
+                                <button class="btn btn-sm btn-danger" ng-click="DeleteSingleEmail(email)"><i class="fa fa-trash"></i></button>
+                            </td>
+                        </tr>
+                    </table>
+                </div><!-- /.box-body -->
+            </div>
+            <div class="box-footer">
+                <!--<pager-directive page="{{page}}" custom-path="{{customPath}}" pages-count="{{pagesCount}}" total-count="{{totalCount}}" search-func="GetProductList(page)"></pager-directive>-->
+            </div><!-- /.box-footer-->
+        </div>
+    </div>
+</section>

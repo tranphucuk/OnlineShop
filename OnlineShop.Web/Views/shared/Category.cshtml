@@ -8,42 +8,48 @@
             {
                 var url = "/" + productCategories.Alias + ".pc-" + productCategories.ID + ".html";
                 var childProductCategories = Model.Where(x => x.ParentID == productCategories.ID);
-                <li class="item1">
-                    <a href="@url">@productCategories.Name @(childProductCategories.Count() > 0 ? "<img class=\"arrow-img\" src=\"images/arrow1.png\" alt=\"\"/>" : "")</a>
-                    @if (childProductCategories.Count() > 0)
-                    {
+
+                if (childProductCategories.Count() > 0)
+                {
+                    <li class="item@(Model.ToList().IndexOf(productCategories))">
+                        <a href="#"><img class="arrow-img" src="~/Assets/Client/images/arrow1.png" alt="" />@productCategories.Name</a>
                         <ul class="cute">
-                            @foreach (var childProductCategory in childProductCategories)
+                            @foreach (var childCategory in childProductCategories)
                             {
-                                var urlChild = "/" + productCategories.Alias + ".pc-" + productCategories.ID + ".html";
-                                <li class="subitem2"><a href="@urlChild">@childProductCategory.Name</a></li>
+                                var childUrl = "/" + childCategory.Alias + ".pc-" + childCategory.ID + ".html";
+                                <li class="subitem@(childProductCategories.ToList().IndexOf(childCategory))"><a href="@childUrl">@childCategory.Name</a></li>
                             }
                         </ul>
-                    }
-                </li>
+                    </li>
+                }
+                else
+                {
+                    <ul class="kid-menu">
+                        <li><a href="@url"><img class="arrow-img" src="~/Assets/Client/images/arrow1.png" hidden alt="" />@productCategories.Name</a></li>
+                    </ul>
+                }
             }
         </ul>
     </div>
-    <!--initiate accordion-->
-    @*<script type="text/javascript">
-            $(function () {
-                var menu_ul = $('.menu > li > ul'),
-                    menu_a = $('.menu > li > a');
-                menu_ul.hide();
-                menu_a.click(function (e) {
-                    e.preventDefault();
-                    if (!$(this).hasClass('active')) {
-                        menu_a.removeClass('active');
-                        menu_ul.filter(':visible').slideUp('normal');
-                        $(this).addClass('active').next().stop(true, true).slideDown('normal');
-                    } else {
-                        $(this).removeClass('active');
-                        $(this).next().stop(true, true).slideUp('normal');
-                    }
-                });
-
+    <script src="/Assets/Client/js/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            var menu_ul = $('.menu > li > ul'),
+                menu_a = $('.menu > li > a');
+            menu_ul.hide();
+            menu_a.click(function (e) {
+                e.preventDefault();
+                if (!$(this).hasClass('active')) {
+                    menu_a.removeClass('active');
+                    menu_ul.filter(':visible').slideUp('normal');
+                    $(this).addClass('active').next().stop(true, true).slideDown('normal');
+                } else {
+                    $(this).removeClass('active');
+                    $(this).next().stop(true, true).slideUp('normal');
+                }
             });
-        </script>*@
+        });
+    </script>
     <div class=" chain-grid menu-chain">
         <a href="single.html"><img class="img-responsive chain" src="/Assets/Client/images/wat.jpg" alt=" " /></a>
         <div class="grid-chain-bottom chain-watch">
