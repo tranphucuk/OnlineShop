@@ -11,6 +11,7 @@
             $scope.getAllEmails();
         }
 
+        $scope.loading = true;
         $scope.getAllEmails = function (page) {
             var config = {
                 params: {
@@ -20,6 +21,7 @@
             };
             apiService.get('app/email/getall', config, function (success) {
                 $scope.emailList = success.data;
+                $scope.loading = false;
             }, function (error) {
                 notificationService.DisplayError('Error: ' + error.data);
             });

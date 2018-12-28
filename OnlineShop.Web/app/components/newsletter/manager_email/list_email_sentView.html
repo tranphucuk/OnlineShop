@@ -50,6 +50,13 @@
                             </td>
                         </tr>
                     </table>
+                    <div ng-if="loading">
+                        <div class="col-xs-4"></div>
+                        <div class="col-xs-4">
+                            <i class="fa fa-refresh fa-4x fa-spin"></i> <label class="label label-primary">Đang tải...</label>
+                        </div>
+                        <div class="col-xs-4"></div>
+                    </div>
                 </div><!-- /.box-body -->
             </div>
             <div class="box-footer">

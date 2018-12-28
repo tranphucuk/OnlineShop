@@ -194,5 +194,17 @@ namespace OnlineShop.Web.Infrastructure.Extensions
             emailManager.SendDate = DateTime.Now;
             emailManager.RecipientCount = emailManagerVm.RecipientEmails.Count();
         }
+
+        public static void UpdateSlide( this Slide slide, SlideViewModel slideVm)
+        {
+            slide.ID = slideVm.ID;
+            slide.Image = slideVm.Image;
+            slide.Name = slideVm.Name;
+            slide.Description = slideVm.Description;
+            slide.Content = slideVm.Content;
+            slide.Status = slideVm.Status;
+            slide.URL = slideVm.URL;
+            slide.DisplayOrder = slideVm.DisplayOrder;
+        }
     }
 }

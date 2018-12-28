@@ -9,7 +9,8 @@
             'onlineShop.applicationRoles',
             'onlineShop.applicationUsers',
             'onlineShop.customerEmail',
-            'onlineShop.emailManager'])
+            'onlineShop.emailManager',
+            'onlineShop.slides'])
         .config(config)
         .config(configAuthentication);
 

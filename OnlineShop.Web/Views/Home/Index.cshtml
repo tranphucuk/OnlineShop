@@ -10,7 +10,7 @@
     <script>
         $('.example1').wmuSlider();
     </script>
-    
+
 }
 
 <div class="shoes-grid">
@@ -26,12 +26,13 @@
                                 <img class="img-responsive " src="@slide.Image" alt="@slide.Name" />
                             </div>
                             <div class="col-md-7 banner-off">
-                                @Html.Raw(slide.Content)
+                                <h2>@slide.Name</h2>
+                                <label>@slide.Description</label>
+                                <p>@Html.Raw(slide.Content)</p>
+                                <a href="@slide.URL"><span class="on-get">GET NOW</span></a>
                             </div>
-
                             <div class="clearfix"> </div>
                         </div>
-
                     </article>
                 }
             </div>

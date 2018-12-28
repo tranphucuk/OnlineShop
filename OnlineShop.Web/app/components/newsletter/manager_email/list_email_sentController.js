@@ -6,9 +6,11 @@
     function list_email_sentController($scope, apiService, notificationService, $ngBootbox, $filter, authData, $location) {
         $scope.emailList = [];
 
+        $scope.loading = true;
         $scope.GetEmailList = function () {
             apiService.get('app/email/list_email_sent', null, function (success) {
                 $scope.emailList = success.data;
+                $scope.loading = false;
             }, function (error) {
                 notificationService.DisplayError('Error: ' + error.data.Message);
             });

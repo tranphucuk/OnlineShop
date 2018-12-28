@@ -239,6 +239,7 @@
     <Compile Include="API\PostCategoryController.cs" />
     <Compile Include="API\ProductCategoryController.cs" />
     <Compile Include="API\ProductController.cs" />
+    <Compile Include="API\SlideController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -346,6 +347,13 @@
     <Content Include="app\components\product_categories\ProductCategoryEditView.html" />
     <Content Include="app\components\product_categories\productCategoryListController.js" />
     <Content Include="app\components\product_categories\productCategoryListView.html" />
+    <Content Include="app\components\slide\add_slide_View.html" />
+    <Content Include="app\components\slide\update_slide_View.html" />
+    <Content Include="app\components\slide\list_slide_View.html" />
+    <Content Include="app\components\slide\update_slide_controller.js" />
+    <Content Include="app\components\slide\add_slide_controller.js" />
+    <Content Include="app\components\slide\list_slide_controller.js" />
+    <Content Include="app\components\slide\slide.Module.js" />
     <Content Include="app\shared\baseView\baseView.html" />
     <Content Include="app\shared\directives\pagerDirective.html" />
     <Content Include="app\shared\directives\pagerDirectives.js" />
@@ -2642,6 +2650,7 @@
     <Content Include="Assets\Client\css\bootstrap.css" />
     <Content Include="Assets\Client\css\customStyle.css" />
     <Content Include="Assets\Client\css\etalage.css" />
+    <Content Include="Assets\Client\css\fonts.googleapis.css" />
     <Content Include="Assets\Client\css\form.css" />
     <Content Include="Assets\Client\css\jquery.auto-complete.css" />
     <Content Include="Assets\Client\css\style.css" />

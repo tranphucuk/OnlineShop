@@ -1,0 +1,96 @@
+﻿<section class="content-header">
+    <h1>
+        Add New Slide
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a ui-sref="PageList">Slides</a></li>
+        <li class="active">Create</li>
+    </ol>
+</section>
+
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <!-- Horizontal Form -->
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <!--<h3 class="box-title">Horizontal Form</h3>-->
+                </div><!-- /.box-header -->
+                <!-- form start -->
+                <form class="form-horizontal" name="frmAddSlide" role="form" novalidate>
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Name</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" ng-maxlength="256" required name="name" ng-model="slide.Name" placeholder="Name">
+                                <!--<span ng-show="frmAddPage.name.$invalid && !frmAddPage.name.$error.maxlength" class="has-error">Please enter Page name.</span>
+                                <span ng-show="frmAddPage.name.$error.maxlength" class="has-error">Your Page name seem too long </span>-->
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Description</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" ng-maxlength="256" required name="description" ng-model="slide.Description" placeholder="Description">
+                                <!--<span ng-show="frmAddPage.name.$invalid && !frmAddPage.name.$error.maxlength" class="has-error">Please enter Page name.</span>
+                                <span ng-show="frmAddPage.name.$error.maxlength" class="has-error">Your Page name seem too long </span>-->
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Image Path</label>
+                            <div class="col-sm-4">
+                                <ul class="list-inline">
+                                    <li ng-repeat="img in listImg"><img ng-src="{{img}}" width="100" /></li>
+                                </ul>
+                                <button ng-click="addImg()" class="btn btn-default">Browse...</button>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">URL content</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" ng-maxlength="256" required name="url" ng-model="slide.URL" placeholder="URL to content page...">
+                                <!--<span ng-show="frmAddPage.name.$invalid && !frmAddPage.name.$error.maxlength" class="has-error">Please enter Page name.</span>
+                                <span ng-show="frmAddPage.name.$error.maxlength" class="has-error">Your Page name seem too long </span>-->
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">DisplayOrder</label>
+                            <div class="col-sm-10">
+                                <input type="number" class="form-control" ng-maxlength="256" min="1" required name="displayOrder" ng-model="slide.DisplayOrder" placeholder="DisplayOrder">
+                                <!--<span ng-show="frmAddPage.name.$invalid && !frmAddPage.name.$error.maxlength" class="has-error">Please enter Page name.</span>
+                                <span ng-show="frmAddPage.name.$error.maxlength" class="has-error">Your Page name seem too long </span>-->
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Content</label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control" ckeditor="ckEditorOptions" ng-model="slide.Content" name="content" required placeholder="Content"></textarea>
+                                <!--<span ng-show="frmAddPage.name.$invalid && !frmAddPage.name.$error.maxlength" class="has-error">Please enter Page name.</span>
+                                <span ng-show="frmAddPage.name.$error.maxlength" class="has-error">Your Page name seem too long </span>-->
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="status" ng-model="slide.Status" ng-checked="slide.Status"> Status
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- /.box-body -->
+                    <div class="box-footer">
+                        <button ui-sref="pageList" class="btn btn-default">Cancel</button>
+                        <button type="submit" class="btn btn-success pull-right" ng-disabled="frmAddSlide.$invalid" ng-click="UpdateSlide()">Update</button>
+                    </div><!-- /.box-footer -->
+                </form>
+            </div><!-- /.box -->
+        </div>
+    </div>
+</section>
