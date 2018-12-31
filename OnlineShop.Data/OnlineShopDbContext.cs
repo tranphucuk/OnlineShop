@@ -33,6 +33,7 @@ namespace OnlineShop.Data
         public DbSet<Feedback> Feedbacks { get; set; }
         public DbSet<Email> Emails { get; set; }
         public DbSet<EmailManager> EmailManagers { get; set; }
+        public DbSet<Logo> Logos { get; set; }
 
         public DbSet<ApplicationGroup> ApplicationGroups { get; set; }
         public DbSet<ApplicationRole> ApplicationRoles { get; set; }

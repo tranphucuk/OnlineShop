@@ -106,10 +106,9 @@
             <div class="share">
                 <h5>Share Product :</h5>
                 <ul class="share_nav">
-                    <li><a href="#"><img src="/Assets/Client/images/facebook.png" title="facebook"></a></li>
-                    <li><a href="#"><img src="/Assets/Client/images/twitter.png" title="Twiiter"></a></li>
-                    <li><a href="#"><img src="/Assets/Client/images/rss.png" title="Rss"></a></li>
-                    <li><a href="#"><img src="/Assets/Client/images/gpluse.png" title="Google+"></a></li>
+                    <li><a href="https://www.facebook.com/sharer/sharer.php?u=@(Request.Url)&title=@Model.Name" target="_blank"><img src="/Assets/Client/images/facebook.png" title="facebook"></a></li>
+                    <li><a href="http://twitter.com/share?text=@Model.Name&url=@(Request.Url)" target="_blank"><img src="/Assets/Client/images/twitter.png" title="Twiiter"></a></li>
+                    <li><a href="https://plusone.google.com/_/+1/confirm?hl=en&url=@(Request.Url)&title=@Model.Name" target="_blank"><img src="/Assets/Client/images/gpluse.png" title="Google+"></a></li>
                 </ul>
             </div>
         </div>

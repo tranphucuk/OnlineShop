@@ -1,0 +1,115 @@
+﻿<section class="content-header">
+    <h1>
+        Create Order
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a ui-sref="list_order">Order</a></li>
+        <li class="active">Create</li>
+    </ol>
+</section>
+
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <!-- Horizontal Form -->
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <!--<h3 class="box-title">Horizontal Form</h3>-->
+                </div><!-- /.box-header -->
+                <!-- form start -->
+                <form class="form-horizontal" name="frmAddSlide" role="form" novalidate>
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Customer Name</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" ng-maxlength="256" required name="name" ng-model="order.CustomerName" readonly>
+                            </div>
+                            <label class="col-sm-2 control-label">Customer Address</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" ng-maxlength="256" name="address" ng-model="order.CustomerAddress" readonly>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Customer Email</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" ng-maxlength="56" name="email" ng-model="order.CustomerEmail" readonly>
+                            </div>
+                            <label class="col-sm-2 control-label">Customer Phone</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" ng-maxlength="56" name="phone" ng-model="order.CustomerMobile" readonly>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Paygate</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" ng-maxlength="56" name="createdDate" ng-model="order.PaymentMethod" readonly>
+                            </div>
+                            <label class="col-sm-2 control-label">Payment Status</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" ng-maxlength="56" name="createdDate" ng-model="order.PaymentStatus" readonly>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Total Quantity</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" ng-maxlength="56" name="quantity" ng-model="order.ProductQuantity" readonly>
+                            </div>
+                            <label class="col-sm-2 control-label">Order Date</label>
+                            <div class="col-sm-4">
+                                <input type="datetime" class="form-control" ng-maxlength="56" name="createdDate" ng-model="order.CreatedDate" readonly>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Customer Message</label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control" ckeditor="ckEditorOptions" ng-maxlength="500" ng-model="order.CustomerMessage" name="message" required></textarea>
+                                <!--<span ng-show="frmAddPage.name.$invalid && !frmAddPage.name.$error.maxlength" class="has-error">Please enter Page name.</span>
+                                <span ng-show="frmAddPage.name.$error.maxlength" class="has-error">Your Page name seem too long </span>-->
+                            </div>
+                        </div>
+                        <br />
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Order Details</label>
+                            <div class="col-sm-10">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>*ID</th>
+                                            <th>*Product Name</th>
+                                            <th>*Image</th>
+                                            <th>*Url</th>
+                                            <th>*Quantity</th>
+                                            <th>*Price</th>
+                                            <th>*Bill (VND)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="order in orderDetails">
+                                            <td>{{order.Product.ID}}</td>
+                                            <td>{{order.Product.Name}}</td>
+                                            <td><img ng-src="{{order.Product.Image}}" width="50" /></td>
+                                            <td><a href="{{order.ProductUrl}}" target="_blank">Click here</a></td>
+                                            <td>{{order.Quantity}}</td>
+                                            <td>{{order.Product.Price}}</td>
+                                            <td>{{order.Quantity * order.Product.Price }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div><!-- /.box-body -->
+                    <div class="box-footer">
+                        <button ui-sref="productList" class="btn btn-default">Cancel</button>
+                        <button type="submit" class="btn btn-success pull-right" ng-disabled="frmAddSlide.$invalid" ng-click="PrintOrder()">Print Order</button>
+                    </div><!-- /.box-footer -->
+                </form>
+            </div><!-- /.box -->
+        </div>
+    </div>
+</section>

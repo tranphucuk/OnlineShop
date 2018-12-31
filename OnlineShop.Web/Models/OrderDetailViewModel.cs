@@ -16,5 +16,7 @@ namespace OnlineShop.Web.Models
         public virtual OrderViewModel Order { get; set; }
 
         public virtual ProductViewModel Product { get; set; }
+
+        public string ProductUrl { get; set; }
     }
 }

@@ -37,6 +37,8 @@ namespace OnlineShop.Model.Model
 
         public DateTime? CreatedDate { get; set; }
 
+        public int ProductQuantity { get; set; }  
+
         [Required]
         [MaxLength(50)]
         public string CreatedBy { get; set; }

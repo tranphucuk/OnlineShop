@@ -8,7 +8,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <html>
 <head>
     <title>Big shope A Ecommerce Category Flat Bootstarp Resposive Website Template | Home :: w3layouts</title>
-    <link href="/Assets/Client/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+    @*<link href="/Assets/Client/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
     <link href="/Assets/Client/css/jquery.auto-complete.css" rel="stylesheet" />
     <link href="/Assets/Client/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet" />
     <!--theme-style-->
@@ -16,11 +16,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <link href="/Assets/Client/css/customStyle.css" rel="stylesheet" />
     <!--//theme-style-->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
     <!--fonts-->
-    @*<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>*@
     <link href="~/Assets/Client/css/fonts.googleapis.css" rel="stylesheet" />
-    <link href="~/Assets/Client/js/Ply-master/ply.css" rel="stylesheet" />
+    <link href="~/Assets/Client/js/Ply-master/ply.css" rel="stylesheet" />*@
+    @Styles.Render("~/bundles/cssClientCore")
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
     <!--//fonts-->
     <!--script-->
 </head>
@@ -35,18 +35,19 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     </div>
     @{Html.RenderAction("Footer", "Home");}
     <!---->
-    <script src="/Assets/Client/js/jquery.min.js"></script>
-    <script src="/Assets/Client/js/jquery.auto-complete.min.js"></script>
-    <script src="/Assets/Admin/libs/jquery-validation-1.19.0/dist/jquery.validate.js"></script>
-    <script src="/Assets/Admin/libs/jquery-validation-1.19.0/dist/additional-methods.js"></script>
-    <script src="/Assets/Admin/libs/Numeral.js/numeral.js"></script>
-    <script src="/Assets/Admin/libs/mustache.js/mustache.js"></script>
-    <script src="/Assets/Client/js/controller/shoppingCart.js"></script>
-    <script src="/Assets/Client/js/autoComplete.js"></script>
-    <script src="/Assets/Client/js/signOut.js"></script>
+    <script src="~/Assets/Client/js/jquery.min.js"></script>
+    <script src="~/Assets/Client/js/jquery.auto-complete.min.js"></script>
+    <script src="~/Assets/Admin/libs/jquery-validation-1.19.0/dist/jquery.validate.js"></script>
+    <script src="~/Assets/Admin/libs/jquery-validation-1.19.0/dist/additional-methods.js"></script>
+    <script src="~/Assets/Admin/libs/Numeral.js/numeral.js"></script>
+    <script src="~/Assets/Admin/libs/mustache.js/mustache.js"></script>
+    <script src="~/Assets/Client/js/controller/shoppingCart.js"></script>
+    <script src="~/Assets/Client/js/autoComplete.js"></script>
+    <script src="~/Assets/Client/js/signOut.js"></script>
     <script src="~/Assets/Client/js/controller/emailNewsLetter.js"></script>
     <script src="~/Assets/Client/js/notify.min.js"></script>
     <script src="~/Assets/Client/js/Ply-master/Ply.js"></script>
+    @*@Scripts.Render("~/bundles/jsClientCore")*@
     @RenderSection("FooterJs", required: false)
 </body>
 </html>

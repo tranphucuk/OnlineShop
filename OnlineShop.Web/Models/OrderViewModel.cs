@@ -11,15 +11,18 @@ namespace OnlineShop.Web.Models
         public int ID { get; set; }
 
         [Required]
+        [MaxLength(250)]
         public string CustomerName { get; set; }
 
-        [Required]
+        [MaxLength(250)]
         public string CustomerAddress { get; set; }
 
-        [Required]
+        [MaxLength(50)]
         public string CustomerEmail { get; set; }
 
-        [Required]
+        public int ProductQuantity { get; set; }
+
+        [MaxLength(50)]
         public string CustomerMobile { get; set; }
 
         public string CustomerMessage { get; set; }

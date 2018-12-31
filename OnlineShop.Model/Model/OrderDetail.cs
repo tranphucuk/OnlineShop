@@ -21,6 +21,8 @@ namespace OnlineShop.Model.Model
 
         public int? Quantity { get; set; }
 
+        public string ProductUrl { get; set; }
+
         [ForeignKey("OrderID")]
         public virtual Order Order { get; set; }
 

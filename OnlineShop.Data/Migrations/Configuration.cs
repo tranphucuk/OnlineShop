@@ -25,6 +25,7 @@ namespace OnlineShop.Data.Migrations
             CreateContactDetails(context);
             CreateApplicationGroup(context);
             CreateSampleAppRole(context);
+            CreateLogoSample(context);
         }
 
         private void CreatePageSample(OnlineShopDbContext context)
@@ -192,6 +193,25 @@ namespace OnlineShop.Data.Migrations
                     new ApplicationRole(){Name = "Add product",Description = "Add new product"},
                 };
                 context.ApplicationRoles.AddRange(listRoles);
+                context.SaveChanges();
+            }
+        }
+
+        public void CreateLogoSample(OnlineShopDbContext context)
+        {
+            if(context.Logos.Count() == 0)
+            {
+                var listLogo = new List<Logo>
+                {
+                    new Logo()
+                    {
+                        Name = "NgaVy Cosmetic",
+                        CreatedDate = DateTime.Now,
+                        ImagePath = "imageslogo.png",
+                        Status = true
+                    }
+                };
+                context.Logos.AddRange(listLogo);
                 context.SaveChanges();
             }
         }

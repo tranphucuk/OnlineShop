@@ -31,6 +31,8 @@ namespace OnlineShop.Web.Mappings
                 cfg.CreateMap<ApplicationUser, ApplicationUserViewModel>();
                 cfg.CreateMap<Email, EmailViewModel>();
                 cfg.CreateMap<EmailManager, EmailManagerViewModel>();
+                cfg.CreateMap<EmailManager, EmailManagerViewModel>();
+                cfg.CreateMap<Logo, LogoViewModel>();
             });
         }
     }

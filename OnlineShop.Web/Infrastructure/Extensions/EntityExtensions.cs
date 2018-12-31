@@ -147,6 +147,7 @@ namespace OnlineShop.Web.Infrastructure.Extensions
             order.PaymentStatus = orderViewModel.PaymentStatus;
             order.CreatedBy = orderViewModel.CreatedBy;
             order.OrderDetails = Mapper.Map<IEnumerable<OrderDetailViewModel>, IEnumerable<OrderDetail>>(orderViewModel.OrderDetails);
+            order.ProductQuantity = orderViewModel.ProductQuantity;
         }
 
         public static void UpdateAppGroup(this ApplicationGroup appGroup, ApplicationGroupViewModel appGroupVm)
@@ -195,7 +196,7 @@ namespace OnlineShop.Web.Infrastructure.Extensions
             emailManager.RecipientCount = emailManagerVm.RecipientEmails.Count();
         }
 
-        public static void UpdateSlide( this Slide slide, SlideViewModel slideVm)
+        public static void UpdateSlide(this Slide slide, SlideViewModel slideVm)
         {
             slide.ID = slideVm.ID;
             slide.Image = slideVm.Image;
@@ -205,6 +206,15 @@ namespace OnlineShop.Web.Infrastructure.Extensions
             slide.Status = slideVm.Status;
             slide.URL = slideVm.URL;
             slide.DisplayOrder = slideVm.DisplayOrder;
+        }
+
+        public static void UpdateLogo(this Logo logo, LogoViewModel logoVm)
+        {
+            logo.ID = logoVm.ID;
+            logo.Name = logoVm.Name;
+            logo.ImagePath = logoVm.ImagePath;
+            logo.CreatedDate = logoVm.CreatedDate;
+            logo.Status = logoVm.Status;
         }
     }
 }

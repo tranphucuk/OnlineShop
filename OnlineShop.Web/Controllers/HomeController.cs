@@ -23,21 +23,24 @@ namespace OnlineShop.Web.Controllers
         IProductService _productService;
         IPageService _pageService;
         IEmailService _emailService;
+        ILogoService _logoService;
 
         public HomeController(IProductCategoryService productCategory,
             ICommonService commonService, IPageService pageService, IEmailService emailService,
-            IProductService productService)
+            IProductService productService, ILogoService logoService)
         {
             this._productCategoryService = productCategory;
             this._commonService = commonService;
             this._productService = productService;
             this._pageService = pageService;
             this._emailService = emailService;
+            this._logoService = logoService;
         }
 
         [OutputCache(CacheProfile = "cache1min")]
         public ActionResult Index()
         {
+            ViewBag.Month = DateTime.Now.Month;
             var slideModel = _commonService.GetSlides();
             var SlideViewModel = Mapper.Map<IEnumerable<Slide>, IEnumerable<SlideViewModel>>(slideModel);
 
@@ -73,7 +76,9 @@ namespace OnlineShop.Web.Controllers
         [ChildActionOnly]
         public ActionResult Header()
         {
-            return PartialView();
+            var logoModels = _logoService.GetMultiLogos();
+            var mogoViewModel = Mapper.Map<IEnumerable<Logo>, IEnumerable<LogoViewModel>>(logoModels);
+            return PartialView(mogoViewModel);
         }
 
         [ChildActionOnly]

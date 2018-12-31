@@ -39,12 +39,11 @@ namespace OnlineShop.Web.API
                  var responseData = Mapper.Map<List<ProductViewModel>>(query);
                  var pagination = new PaginationSet<ProductViewModel>
                  {
-                     Items = responseData.ToList(),
+                     Items = responseData,
                      Page = page,
                      TotalCount = totalRow,
                      TotalPage = (int)Math.Ceiling((decimal)totalRow / pageSize),
                  };
-
                  return request.CreateResponse(HttpStatusCode.OK, pagination);
              });
         }

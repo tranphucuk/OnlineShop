@@ -120,5 +120,45 @@ namespace OnlineShop.Web.Controllers
                 data = "",
             }, JsonRequestBehavior.AllowGet);
         }
+
+        public ActionResult GetListHotProducts(int month, string sort, int page = 1)
+        {
+            ViewBag.sortType = sort;
+            int totalRow = 0;
+            var pageSize = int.Parse(ConfigHelper.GetValueByKey("pageSize"));
+
+            var hotProductsModel = _productService.GetHotProductsPaging(sort, page, pageSize, out totalRow);
+            var hotProductsViewModel = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(hotProductsModel);
+            var paginationSet = new PaginationSet<ProductViewModel>
+            {
+                Items = hotProductsViewModel,
+                MaxPage = int.Parse(ConfigHelper.GetValueByKey("maxPage")),
+                Page = page,
+                TotalCount = totalRow,
+                TotalPage = (int)Math.Ceiling((double)totalRow / pageSize)
+            };
+
+            return View(paginationSet);
+        }
+
+        public ActionResult GetLatestProducts(int month, string sort, int page = 1)
+        {
+            ViewBag.sortType = sort;
+            int totalRow = 0;
+            var pageSize = int.Parse(ConfigHelper.GetValueByKey("pageSize"));
+
+            var hotProductsModel = _productService.GetLatestProductsPaging(sort, page, pageSize, out totalRow);
+            var hotProductsViewModel = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(hotProductsModel);
+            var paginationSet = new PaginationSet<ProductViewModel>
+            {
+                Items = hotProductsViewModel,
+                MaxPage = int.Parse(ConfigHelper.GetValueByKey("maxPage")),
+                Page = page,
+                TotalCount = totalRow,
+                TotalPage = (int)Math.Ceiling((double)totalRow / pageSize)
+            };
+
+            return View(paginationSet);
+        }
     }
 }

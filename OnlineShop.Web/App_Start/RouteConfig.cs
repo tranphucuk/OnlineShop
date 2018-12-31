@@ -76,6 +76,20 @@ namespace OnlineShop.Web
             );
 
             routes.MapRoute(
+                name: "Hot Products",
+                url: "hot-products-month-{month}.html",
+                defaults: new { controller = "Product", action = "GetListHotProducts", month = UrlParameter.Optional },
+                namespaces: new string[] { "OnlineShop.Web.Controllers" }
+            );
+
+            routes.MapRoute(
+               name: "Latest Products",
+               url: "latest-products-month-{month}.html",
+               defaults: new { controller = "Product", action = "GetLatestProducts", month = UrlParameter.Optional },
+               namespaces: new string[] { "OnlineShop.Web.Controllers" }
+           );
+
+            routes.MapRoute(
                 name: "Product",
                 url: "{alias}.p-{id}.html",
                 defaults: new { controller = "Product", action = "Detail", id = UrlParameter.Optional },

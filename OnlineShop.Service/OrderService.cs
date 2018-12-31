@@ -12,6 +12,12 @@ namespace OnlineShop.Service
     public interface IOrderService
     {
         bool CreateOrder(Order order);
+        IEnumerable<OrderDetail> GetAllOrderDetails();
+        IEnumerable<Order> GetAllOrder();
+        IEnumerable<OrderDetail> GetListOrderDetailsByOrderId(int orderId);
+        Order GetSingleOrder(int id);
+        void UpdateOrder(Order order);
+        void Save();
     }
 
     public class OrderService : IOrderService
@@ -46,6 +52,36 @@ namespace OnlineShop.Service
             {
                 return false;
             }
+        }
+
+        public IEnumerable<Order> GetAllOrder()
+        {
+            return _orderRepository.GetAll();
+        }
+
+        public IEnumerable<OrderDetail> GetAllOrderDetails()
+        {
+            return _orderDetailRepository.GetAll();
+        }
+
+        public IEnumerable<OrderDetail> GetListOrderDetailsByOrderId(int orderId)
+        {
+            return _orderRepository.GetListOrderDetails(orderId);
+        }
+
+        public Order GetSingleOrder(int id)
+        {
+            return _orderRepository.GetSingleEntity(id);
+        }
+
+        public void Save()
+        {
+            _unitOfWork.Commit();
+        }
+
+        public void UpdateOrder(Order order)
+        {
+            _orderRepository.Update(order);
         }
     }
 }

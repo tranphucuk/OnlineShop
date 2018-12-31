@@ -24,6 +24,8 @@ namespace OnlineShop.Service
         IEnumerable<Product> GetListProductByKeyword(string keyword, string sort, int page, int pageSize, out int totalRow);
         IEnumerable<Product> GetRelatedProducts(int id, int number);
         IEnumerable<string> GetListProductName(string keyword);
+        IEnumerable<Product> GetHotProductsPaging(string sort, int page, int pageSize, out int totalRow);
+        IEnumerable<Product> GetLatestProductsPaging(string sort, int page, int pageSize, out int totalRow);
 
         IEnumerable<Tag> GetListTagsByProductId(int id);
         void IncreaseView(int id);
@@ -110,23 +112,7 @@ namespace OnlineShop.Service
         public IEnumerable<Product> GetProductByCategoryIdPaging(int categoryId, string sort, int page, int pageSize, out int totalRow)
         {
             var query = _productRepository.GetMulti(x => x.Status == true && x.CategoryID == categoryId);
-            switch (sort)
-            {
-                case "popular":
-                    query = query.OrderByDescending(x => x.ViewCount);
-                    break;
-                case "price":
-                    query = query.OrderBy(x => x.Price);
-                    break;
-                case "discount":
-                    query = query.OrderBy(x => x.PromotionPrice.HasValue);
-                    break;
-                case "hot":
-                    query = query.OrderBy(x => x.HotFlag == true);
-                    break;
-                default:
-                    break;
-            }
+            query = _productRepository.SortProducts(query, sort);
             totalRow = query.Count();
             return query.Skip((page - 1) * pageSize).Take(pageSize);
         }
@@ -134,23 +120,7 @@ namespace OnlineShop.Service
         public IEnumerable<Product> GetListProductByKeyword(string keyword, string sort, int page, int pageSize, out int totalRow)
         {
             var query = _productRepository.GetMulti(x => x.Status == true && x.Name.Contains(keyword));
-            switch (sort)
-            {
-                case "popular":
-                    query = query.OrderByDescending(x => x.ViewCount);
-                    break;
-                case "price":
-                    query = query.OrderBy(x => x.Price);
-                    break;
-                case "discount":
-                    query = query.OrderBy(x => x.PromotionPrice.HasValue);
-                    break;
-                case "hot":
-                    query = query.OrderBy(x => x.HotFlag == true);
-                    break;
-                default:
-                    break;
-            }
+            query = _productRepository.SortProducts(query, sort);
             totalRow = query.Count();
             return query.Skip((page - 1) * pageSize).Take(pageSize);
         }
@@ -200,7 +170,7 @@ namespace OnlineShop.Service
 
         public IEnumerable<Tag> GetListTagsByProductId(int id)
         {
-            return _productTagRepository.GetMulti(x => x.ProductID == id, new string[] { "Tag"}).Select(y => y.Tag);
+            return _productTagRepository.GetMulti(x => x.ProductID == id, new string[] { "Tag" }).Select(y => y.Tag);
         }
 
         public void IncreaseView(int id)
@@ -217,6 +187,22 @@ namespace OnlineShop.Service
             var model = _productRepository.GetProductsByTagId(tagid);
             totalRow = model.Count();
             return model.OrderByDescending(x => x.CreatedDate).Skip((page - 1) * pageSize).Take(pageSize);
+        }
+
+        public IEnumerable<Product> GetHotProductsPaging(string sort, int page, int pageSize, out int totalRow)
+        {
+            var query = _productRepository.GetMulti(x => x.Status == true && x.HotFlag == true);
+            query = _productRepository.SortProducts(query, sort).OrderByDescending(x => x.CreatedDate);
+            totalRow = query.Count();
+            return query.Skip((page - 1) * pageSize).Take(pageSize);
+        }
+
+        public IEnumerable<Product> GetLatestProductsPaging(string sort, int page, int pageSize, out int totalRow)
+        {
+            var query = _productRepository.GetMulti(x => x.Status == true);
+            query = _productRepository.SortProducts(query, sort).OrderByDescending(x => x.CreatedDate);
+            totalRow = query.Count();
+            return query.Skip((page - 1) * pageSize).Take(pageSize);
         }
     }
 }

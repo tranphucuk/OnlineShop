@@ -10,7 +10,9 @@ using OnlineShop.Web.App_Start;
 using OnlineShop.Web.Models;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Net;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
@@ -88,6 +90,10 @@ namespace OnlineShop.Web.Controllers
                     AuthenticationProperties props = new AuthenticationProperties();
                     props.IsPersistent = loginVm.RememberMe;
                     authenticationManager.SignIn(props, identity);
+
+                    string externalip = new WebClient().DownloadString("https://checkip.amazonaws.com/").Trim();
+                    string country = new WebClient().DownloadString("http://ip-api.io/api/json").Trim();
+
                     if (returnUrl != null)
                     {
                         return Redirect(returnUrl);

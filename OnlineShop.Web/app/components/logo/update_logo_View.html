@@ -1,0 +1,68 @@
+﻿<section class="content-header">
+    <h1>
+       Update Logo
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a ui-sref="listLogo">Slides</a></li>
+    </ol>
+</section>
+
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <!-- Horizontal Form -->
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <!--<h3 class="box-title">Horizontal Form</h3>-->
+                </div><!-- /.box-header -->
+                <!-- form start -->
+                <form class="form-horizontal" name="frmAddLogo" role="form" novalidate>
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Name</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" ng-maxlength="50" required name="name" ng-model="Logo.Name" placeholder="Name">
+                                <!--<span ng-show="frmAddPage.name.$invalid && !frmAddPage.name.$error.maxlength" class="has-error">Please enter Page name.</span>
+                                <span ng-show="frmAddPage.name.$error.maxlength" class="has-error">Your Page name seem too long </span>-->
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Image Path</label>
+                            <div class="col-sm-4">
+                                <ul class="list-inline">
+                                    <li style="border:ridge;padding:10px"><img ng-src="{{Logo.ImagePath}}" width="200" /></li>
+                                </ul>
+                                <button ng-click="addImg()" class="btn btn-default">Browse...</button>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Created Date</label>
+                            <div class="col-sm-5">
+                                <input type="datetime" readonly class="form-control" ng-maxlength="256" min="1" required name="createdDate" ng-model="Logo.CreatedDate">
+                                <!--<span ng-show="frmAddPage.name.$invalid && !frmAddPage.name.$error.maxlength" class="has-error">Please enter Page name.</span>
+                                <span ng-show="frmAddPage.name.$error.maxlength" class="has-error">Your Page name seem too long </span>-->
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="status" ng-model="Logo.Status" ng-checked="Logo.Status"> Status
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- /.box-body -->
+                    <div class="box-footer">
+                        <button ui-sref="listLogo" class="btn btn-default">Cancel</button>
+                        <button type="submit" class="btn btn-success pull-right" ng-disabled="frmAddSlide.$invalid" ng-click="UpdateLogo()">Update</button>
+                    </div><!-- /.box-footer -->
+                </form>
+            </div><!-- /.box -->
+        </div>
+    </div>
+</section>

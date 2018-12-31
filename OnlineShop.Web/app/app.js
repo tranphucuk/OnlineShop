@@ -10,7 +10,9 @@
             'onlineShop.applicationUsers',
             'onlineShop.customerEmail',
             'onlineShop.emailManager',
-            'onlineShop.slides'])
+            'onlineShop.slides',
+            'onlineShop.order',
+            'onlineShop.logo'])
         .config(config)
         .config(configAuthentication);
 

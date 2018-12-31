@@ -1,0 +1,104 @@
+﻿@model OnlineShop.Web.Infrastructure.Core.PaginationSet<OnlineShop.Web.Models.ProductViewModel>
+@using OnlineShop.Common
+@{
+    ViewBag.Title = "Hot Product";
+    Layout = "~/Views/shared/Layout.cshtml";
+    var sortType = (string)ViewBag.sortType;
+    sortType = sortType == null ? "" : "&sort=" + sortType;
+}
+
+<div class="women-product">
+    <div class=" w_content">
+        <div class="women">
+            <a href="/"><h4><span>@Model.TotalCount items</span> </h4></a>
+            <ul class="w_nav">
+                <li>Sort : </li>
+                <li><a class="active" href="?page=@Model.Page&sort=popular">popular</a></li> |
+                <li><a href="?page=@Model.Page&sort=hot">hot</a></li> |
+                <li><a href="?page=@Model.Page&sort=discount">discount</a></li> |
+                <li><a href="?page=@Model.Page&sort=price">price: Low High </a></li>
+                <div class="clearfix"> </div>
+            </ul>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+    <!-- grids_of_4 -->
+    @if (Model.Items.Count() > 0)
+    {
+        <div class="grid-product">
+            @foreach (var product in Model.Items)
+            {
+                var url = "/" + product.Alias + ".p-" + product.ID + ".html";
+                <div class="product-grid">
+                    <div class="content_box">
+                        <a href="@url"></a>
+                        <div class="left-grid-view grid-view-left">
+                            <a href="@url">
+                                <img src="@product.Image" class="img-responsive watch-right" alt="@product.Name" />
+                                <div class="mask">
+                                    <div class="info">Quick View</div>
+                                </div>
+                            </a>
+                        </div>
+                        <h4><a href="@url">@product.Name</a></h4>
+                        <p></p>
+                        @(product.Price == 0 ? "Contact" : CommonConstants.GetCurrency(product.Price))
+                    </div>
+                </div>
+            }
+            <div class="clearfix"> </div>
+            @if (Model.TotalPage > 1)
+            {
+                var startPageIndex = Math.Max(1, Model.Page - Model.MaxPage / 2);
+                var endPageIndex = Math.Min(Model.TotalPage, Model.Page + Model.Page / 2);
+
+                <nav>
+                    <ul class="pagination">
+                        @if (Model.Page > 1)
+                        {
+                            <li>
+                                <a href="?page=1@(sortType)" aria-label="First">
+                                    <i class="fa fa-angle-double-left"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="?page=@(Model.Page-1)@(sortType)" aria-label="Previous">
+                                    <i class="fa fa-angle-left"></i>
+                                </a>
+                            </li>
+                        }
+
+                        @for (int i = startPageIndex; i <= Model.TotalPage; i++)
+                        {
+                            if (Model.Page == i)
+                            {
+                                <li class="active"><a href="?page=@i@(sortType)" title="Trang @i">@i</a></li>
+                            }
+                            else
+                            {
+                                <li><a href="?page=@i@(sortType)" title="Trang @i">@i</a></li>
+                            }
+                        }
+                        @if (Model.Page < Model.TotalPage)
+                        {
+                            <li>
+                                <a href="?page=@(Model.Page+1)@(sortType)" aria-label="Next">
+                                    <i class="fa fa-angle-right"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="?page=@Model.TotalPage@(sortType)" aria-label="Last">
+                                    <i class="fa fa-angle-double-right"></i>
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </nav>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="text-center" style="color:red;margin-top:10%">No products found for this Category</div>
+    }
+</div>

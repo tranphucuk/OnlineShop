@@ -161,6 +161,18 @@
     <Compile Include="Migrations\201812271516161_UpdateEmailManager.Designer.cs">
       <DependentUpon>201812271516161_UpdateEmailManager.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812291436474_UpdateTableOrder.cs" />
+    <Compile Include="Migrations\201812291436474_UpdateTableOrder.Designer.cs">
+      <DependentUpon>201812291436474_UpdateTableOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812291839225_UpdateTableOrderDetail.cs" />
+    <Compile Include="Migrations\201812291839225_UpdateTableOrderDetail.Designer.cs">
+      <DependentUpon>201812291839225_UpdateTableOrderDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812311458433_AddTableLogo.cs" />
+    <Compile Include="Migrations\201812311458433_AddTableLogo.Designer.cs">
+      <DependentUpon>201812311458433_AddTableLogo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="OnlineShopDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -174,6 +186,7 @@
     <Compile Include="Repositories\ErrorRepository.cs" />
     <Compile Include="Repositories\FeedbackRepository.cs" />
     <Compile Include="Repositories\FooterRepository.cs" />
+    <Compile Include="Repositories\LogoRepository.cs" />
     <Compile Include="Repositories\MenuGroupRepository.cs" />
     <Compile Include="Repositories\MenuRepository.cs" />
     <Compile Include="Repositories\OrderDetailRepository.cs" />
@@ -280,6 +293,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812271516161_UpdateEmailManager.resx">
       <DependentUpon>201812271516161_UpdateEmailManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812291436474_UpdateTableOrder.resx">
+      <DependentUpon>201812291436474_UpdateTableOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812291839225_UpdateTableOrderDetail.resx">
+      <DependentUpon>201812291839225_UpdateTableOrderDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812311458433_AddTableLogo.resx">
+      <DependentUpon>201812311458433_AddTableLogo.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
